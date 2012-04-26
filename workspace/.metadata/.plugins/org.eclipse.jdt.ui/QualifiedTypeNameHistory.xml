@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="java.lang.String"/>
+<fullyQualifiedTypeName name="aQute.bnd.annotation.component.Activate"/>
+<fullyQualifiedTypeName name="aQute.bnd.annotation.component.Deactivate"/>
+<fullyQualifiedTypeName name="org.osgi.framework.Bundle"/>
+<fullyQualifiedTypeName name="org.osgi.framework.BundleContext"/>
+<fullyQualifiedTypeName name="aQute.bnd.annotation.component.Component"/>
+<fullyQualifiedTypeName name="java.lang.System"/>
+<fullyQualifiedTypeName name="fr.guillaume.objectgenerator.Main"/>
+<fullyQualifiedTypeName name="java.lang.Thread"/>
+<fullyQualifiedTypeName name="java.lang.Integer"/>
+<fullyQualifiedTypeName name="java.util.concurrent.locks.ReentrantLock"/>
+<fullyQualifiedTypeName name="java.lang.StringBuffer"/>
+<fullyQualifiedTypeName name="javax.annotation.Generated"/>
+<fullyQualifiedTypeName name="java.util.Comparator"/>
+<fullyQualifiedTypeName name="java.lang.AbstractMethodError"/>
+<fullyQualifiedTypeName name="fr.guillaume.sorter.sortthreads.AbstractSortThread"/>
+<fullyQualifiedTypeName name="java.lang.Comparable"/>
+<fullyQualifiedTypeName name="fr.guillaume.sorter.sortthreads.QuickSortThread"/>
+<fullyQualifiedTypeName name="fr.guillaume.sorter.Sorter"/>
+<fullyQualifiedTypeName name="fr.guillaume.objectgenerator.IntegerGenrator"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="fr.guillaume.objectgenerator.Generator"/>
+</qualifiedTypeNameHistroy>

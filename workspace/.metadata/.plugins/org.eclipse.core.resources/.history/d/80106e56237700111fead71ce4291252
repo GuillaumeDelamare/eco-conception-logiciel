@@ -1,0 +1,12 @@
+package org.example;
+
+import org.osgi.framework.BundleContext;
+
+import aQute.bnd.annotation.component.Activate;
+import aQute.bnd.annotation.component.Component;
+import aQute.bnd.annotation.component.Deactivate;
+
+@Component
+public class ExampleComponent {
+	
+}

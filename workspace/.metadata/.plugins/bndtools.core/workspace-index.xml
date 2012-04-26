@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='http://www.osgi.org/www/obr2html.xsl'?>
+<repository lastmodified="20120328104210.404" name="Bndtools Workspace Repository">
+  <resource id="HelloWorld.secondBundle/0.0.0" presentationname="HelloWorld.secondBundle" symbolicname="HelloWorld.secondBundle" uri="file:/home/guillaume/workspace/HelloWorld/generated/HelloWorld.secondBundle.jar" version="0.0.0"><category id="__WORKSPACE"/>
+    <size>
+      2986
+    </size>
+    <capability name="bundle">
+      <p n="manifestversion" v="2"/>
+      <p n="presentationname" v="HelloWorld.secondBundle"/>
+      <p n="symbolicname" v="HelloWorld.secondBundle"/>
+      <p n="version" t="version" v="0.0.0"/>
+    </capability>
+    <require extend="false" filter="(&amp;(package=org.osgi.framework)(version&gt;=1.5.0)(!(version&gt;=2.0.0)))" multiple="false" name="package" optional="false">
+      Import package org.osgi.framework ;version=[1.5.0,2.0.0)
+    </require>
+  </resource>
+  <resource id="commons-lang-2.6/0.0.0" presentationname="commons-lang-2.6" symbolicname="commons-lang-2.6" uri="file:/home/guillaume/workspace/commons-lang-2.6/generated/commons-lang-2.6.jar" version="0.0.0"><category id="__WORKSPACE"/>
+    <size>
+      277960
+    </size>
+    <capability name="bundle">
+      <p n="manifestversion" v="2"/>
+      <p n="presentationname" v="commons-lang-2.6"/>
+      <p n="symbolicname" v="commons-lang-2.6"/>
+      <p n="version" t="version" v="0.0.0"/>
+    </capability>
+    <capability name="package">
+      <p n="package" v="org.apache.commons.lang"/>
+      <p n="uses" v="org.apache.commons.lang.builder,org.apache.commons.lang.math,org.apache.commons.lang.text,org.apache.commons.lang.exception,org.apache.commons.lang.reflect"/>
+      <p n="version" t="version" v="0.0.0"/>
+    </capability>
+    <capability name="package">
+      <p n="package" v="org.apache.commons.lang.builder"/>
+      <p n="uses" v="org.apache.commons.lang.math,org.apache.commons.lang"/>
+      <p n="version" t="version" v="0.0.0"/>
+    </capability>
+    <capability name="package">
+      <p n="package" v="org.apache.commons.lang.enum"/>
+      <p n="uses" v="org.apache.commons.lang"/>
+      <p n="version" t="version" v="0.0.0"/>
+    </capability>
+    <capability name="package">
+      <p n="package" v="org.apache.commons.lang.enums"/>
+      <p n="uses" v="org.apache.commons.lang"/>
+      <p n="version" t="version" v="0.0.0"/>
+    </capability>
+    <capability name="package">
+      <p n="package" v="org.apache.commons.lang.exception"/>
+      <p n="uses" v="org.apache.commons.lang"/>
+      <p n="version" t="version" v="0.0.0"/>
+    </capability>
+    <capability name="package">
+      <p n="package" v="org.apache.commons.lang.math"/>
+      <p n="uses" v="org.apache.commons.lang.text,org.apache.commons.lang"/>
+      <p n="version" t="version" v="0.0.0"/>
+    </capability>
+    <capability name="package">
+      <p n="package" v="org.apache.commons.lang.mutable"/>
+      <p n="uses" v="org.apache.commons.lang,org.apache.commons.lang.math"/>
+      <p n="version" t="version" v="0.0.0"/>
+    </capability>
+    <capability name="package">
+      <p n="package" v="org.apache.commons.lang.reflect"/>
+      <p n="uses" v="org.apache.commons.lang"/>
+      <p n="version" t="version" v="0.0.0"/>
+    </capability>
+    <capability name="package">
+      <p n="package" v="org.apache.commons.lang.text"/>
+      <p n="uses" v="org.apache.commons.lang"/>
+      <p n="version" t="version" v="0.0.0"/>
+    </capability>
+    <capability name="package">
+      <p n="package" v="org.apache.commons.lang.time"/>
+      <p n="uses" v="org.apache.commons.lang,org.apache.commons.lang.text"/>
+      <p n="version" t="version" v="0.0.0"/>
+    </capability>
+  </resource>
+  <resource id="commons-lang3-3.1/0.0.0" presentationname="commons-lang3-3.1" symbolicname="commons-lang3-3.1" uri="file:/home/guillaume/workspace/commons-lang3-3.1/generated/commons-lang3-3.1.jar" version="0.0.0"><category id="__WORKSPACE"/>
+    <size>
+      309829
+    </size>
+    <capability name="bundle">
+      <p n="manifestversion" v="2"/>
+      <p n="presentationname" v="commons-lang3-3.1"/>
+      <p n="symbolicname" v="commons-lang3-3.1"/>
+      <p n="version" t="version" v="0.0.0"/>
+    </capability>
+    <capability name="package">
+      <p n="package" v="org.apache.commons.lang3"/>
+      <p n="uses" v="org.apache.commons.lang3.builder,org.apache.commons.lang3.mutable,org.apache.commons.lang3.math,org.apache.commons.lang3.exception,org.apache.commons.lang3.text.translate"/>
+      <p n="version" t="version" v="0.0.0"/>
+    </capability>
+    <capability name="package">
+      <p n="package" v="org.apache.commons.lang3.builder"/>
+      <p n="uses" v="org.apache.commons.lang3,org.apache.commons.lang3.tuple"/>
+      <p n="version" t="version" v="0.0.0"/>
+    </capability>
+    <capability name="package">
+      <p n="package" v="org.apache.commons.lang3.concurrent"/>
+      <p n="uses" v="org.apache.commons.lang3.builder,org.apache.commons.lang3"/>
+      <p n="version" t="version" v="0.0.0"/>
+    </capability>
+    <capability name="package">
+      <p n="package" v="org.apache.commons.lang3.event"/>
+      <p n="uses" v="org.apache.commons.lang3,org.apache.commons.lang3.reflect"/>
+      <p n="version" t="version" v="0.0.0"/>
+    </capability>
+    <capability name="package">
+      <p n="package" v="org.apache.commons.lang3.exception"/>
+      <p n="uses" v="org.apache.commons.lang3.tuple,org.apache.commons.lang3"/>
+      <p n="version" t="version" v="0.0.0"/>
+    </capability>
+    <capability name="package">
+      <p n="package" v="org.apache.commons.lang3.math"/>
+      <p n="uses" v="org.apache.commons.lang3"/>
+      <p n="version" t="version" v="0.0.0"/>
+    </capability>
+    <capability name="package">
+      <p n="package" v="org.apache.commons.lang3.mutable"/>
+      <p n="version" t="version" v="0.0.0"/>
+    </capability>
+    <capability name="package">
+      <p n="package" v="org.apache.commons.lang3.reflect"/>
+      <p n="uses" v="org.apache.commons.lang3"/>
+      <p n="version" t="version" v="0.0.0"/>
+    </capability>
+    <capability name="package">
+      <p n="package" v="org.apache.commons.lang3.text"/>
+      <p n="uses" v="org.apache.commons.lang3"/>
+      <p n="version" t="version" v="0.0.0"/>
+    </capability>
+    <capability name="package">
+      <p n="package" v="org.apache.commons.lang3.text.translate"/>
+      <p n="uses" v="org.apache.commons.lang3"/>
+      <p n="version" t="version" v="0.0.0"/>
+    </capability>
+    <capability name="package">
+      <p n="package" v="org.apache.commons.lang3.time"/>
+      <p n="uses" v="org.apache.commons.lang3"/>
+      <p n="version" t="version" v="0.0.0"/>
+    </capability>
+    <capability name="package">
+      <p n="package" v="org.apache.commons.lang3.tuple"/>
+      <p n="uses" v="org.apache.commons.lang3,org.apache.commons.lang3.builder"/>
+      <p n="version" t="version" v="0.0.0"/>
+    </capability>
+    <capability name="package">
+      <p n="package" v="templates"/>
+      <p n="version" t="version" v="0.0.0"/>
+    </capability>
+    <capability name="package">
+      <p n="package" v="org.apache.commons.lang3"/>
+      <p n="version" t="version" v="0.0.0"/>
+    </capability>
+    <capability name="package">
+      <p n="package" v="org.apache.commons.lang3.builder"/>
+      <p n="version" t="version" v="0.0.0"/>
+    </capability>
+    <capability name="package">
+      <p n="package" v="org.apache.commons.lang3.concurrent"/>
+      <p n="version" t="version" v="0.0.0"/>
+    </capability>
+    <capability name="package">
+      <p n="package" v="org.apache.commons.lang3.event"/>
+      <p n="version" t="version" v="0.0.0"/>
+    </capability>
+    <capability name="package">
+      <p n="package" v="org.apache.commons.lang3.exception"/>
+      <p n="version" t="version" v="0.0.0"/>
+    </capability>
+    <capability name="package">
+      <p n="package" v="org.apache.commons.lang3.math"/>
+      <p n="version" t="version" v="0.0.0"/>
+    </capability>
+    <capability name="package">
+      <p n="package" v="org.apache.commons.lang3.mutable"/>
+      <p n="version" t="version" v="0.0.0"/>
+    </capability>
+    <capability name="package">
+      <p n="package" v="org.apache.commons.lang3.reflect"/>
+      <p n="version" t="version" v="0.0.0"/>
+    </capability>
+    <capability name="package">
+      <p n="package" v="org.apache.commons.lang3.text"/>
+      <p n="version" t="version" v="0.0.0"/>
+    </capability>
+    <capability name="package">
+      <p n="package" v="org.apache.commons.lang3.text.translate"/>
+      <p n="version" t="version" v="0.0.0"/>
+    </capability>
+    <capability name="package">
+      <p n="package" v="org.apache.commons.lang3.time"/>
+      <p n="version" t="version" v="0.0.0"/>
+    </capability>
+    <capability name="package">
+      <p n="package" v="org.apache.commons.lang3.tuple"/>
+      <p n="version" t="version" v="0.0.0"/>
+    </capability>
+    <capability name="package">
+      <p n="package" v="org.apache.commons.lang3"/>
+      <p n="version" t="version" v="0.0.0"/>
+    </capability>
+    <capability name="package">
+      <p n="package" v="org.apache.commons.lang3.builder"/>
+      <p n="version" t="version" v="0.0.0"/>
+    </capability>
+    <capability name="package">
+      <p n="package" v="org.apache.commons.lang3.concurrent"/>
+      <p n="version" t="version" v="0.0.0"/>
+    </capability>
+    <capability name="package">
+      <p n="package" v="org.apache.commons.lang3.event"/>
+      <p n="version" t="version" v="0.0.0"/>
+    </capability>
+    <capability name="package">
+      <p n="package" v="org.apache.commons.lang3.exception"/>
+      <p n="version" t="version" v="0.0.0"/>
+    </capability>
+    <capability name="package">
+      <p n="package" v="org.apache.commons.lang3.math"/>
+      <p n="version" t="version" v="0.0.0"/>
+    </capability>
+    <capability name="package">
+      <p n="package" v="org.apache.commons.lang3.mutable"/>
+      <p n="version" t="version" v="0.0.0"/>
+    </capability>
+    <capability name="package">
+      <p n="package" v="org.apache.commons.lang3.reflect"/>
+      <p n="version" t="version" v="0.0.0"/>
+    </capability>
+    <capability name="package">
+      <p n="package" v="org.apache.commons.lang3.text"/>
+      <p n="version" t="version" v="0.0.0"/>
+    </capability>
+    <capability name="package">
+      <p n="package" v="org.apache.commons.lang3.text.translate"/>
+      <p n="version" t="version" v="0.0.0"/>
+    </capability>
+    <capability name="package">
+      <p n="package" v="org.apache.commons.lang3.time"/>
+      <p n="version" t="version" v="0.0.0"/>
+    </capability>
+    <capability name="package">
+      <p n="package" v="org.apache.commons.lang3.tuple"/>
+      <p n="version" t="version" v="0.0.0"/>
+    </capability>
+    <capability name="package">
+      <p n="package" v="templates"/>
+      <p n="version" t="version" v="0.0.0"/>
+    </capability>
+    <capability name="package">
+      <p n="package" v="org.apache.commons.lang3"/>
+      <p n="version" t="version" v="0.0.0"/>
+    </capability>
+    <capability name="package">
+      <p n="package" v="org.apache.commons.lang3.builder"/>
+      <p n="version" t="version" v="0.0.0"/>
+    </capability>
+    <capability name="package">
+      <p n="package" v="org.apache.commons.lang3.concurrent"/>
+      <p n="version" t="version" v="0.0.0"/>
+    </capability>
+    <capability name="package">
+      <p n="package" v="org.apache.commons.lang3.event"/>
+      <p n="version" t="version" v="0.0.0"/>
+    </capability>
+    <capability name="package">
+      <p n="package" v="org.apache.commons.lang3.exception"/>
+      <p n="version" t="version" v="0.0.0"/>
+    </capability>
+    <capability name="package">
+      <p n="package" v="org.apache.commons.lang3.math"/>
+      <p n="version" t="version" v="0.0.0"/>
+    </capability>
+    <capability name="package">
+      <p n="package" v="org.apache.commons.lang3.mutable"/>
+      <p n="version" t="version" v="0.0.0"/>
+    </capability>
+    <capability name="package">
+      <p n="package" v="org.apache.commons.lang3.reflect"/>
+      <p n="version" t="version" v="0.0.0"/>
+    </capability>
+    <capability name="package">
+      <p n="package" v="org.apache.commons.lang3.text"/>
+      <p n="version" t="version" v="0.0.0"/>
+    </capability>
+    <capability name="package">
+      <p n="package" v="org.apache.commons.lang3.text.translate"/>
+      <p n="version" t="version" v="0.0.0"/>
+    </capability>
+    <capability name="package">
+      <p n="package" v="org.apache.commons.lang3.time"/>
+      <p n="version" t="version" v="0.0.0"/>
+    </capability>
+    <capability name="package">
+      <p n="package" v="org.apache.commons.lang3.tuple"/>
+      <p n="version" t="version" v="0.0.0"/>
+    </capability>
+  </resource>
+</repository>
