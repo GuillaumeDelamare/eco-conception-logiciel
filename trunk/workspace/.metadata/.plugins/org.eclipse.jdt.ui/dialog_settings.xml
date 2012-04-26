@@ -11,8 +11,8 @@
 	<section name="nls_accessor_history">
 		<section name="0">
 			<item value="Messages" key="accessorName"/>
-			<item value="=FirstBundle/src&lt;fr.guillaume.hello" key="bundlePackage"/>
 			<item value="=FirstBundle/src&lt;fr.guillaume.hello" key="accessorPackage"/>
+			<item value="=FirstBundle/src&lt;fr.guillaume.hello" key="bundlePackage"/>
 			<item value="messages.properties" key="bundleName"/>
 		</section>
 	</section>
@@ -47,8 +47,8 @@
 	<section name="DialogBounds_SuperInterfaceSelectionDialog">
 		<item value="416" key="DIALOG_WIDTH"/>
 		<item value="-43" key="DIALOG_Y_ORIGIN"/>
-		<item value="616" key="DIALOG_HEIGHT"/>
 		<item value="120" key="DIALOG_X_ORIGIN"/>
+		<item value="616" key="DIALOG_HEIGHT"/>
 		<item value="1|Ubuntu|11.0|0|GTK|1|" key="DIALOG_FONT_NAME"/>
 	</section>
 	<section name="RefactoringWizard.preview">
@@ -84,8 +84,8 @@
 		<section name="DialogBoundsSettings">
 			<item value="600" key="DIALOG_WIDTH"/>
 			<item value="19" key="DIALOG_Y_ORIGIN"/>
-			<item value="500" key="DIALOG_HEIGHT"/>
 			<item value="27" key="DIALOG_X_ORIGIN"/>
+			<item value="500" key="DIALOG_HEIGHT"/>
 			<item value="1|Ubuntu|11.0|0|GTK|1|" key="DIALOG_FONT_NAME"/>
 		</section>
 	</section>
@@ -101,9 +101,9 @@
 	<section name="JavaElementSearchActions">
 	</section>
 	<section name="org.eclipse.ltk.ui.refactoring.settings">
-		<item value="false" key="renameSubpackages"/>
-		<item value="*" key="patterns"/>
 		<item value="false" key="updateQualifiedNames"/>
+		<item value="*" key="patterns"/>
+		<item value="false" key="renameSubpackages"/>
 		<item value="1" key="updateSimilarElementsMatchStrategy"/>
 		<item value="false" key="updateTextualMatches"/>
 		<item value="false" key="updateSimilarElements"/>
