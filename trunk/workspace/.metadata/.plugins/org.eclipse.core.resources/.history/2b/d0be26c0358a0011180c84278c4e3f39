@@ -1,0 +1,57 @@
+package fr.guillaume.sorter;
+
+import java.util.ArrayList;
+
+import fr.guillaume.objectgenerator.IntegerGenrator;
+import fr.guillaume.sorter.sortthreads.QuickSortThread;
+
+public class Sorter {
+	
+	public Sorter() {
+		
+	}
+	
+	public static void main(String[] args) {
+		IntegerGenrator generator = new IntegerGenrator(100);
+		
+		generator.start();
+		
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		ArrayList<Integer> tab = generator.getAll();
+		Integer[] i = new Integer[tab.size()];
+		tab.toArray(i);
+		
+		System.out.println(i);
+		
+		
+		new QuickSortThread<Integer>(i).start();
+		
+		System.out.println("tableau non trié : ");
+		String s = "";
+		for (Integer integer : i) {
+			s+=integer + " ";
+		}
+		System.out.println(s);
+		
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		System.out.println("tableau trié : ");
+		s = "";
+		for (Integer integer : i) {
+			s+=integer + " ";
+		}
+		System.out.println(s);
+		
+	}
+}

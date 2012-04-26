@@ -1,0 +1,15 @@
+<bundle>
+<bundle-updatelocation>http://www-adele.imag.fr/~donsez/dev/osgi/helloservice10/helloservice10.jar</bundle-updatelocation>
+<bundle-sourceurl>http://www-adele.imag.fr/~donsez/dev/osgi/helloservice10/helloservice10-src.jar</bundle-sourceurl>
+<export-package package="fr.imag.adele.bundle.hello" specification-version="1.0.0"/>
+<bundle-version>0.1.0</bundle-version>
+<bundle-contactaddress>Didier DONSEZ (Didier.Donsez@ieee.org)</bundle-contactaddress>
+<bundle-copyright>Library GNU Public License</bundle-copyright>
+<bundle-name>Hello Service Impl 1.0</bundle-name>
+<bundle-description>provides a simple OSGi service.</bundle-description>
+<bundle-docurl>http://www-adele.imag.fr/~donsez/dev/osgi/helloservice10/readme.html</bundle-docurl>
+<export-service>fr.imag.adele.bundle.hello.HelloService;language=fr</export-service>
+<bundle-vendor>Didier DONSEZ</bundle-vendor>
+</bundle>
+
+

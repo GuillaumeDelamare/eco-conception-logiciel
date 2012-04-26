@@ -1,0 +1,11 @@
+package fr.guillaume.sorter.sortthreads;
+
+public class QuickSortThread extends AbstractSortThread {
+
+	@Override
+	public void sort() {
+		// TODO Auto-generated method stub
+
+	}
+
+}

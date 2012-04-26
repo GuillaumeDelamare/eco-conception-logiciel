@@ -1,0 +1,16 @@
+package fr.guillaume.sorter.sortthreads;
+
+public abstract class AbstractSortThread extends Thread {
+	protected Comparable<?> tab[];
+	
+	public AbstractSortThread(Comparable<?>[] tab) {
+		this.tab = tab;
+	}
+	
+	@Override
+	public void run() {
+		sort();
+	}
+	
+	public abstract void sort();
+}
