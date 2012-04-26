@@ -1,3 +1,0 @@
-Private-Package: org.example
-Service-Component: *
-Import-Package: *
