@@ -1,4 +1,4 @@
-\documentclass[a4paper, draft]{report}
+\documentclass[a4paper, draft]{article}
 
 % Différentes options pour la classe :
 % - taille de la fonte    : 10pt, 11pt, 12pt
@@ -18,29 +18,23 @@
 \begin{document}
 
 \maketitle
+\tableofcontents 
 
-    \chapter*{Introduction}
-    \addcontentsline{toc}{chapter}{Introduction}
+\section{Introduction}
+\subsection{Porté de l'écoconception}
+\subsection{Qu'est ce qu'un code gourmand}
+\subsection{Lien entre consommation énergétique et performance}
 
-    \part{Une partie}
-    \chapter{Un chapitre}
-    \section{Une section}
-    \subsection{Une sous-section}
-    \subsubsection{Une sous-sous-section}
-    \paragraph{Une sous-sous-sous-sous-section}
-    \subparagraph{Une sous-sous-sous-sous-sous-section}
+\section{Comment juger de l'éco-conception d'un logiciel}
+\subsection{Analyse du cycle de vie}
+\subsection{Mesure de la consommation d'un logiciel}
+\subsection{Métriques}
 
-    % Les annexes
-    \appendix
+\section{Bonnes pratiques et patrons de conception}
 
-    \chapter{Premier annexe}
-    \chapter{Second annexe}
-
-    \chapter*{Conclusion et discussion}
-    \addcontentsline{toc}{chapter}{Conclusion et discussion}
+\section{Conclusion}
 
     % Les différentes tables
-    \tableofcontents    % Table des matières
     \listoffigures        % Liste des figures
     \listoftables        % Liste des tableaux
 
