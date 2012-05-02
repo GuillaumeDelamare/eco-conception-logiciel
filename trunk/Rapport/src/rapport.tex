@@ -2,10 +2,13 @@
 
 \usepackage[utf8]{inputenc}
 \usepackage[francais]{babel}
+\usepackage[T1]{fontenc}
 \usepackage{pdfpages}
 \usepackage{graphicx}
 \usepackage{parskip}
-
+\usepackage{epstopdf}
+\DeclareGraphicsRule{.eps}{pdf}{.pdf}{`epstopdf #1}
+\pdfcompresslevel=9
 \setlength{\parindent}{0.7cm}
 
 \title{Stage de 5ème année\\ \large Rapport intermédiare}
@@ -13,12 +16,17 @@
 \date{\today}
 
 \begin{document}
+\renewcommand{\labelitemi}{$\bullet$}
+\renewcommand{\labelitemii}{$\diamond$}
+\renewcommand{\labelitemiii}{$\ast$}
+\renewcommand{\labelitemiv}{$\cdot$}
+
 \maketitle
 
 \section*{Remerciements}
 Je tiens, tout d'abords, à remercier mon tuteur, Thomas Ledoux, pour m'avoir offert l'opportunité de travailler au sein de l'équipe ASCOLA. Je le remercie d'autant plus pour l'apport d'expérience et la richesse des situations dans lesquels il me fait travailler.
 
-Je souhaite ensuite remercier Rémi Sharock, pour ça bonne humeur et son aide précieuse tout au long de mon travail, ainsi que, l'ensemble des membres de l'équipe ASCOLA et du département d'informatique de l'école des mines de nantes pour leur accueil, leur aide et leurs conseils.
+Je souhaite ensuite remercier Rémi Sharrock, pour ça bonne humeur et son aide précieuse tout au long de mon travail, ainsi que, l'ensemble des membres de l'équipe ASCOLA et du département d'informatique de l'école des mines de nantes pour leur accueil, leur aide et leurs conseils.
 
 Je remercie aussi mon encadrant, Benoit Parrain, pour l'aide et le suivi tout au long de cette exercice qu'est le stage de fin d'étude. Et pour finir je souhaite remercier Polytech Nantes, dans son ensemble, pour les trois années de formatin et d'encadrement dont j'ai pu profiter.
 
@@ -61,13 +69,38 @@ L’école est séparé en 5 départements axé sur les thématiques des équipe
 \subsection{L'équipe de Recherche}
 Mon stage se déroule dans l'équipe ASCOLA. Cette équipe est installé au sein du département informatique de l’EMN au coté de l'équipe TASK. L'équipe ASCOLA fait partie du LINA (Laboratoire d'Informatique de Nantes Atlantique) ainsi que de l'INRIA (Institut National de Recherche en Informatique et en Automatique).
 
-Cette équipe regroupe une trentaine de personnes qui travaillent 
+Cette équipe regroupe une trentaine de personnes qui travaillent sur les langages d'aspects et de composition. Les axes de recherche, tel qu'il le sont présenté sur la page dédié à l'équipe ASCOLA sur le site de l'INRIA\footnote{http://www.inria.fr/equipes/ascola}, sont :
+\begin{itemize}
+	\item le développement de nouveaux concepts, de support linguistique, et d'outils pour les applications distribuées permettant de gérer notamment les préoccupations transverses comme la distribution elle-même, les comportements transactionnels et la sécurité ;
+	\item la définition d'un modèle qui intègre de manière transparente composants et aspects, en particulier au travers d'une notion d'interface rendant possible le découplage des composants et des aspects concrets, tout en permettant l'analyse et l'application de propriétés de composition dans un contexte hybride composant/aspect ;
+	\item l'investigation des relations entre langages dédiés, langages d'aspects et langages de composition. Nous comptons exploiter les similitudes entre ces classes de langages dans le cadre du développement de techniques de conception et d'implémentation des langages de manière à faciliter un développement par transformations d'applications efficaces et correctes à partir d'abstraction de programmation de haut niveau ;
+	\item l'étude des fondements de la programmation par aspects et de leurs propriétés de composition au moyen de sémantiques formelles pour les aspects (et les composants) ainsi que des techniques d'analyse, de vérification et de validation correspondantes.
+\end{itemize}
+
+Mon stage se déroule sous la tutelle de Thomas Ledoux qui, avec Jean Marc Menaud, Adrien Lèbre, Rémi Sharrock, ainsi que leurs doctorants, travaille sur des aspects cloud computing, virtualisation et écologie des systèmes d'informations.
+
 \section{Présentation du sujet de stage}
+Dans cette partie je vais décrire ce qu'est dans la pratique mon sujet de stage. Je joins en annexe le document original de sujet de stage tel qu'il était écrit au moment de la signature de ma convention.
+
 \subsection{Contexte}
-Le stage se positionne dans les travaux GreenIT de l’équipe ASCOLA.
+Mon stage se positionne dans les travaux GreenIT de l’équipe ASCOLA. Je travaille donc principalement avec la sous partie de l'équipe qui effectue de la recherche dans ce domaine là.
+
+
 \subsection{Sujet}
+De nos jour, l'informatique est omniprésent. Que se soit au travail, à la maison, dans nos manière de nous documenté comme dans nos façon de produire, nous utilison l'outil informatique. Cette informatique est devenu au fil des années de plus en plus gourmande en énergie. La multiplication des réseaux, des centre de données, des terminaux pour se raccorder au système, tout ceci demande toujours plus d'énergie.
+
+Actuellement des efforts sont fait pour optimiser la couche matérielle afin de la rendre toujours plus efficace. Seulement ce n'est pas suffisant. Afin de limiter l'augmentation certaine de la consommation d'énergie des équipement informatique, il faut aussi s'attaquer à la source de ce besoin d'énergie, le logiciel. C'est lui, en effet qui a besoin d'effectuer des calcule, des entrées/sorties, des communications réseaux qui font consommer le matériel.
+
+Des travaux ont bien mis en évidence que les choix fait lors de la conception d'un logiciel peuvent être déterminant par rapport à la consommation de celui ci. Ces choix sont diverses et varié. Il peut s'agir de la technologie utilisé mais aussi de l'architecture choisi pour le logiciel ou encore de l'envirronement dans lequel ce logiciel fonctionne.
+
+Le sujet de ce stage est donc de proposer, d'étudier et de valider par l'expériementation un certain nombre de suggestions qui permettraient de réduire l'emprunte énergétique d'un logiciel.
 
 \subsection{Objectifs}
+Le Sujet de mon stage est donc l'éco-conception de logiciel. Il s'agit d'étudier les différentes pistes qui s'ouvrent à nous pour rendre plus écologique les systèmes d'informations en jouant sur la composante logicielle de ceci. Mon travail est donc de plusieurs ordres.
+
+Je dois tout d'abords rechercher les travaux existants dans ce domaine, qu'il soit centré sur l'éco-conception ou bien positionné sur des domaines anexes comme l'analyse de codes ou bien le cycle de vie du logiciel. Suite à ça, je devrais élaborer un certain nombre de propositions de contribution afin de centrer mon travail à venir. Enfin je devrais expérimenter et valider mes résultats afin de pouvoir emmettre des recommandation en terme d'éco-conception.
+
+Deux travaux transversaux sont à effectuer. Premièrement je dois étudier et mettre en place une méthodologie permettant d'évaluer l'efficacité énergétique d'un code.
 
 \chapter{État de l'art}
 \section{Introduction}
@@ -83,16 +116,18 @@ La réduction de l’emprunte énergétique peut être vu de plusieurs façons, 
 
 L’éco-conception de logiciel consiste donc à travailler sur la composante logiciel afin d’améliorer ces critères.
 
-\subsection{Qu'est ce qu'un code gourmand}
+\subsection{Qu'est ce qu'un code gourmand ?}
 Répondre à cette question représente déjà une grande partie du travail de ce projet. Dans le cadre de ce projet nous souhaiterions parler de code gourmand au sens énergétique. Un parallèle est à faire avec la gourmandise d’un logiciel au sens efficacité. Cependant tout code efficace n’est pas forcement optimisé pour une faible consommation énergétique.
 
 La définition d’un code gourmand est loin d’être trivial. En effet, la consommation d’un code est fortement lier à la tache pour la quelle il a été programmé. Un code servant à décoder un flux vidéo sera, énergétiquement, plus gourmand qu’un code servant à faire une addition. Cette exemple est extrême mais il montre bien qu’on peut difficilement comparer la gourmandise d’un code à un autre.
 
-\subsection{Lien entre consommation énergétique et performance}
+En plus de cette difficulté, nous souhaitons voire l'ensemble de l'emprunte énergétique d'un logiciel. Pas seulement la consommation d'électricité lors de son utilisation, mais bien celle tout au long de son cycle de vie.
 
-\section{Comment juger de l'éco-conception d'un logiciel}
 \subsection{Annalyse du cycle de vie}
-Expliquer que l’emprunte énergétique d’un logiciel n’est pas seulement du à la consommation lors du fonctionnement.
+L'analyse du cycle de vie (ACV) est un outil utilisé dans l'industrie pour mesurer l'emprunte écologique d'un produit. Il se base sur le cycle de vie du produit de sa conception à sa mise en déchet en passant par sa fabrication et son utilisation. On utilise ensuite un modèle pour transposer ces étapes en un impact envirronementaux.
+
+À ma connaissance, il n'existe pas actuelement de modèle perméttant d'appliquer l'ACV au logiciel. Cependant, la littérature présente différents point de vue sur le sujet qui peuvent être utilisé comme ébauche à la réalisation d'une ACV logiciel.
+
 Étape de la vie d’un code
 \begin{itemize}
 	\item Conception
@@ -102,8 +137,8 @@ Expliquer que l’emprunte énergétique d’un logiciel n’est pas seulement d
 	\item Assemblage du programme (Linkage)
 	\item Runtime (*PU)
 \end{itemize}
-Présentation du cycle de vie.
-Aspect obsolescence matériel
+
+\section{Comment juger de l'éco-conception d'un logiciel}
 
 \subsection{Mesure de la consommation d'un logiciel}
 \subsubsection{Ptop}
@@ -223,7 +258,7 @@ Question de la compatibilité inter-langage des modules. Comment rendre modulair
 Qu’est ce qu’un module en théorie ?
 \begin{figure}
 	\begin{center}
-		\includegraphics[width=300px]{../../Figures/Bibliographie/modular.eps}
+		\includegraphics[width=300px]{../../Figures/Bibliographie/modular}
 		\caption{Repsésentation d'un module}
 	\end{center}
 \end{figure}
@@ -240,30 +275,24 @@ modularité de code = activation ou désactivation de module. Cela libère de la
 OSGI est une spécification, élaboré par l’OSGi Alliance (http://www.osgi.org), qui à pour but de décrire un framework pour rendre les applications Java modulaire. Différentes implémentation de ce framework ont été développé à partir de cette spécification. Les plus connu sont Equinox développé par l’équipe du projet eclipse, Felix issu du projet universitaire Oscar et maintenu par apache ou encore Knopflerfish élaboré par MakeWave.
 \section{Conclusion}
 
-\chapter{Propositions}
+\chapter{Proposition de contributions}
+\section{Introduction}
+Dans ce chapitre, je vais détailler sous la forme d'un plan commenté, le contenu du travaille que je souhaite effectuer. Certaine de ces contributions son déjà passé, d'autre sont en cours enfin, d'autre sont encore à réaliser. Dans le cadre de ce rapport intermédiare, je ne détaillerais pas les résultat obtenu jusque là. Cela fera l'objet d'un autre chapitre dans le rapport final.
+
 \section{Mesure de Consommation}
-    \subsection{Mesure par modèle de consommation - Joulemeter}
-        \subsubsection{Expérimentation et analyse des résultats}
-    \subsection{Mesure par consommation réél}
-        \subsubsection{Expérimentation et analyse des résultats}
-    \subsection{Complémentarité de ces deux méthodes}
+Cette ensemble de contribution concerne l'évaluation de la de la consomation d'un logiciel en fonctionnement. Cette étude permettra, par la suite, d'évaluer la pertinence et la validité des solutions proposé pour éco-concevoir des logiciel. L'objectif est d'obtenir une méthode fiable pour mesurer les avantages et les incovénients (d'un point de vu énergétique) de certaines techniques ou technologies.
 
-    \section{Bonnes pratiques}
-    \subsection{Mise en valeur des bonnes pratiques}
-        \subsubsection{Benchmark}
-        \subsubsection{Benchmark}
-        \subsubsection{Benchmark}
-    \subsection{Automatisation de l'utilisation de bonnes pratiques - Plugin FindBug}
+Afin d'obtenir les résultats les plus fiable, je propose d'étudier plusieurs système de mesure. En particulier confronter la grossierté de la mesure par wattmètre à l'approximation de la mesure par modèle de consommation (par exemple JouleMetter) et d'en étudier la complémentarité.
 
-    \section{Quadriciel}
-    \subsection{Programmation Modulaire - OSGi}
-        \subsubsection{Avantage des concepts modulaires dans l'économie d'énergie}
-        \subsubsection{Présentation d'un pattern d'application modulaire dédié à l'économie d'énergie}
-        \subsubsection{Expérimentation et analyse des résultats}
-    \subsection{Stratégies d'algorithmes}
-        \subsubsection{Pourquoi appliquer des stratégies sur un algorithme}
-        \subsubsection{Exemple des algorithmes de tri}
-        \subsubsection{Expérimentation et analyse des résultats}
+Cette partie des contributions prendra donc la forme de testes sur lesquels on enregistre les résultats pour les analiser et essayer d'en tirer le meilleurs résultrat possible.
+
+\section{Bonnes pratiques}
+\subsection{Mise en valeur des bonnes pratiques}
+\subsection{Automatisation de l'utilisation de bonnes pratiques - Plugin FindBug}
+\subsection{Stratégies d'algorithmes}
+
+\section{Quadriciel}
+\subsection{Programmation Modulaire - OSGi}
 \chapter{Conclusion}
 
 \appendix

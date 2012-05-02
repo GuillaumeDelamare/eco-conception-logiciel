@@ -45,9 +45,9 @@ version		:= 2.2.1-alpha8
 #
 # This can be pdflatex or latex - you can change this by adding the following line to your Makefile.ini:
 # BUILD_STRATEGY := latex
- BUILD_STRATEGY		?= pdflatex
+BUILD_STRATEGY		?= pdflatex
 # This can be used to pass extra options to latex.
-LATEX_OPTS		?= -shell-escape
+LATEX_OPTS		?=
 #
 # Sets LC_ALL=C, by default, so that the locale-aware tools, like sort, be
 # # immune to changes to the locale in the user environment.
