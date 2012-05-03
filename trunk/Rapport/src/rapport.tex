@@ -32,10 +32,6 @@ Je remercie aussi mon encadrant, Benoit Parrain, pour l'aide et le suivi tout au
 
 \newpage
 
-\section*{Résumé}
-
-\newpage
-
 \tableofcontents
 
 
@@ -128,34 +124,33 @@ L'analyse du cycle de vie (ACV) est un outil utilisé dans l'industrie pour mesu
 
 À ma connaissance, il n'existe pas actuelement de modèle perméttant d'appliquer l'ACV au logiciel. Cependant, la littérature présente différents point de vue sur le sujet qui peuvent être utilisé comme ébauche à la réalisation d'une ACV logiciel.
 
-Étape de la vie d’un code
-\begin{itemize}
-	\item Conception
-	\item Génération de Code (Méta modèle de code)
-	\item Analyse statique
-	\item Transformation de code (Compilation)
-	\item Assemblage du programme (Linkage)
-	\item Runtime (*PU)
-\end{itemize}
-
 \section{Comment juger de l'éco-conception d'un logiciel}
+Dans cette section je vais parler de mes recherches dans les outils d'évaluations de l'emprunte énergétique. Je commence par les outils de relevé de consommation à l'execution d'un système d'information.
 
 \subsection{Mesure de la consommation d'un logiciel}
 \subsubsection{Ptop}
-pTop est un programme de collecte d’information sur l'exécution de processus sous linux.
+pTop est un programme de collecte d’information sur l'exécution de processus sous linux. Il est censé récupérer les données sur l'utilisation du CPU, de la RAM et des échange réseaux. Il doit ensuite être capable, une fois le modèle paramètré, sortir des informations sur la consommation énergétique.
+
+Malheureusement, il s'est avéré que pTop ne fonctionne pas entièrement. Après plusieurs essais infructueux, j'ai supposé que le logiciel avait été abndonné sans être finit.
+
 \paragraph{Procédure d'installation}
 \begin{itemize}
-	\item récupérer les sources sur http://mist.cs.wayne.edu/ptop.html
-	\item installation du nécessaire pour compiler les sources : build-essential libmysqlclient-devY libncurses-dev
-	\item Installation de la base de données Mysql :
-	\begin{itemize}
-		\item création d’une base de donées ptop
-		\item exécution du script db\_schema.sql
-		\item remplacement du login et password pour accéder à la base de données dans le fichier database.c
-	\end{itemize}
-	\item Compilation :
-
+    \item récupérer les sources sur http://mist.cs.wayne.edu/ptop.html
+    \item installation du nécessaire pour compiler les sources (paquets debian) :
+    \begin{itemize}
+	\item build-essential
+	\item libmysqlclient-dev
+	\item libncurses-dev
+    \end{itemize}
+    \item Installation de la base de données Mysql :
+    \begin{itemize}
+	\item création d’une base de donées ptop
+	\item exécution du script db\_schema.sql
+	\item remplacement du login et password pour accéder à la base de données dans le fichier database.c
+    \end{itemize}
+    \item Compilation :
 \end{itemize}
+
 \begin{verbatim}
 	# make
 	# chmod +x ptop
@@ -171,7 +166,7 @@ Lancer le programme au moyen de la commande :
 Le programme va s'initialiser et enregistrer les mesures dans les bases de données. Il faut ensuite interrompre les mesures au moyen du signal SIGINT.
 
 \paragraph{Données de sortie}
-Il n’existe pas, à ma connaissance, de documentation précise sur les données de sortie du programme pTop. Je répertorie donc ici des informations issus de mes déductions. Le programme stock les données dans une base de données Mysql nommé ptop. Elle est composé de quatre tables :
+Il n’existe pas, à ma connaissance, de documentation précise sur les données de sortie du programme pTop.  Le programme stock les données dans une base de données Mysql nommé ptop. Elle est composé de quatre tables :
 \begin{itemize}
 	\item device\_energy
 	\item process\_energy
@@ -185,9 +180,7 @@ Seul les deux dernières tables sont remplis par le programme (à cause soit d�
 Le projet Energy Checker développé par Intel, est un ensemble d’outil destiné à faciliter la remonté et l’affichage des mesures faites sur la consommation d’un programme. Il se compose principalement de l’API energy checker qui permet d’utiliser les mécanisme de remonté d’imformation (PL - Productivity Link)
 
 \subsubsection{ClassMexer}
-ClassMexer est un API java permettant d’estimer la taille en mémoire d’un objet java. On peut télécharger cet API sous la forme d’un fichier JAR à cette adresse : http://www.javamex.com/classmexer/
-
-ClassMexer est un Instrumentation agent comme spécifié dans le pattern Instrument. Cela implique de travailler avec, au minimum, la version 5 de java.
+ClassMexer est un API java permettant d’estimer la taille en mémoire d’un objet java. On peut télécharger cet API sous la forme d’un fichier JAR à cette adresse : http://www.javamex.com/classmexer/. ClassMexer est un Instrumentation agent comme spécifié dans le pattern Instrument. Cela implique de travailler avec, au minimum, la version 5 de java.
 
 \paragraph{procédure d'installation}
 \begin{itemize}
@@ -220,28 +213,31 @@ Joulemeter est un outil développé par microsoft et qui sert à mesurer la cons
 \paragraph{Fonctionnement}
 Joulemeter est un logiciel de mesure qui se base sur un modèle de consommation. la première étape est donc de générer ce modèle. Deux méthodes existe.
 
-La première n’est utilisable que sur un ordinateur portable muni d’une batterie. Il suffit de débrancher l’alimentation et de lancer la calibration (15 min sans utiliser le PC). Avant de lancer la calibration, il faut faire attention à arrêter toutes les application affin que le logiciel puisse déterminer une consommation minimum en mode Idle.
+La première n’est utilisable que sur un ordinateur portable muni d’une batterie. Il suffit de débrancher l’alimentation et de lancer la calibration (15 min sans utiliser le PC). Avant de lancer la calibration, il faut faire attention à arrêter toutes les application afin que le logiciel puisse déterminer une consommation minimum en mode "Idle".
 
 Le deuxième mode nécessite un Wattmètre WattsUp pour générer le modèle. Il suffit de le brancher en USB, de couper toutes les application possible et de lancer la calibration (3 min sans utiliser le PC).
 
 \subsubsection{PowerAPI}
-Pas disponible (donc pas testé)
-Sujet de recherche
-Développé en ce moment par l’équipe ADAM à l’université de Lilles.
-fonctionne actuellement pour la consommations CPU.
-Se base sur l’outil linux cpufrequtils
-étudie la fréquence utilisé par le CPU
-détermine une consommation global du CPU grâce au donnée constructeur (table de correspondance fréquence/Volt).
-détermine la consommation d’un processus grace à son taux d’utilisation du CPU.
+PowerAPI est un outil sur lequel travail l'équipe ADAM de l'université de lille. Il n'a pas encore été rendu disponible, je n'ai donc pas pu le tester. Les premier résultat de cette outil ont été présenté lors d'une conférence\footnote{Les documents en lien avec cette conférence ont disparu du site de http://www.inria.fr/centre/grenoble/innovation/rii-snee/demos/powerapi-un-outil-pour-le-diagnostic-energetique-des-logiciels} et parraissent plutot encourageant.
+
+Selon la présentation qui en a été faites, il fonctionne actuelement pour la consommation CPU. Cette outil collecte le temps CPU d'un processus et la fréquence de celui ci en temps réel. Puis il détermine l'énergie consommé grace à des tables de consommation par rapport à la fréquence fournis par les fabriquant de processeur.
+
+Cette outil, une fois abouti, devrait vraissemblablement être mis à disposition.
+
+
 \subsection{Métriques}
+Cette partie de l'état de l'art n'est à l'heure actuelle qu'un ébauche. Cela est du à ma découverte récement de nouvelles informations qui nécéssite un travail de lecture que je n'ai pas encore eu le temps de faire.
+
+Les métriques que je souhaite présenté sont utilisé pour juger l'efficacité énergétique d'installation informatique comme les centres de données. Mes recherches bibliographiques m'ont ammené à en distinguer trois intéressantes :
 \begin{itemize}
 	\item PUE (Power Usage Effectiveness)
 	\item ERE (Energy Reuse Effectiveness) (ref)
 	\item CUE (Carbon Usage Effectiveness)
 \end{itemize}
-L’indice PUE met en valeur la perte énergétique des équipements. Il ne prend pas en compte la valorisation de ces pertes.
-L’indice ERE essai de rattraper les faiblesses du PUE en prenant en compte la revalorisation.
-L’indice CUE permet de valoriser le type d’énergie utilisé.
+
+L’indice PUE met en valeur la perte énergétique des équipements. Il ne prend pas en compte la valorisation de ces pertes. C'est l'incice utilisé comme référence depuis des années. Les deux autres indices sont nouveau et propose des ajout intéressant par rapport au PUE. L’indice ERE essai de rattraper les faiblesses du PUE en prenant en compte la revalorisation. L’indice CUE permet de valoriser le type d’énergie utilisé.
+
+Je souhaite les présenter plus en détail dans la prochaine version de ce document car ce son des outils qui mettent en évidence le fait qu'une application ne consomme pas uniquement ce qu'elle à besoin pour faire ses calcule  et donc ils mettent en évidence l'importance du cycle de vie dans l'éco-conception.
 
 \section{Bonnes pratiques et patrons de conception}
 \subsection{Modularité}
@@ -284,25 +280,35 @@ Cette ensemble de contribution concerne l'évaluation de la de la consomation d'
 
 Afin d'obtenir les résultats les plus fiable, je propose d'étudier plusieurs système de mesure. En particulier confronter la grossierté de la mesure par wattmètre à l'approximation de la mesure par modèle de consommation (par exemple JouleMetter) et d'en étudier la complémentarité.
 
-Cette partie des contributions prendra donc la forme de testes sur lesquels on enregistre les résultats pour les analiser et essayer d'en tirer le meilleurs résultrat possible.
+Cette partie des contributions prendra donc la forme de testes sur lesquels on enregistrera les résultats pour les analyser et essayer d'en tirer le meilleurs résultrat possible.
 
-\section{Bonnes pratiques}
-\subsection{Mise en valeur des bonnes pratiques}
-\subsection{Automatisation de l'utilisation de bonnes pratiques - Plugin FindBug}
-\subsection{Stratégies d'algorithmes}
+\section{Langage et algorithmique}
+Dans cette partie je souhaite réaliser un certain nombre de petits programmes qui permettraient, pour chacun, de mettre en valeur une bonne pratique de programmation. L'objectif est, à chaque fois, de cibler un critère particulié sur un langage donné. Ces programmes permettront d'effectuer des expérimentation ainsi que des démonstrations de la validité de ce que l'on propose pour éco-concevoir les logiciels.
 
-\section{Quadriciel}
-\subsection{Programmation Modulaire - OSGi}
+Dans un deuxième temps, je pense utiliser des outils d'analyses de code comme le plugin eclipse FindBug afin de mettre en place des règles de identifié et expérimenté dans les programmes décrit ci dessus. Cela permetra d'illustrer la facilité de corriger le code énergivore de manière automatique du moment que l'on a identifier ce code.
+
+Enfin, dans une dernière partie plus orientée sur l'algorithmie, je propose de réaliser un programme basé sur des algorithmes de trie que l'on pourra faire tournée en continu. Ces algorithmes seront en plus paramétrable (par exemple des temps de pause entre chaque étapes) afin de mesurer l'impact de différentes stratégies sur un même traitement qui est le tri.
+
+\section{Architecture logicielle}
+Dans mes contributions, je souhaite travailler sur l'architecture logicielle en évaluant l'intéret que peut avoir la programmation modulaire sur la consommation d'énergie. Pour cela je propose de réfflechir et de développer un prototype, basé sur la technologie OSGi, permettant de charger et décharger les différentes fonctionnalité d'un logiciel au fur et à mesure que l'utilisateur se sert du logiciel.
+
+\begin{figure}
+    \begin{center}
+	\includegraphics[width=300pt]{../../Figures/OSGi/EcoPattern_General_Figure}
+	\caption{Prototype d'application modulaire - Schéma général}
+    \end{center}
+\end{figure}
+
+Une autre possibilité de contribution dans le domaine de l'architecture logicielle serait de travailler sur le niveau de service fournit par une application. Par exemple un service web qui se dégrade en fonction des contraintes énergétique qui lui sont imposé. La dégradation serait de ne pas renvoyer l'ensemble des résultat à une requète ou bien de ne plus envoyer que le texte mais pas les images associé.
+
 \chapter{Conclusion}
 
+\listoffigures{}
+\listoftables{}
 \appendix
 
 \chapter{Sujet de stage}
 \includepdf[pages=-]{../../Documents/Sujet_Master_EcoConceptionGL.pdf}
 
-\chapter{Projets similaire}
-
-\listoffigures{}
-\listoftables{}
 
 \end{document}
