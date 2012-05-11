@@ -3,6 +3,7 @@
 -runbundles: org.example.api;resolution=file:/home/guillaume/.svn_repository/eco-conception-logiciel/workspace/org.example.api/generated/org.example.api.jar;version=latest,\
 	org.apache.felix.shell;resolution=file:/home/guillaume/.svn_repository/eco-conception-logiciel/workspace/cnf/repo/org.apache.felix.shell/org.apache.felix.shell-1.4.2.jar;version='[1.4.2,1.4.3)',\
 	org.apache.felix.shell.tui;resolution=file:/home/guillaume/.svn_repository/eco-conception-logiciel/workspace/cnf/repo/org.apache.felix.shell.tui/org.apache.felix.shell.tui-1.4.1.jar;version='[1.4.1,1.4.2)',\
+	org.example.impls.command;resolution=file:/home/guillaume/.svn_repository/eco-conception-logiciel/workspace/org.example.impls/generated/org.example.impls.command.jar;version=latest,\
 	org.apache.felix.scr;resolution=file:/home/guillaume/.svn_repository/eco-conception-logiciel/workspace/cnf/repo/org.apache.felix.scr/org.apache.felix.scr-1.6.0.jar;version='[1.6.0,1.6.1)',\
 	org.example.impls.provider;resolution=file:/home/guillaume/.svn_repository/eco-conception-logiciel/workspace/org.example.impls/generated/org.example.impls.provider.jar;version=latest,\
 	osgi.cmpn;resolution=http://bundles.bndtools.org.s3.amazonaws.com/osgi.cmpn/osgi.cmpn-4.2.1.jar;version='[4.2.1,4.2.2)'
@@ -10,5 +11,6 @@
 -runrequire: bundle:(symbolicname=org.apache.felix.shell),\
 	bundle:(symbolicname=org.apache.felix.shell.tui),\
 	bundle:(symbolicname=org.example.impls.provider),\
-	bundle:(symbolicname=org.apache.felix.scr)
+	bundle:(symbolicname=org.apache.felix.scr),\
+	bundle:(symbolicname=org.example.impls.command)
 -resolve: auto

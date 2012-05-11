@@ -7,5 +7,6 @@
 	osgi.cmpn,\
 	biz.aQute.bnd.annotation,\
 	junit.osgi,\
-	org.example.api;version=latest
+	org.example.api;version=latest,\
+	org.apache.felix.shell
 -sub: *.bnd
