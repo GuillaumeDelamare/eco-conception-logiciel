@@ -1,0 +1,2 @@
+Service-Component: *
+Export-Package: org.osgiecopattern.services.api
