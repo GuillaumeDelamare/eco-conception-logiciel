@@ -1,8 +1,0 @@
-Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: Hello world
-Bundle-SymbolicName: SecondBundle
-Bundle-Version: 1.0.0.0
-Bundle-Activator: fr.guillaume.hello.Activator
-Import-Package: org.osgi.framework;specification-version="1.0.5"
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
