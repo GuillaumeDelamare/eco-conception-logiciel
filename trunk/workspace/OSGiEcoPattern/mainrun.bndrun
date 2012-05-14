@@ -1,0 +1,11 @@
+-runfw: org.apache.felix.framework;version='[4,5)'
+
+-runbundles: OSGiEcoPattern.ecoServiceAPI;resolution=file:/home/guillaume/workspace/OSGiEcoPattern/generated/OSGiEcoPattern.ecoServiceAPI.jar;version=latest,\
+	org.apache.felix.shell;resolution=file:/home/guillaume/workspace/cnf/repo/org.apache.felix.shell/org.apache.felix.shell-1.4.2.jar;version='[1.4.2,1.4.3)',\
+	org.apache.felix.shell.tui;resolution=file:/home/guillaume/workspace/cnf/repo/org.apache.felix.shell.tui/org.apache.felix.shell.tui-1.4.1.jar;version='[1.4.1,1.4.2)',\
+	OSGiEcoPattern.firstEcoService;resolution=file:/home/guillaume/workspace/OSGiEcoPattern/generated/OSGiEcoPattern.firstEcoService.jar;version=latest
+
+-runrequire: bundle:(symbolicname=org.apache.felix.shell),\
+	bundle:(symbolicname=org.apache.felix.shell.tui),\
+	bundle:(symbolicname=OSGiEcoPattern.firstEcoService)
+-resolve: auto
