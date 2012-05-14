@@ -1,10 +1,14 @@
 package org.example;
 
+import org.example.api.Greeting;
+
 import aQute.bnd.annotation.component.*;
 
 @Component
-public class ExampleComponent {
+public class ExampleComponent implements Greeting {
 
-	// TODO: class provided by template
-
+	@Override
+	public String sayHello(String name) {
+		return "Hello "+ name;
+	}
 }
