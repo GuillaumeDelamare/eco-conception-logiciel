@@ -1,0 +1,12 @@
+-runfw: org.apache.felix.framework;version='[4,5)'
+
+-runbundles: org.apache.felix.shell;resolution=file:/home/guillaume/workspace/cnf/repo/org.apache.felix.shell/org.apache.felix.shell-1.4.2.jar;version='[1.4.2,1.4.3)',\
+	org.apache.felix.shell.tui;resolution=file:/home/guillaume/workspace/cnf/repo/org.apache.felix.shell.tui/org.apache.felix.shell.tui-1.4.1.jar;version='[1.4.1,1.4.2)',\
+	Dictionary.example1;resolution=file:/home/guillaume/workspace/Dictionary/generated/Dictionary.example1.jar;version=latest,\
+	Dictionary.example2;resolution=file:/home/guillaume/workspace/Dictionary/generated/Dictionary.example2.jar;version=latest
+
+-runrequire: bundle:(symbolicname=org.apache.felix.shell),\
+	bundle:(symbolicname=org.apache.felix.shell.tui),\
+	bundle:(symbolicname=Dictionary.example1),\
+	bundle:(symbolicname=Dictionary.example2)
+-resolve: auto

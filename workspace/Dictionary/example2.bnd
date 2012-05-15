@@ -1,0 +1,4 @@
+Bundle-Activator: tutorial.example2.Activator
+Private-Package: tutorial.example2
+Export-Package: tutorial.example2.service
+Bundle-Version: 1.0.0
