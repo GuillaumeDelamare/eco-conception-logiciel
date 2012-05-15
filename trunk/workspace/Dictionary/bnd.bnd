@@ -1,0 +1,8 @@
+-runfw: org.apache.felix.framework;version='[4.0.1,4.0.1]'
+-runrequire: bundle:(symbolicname=org.apache.felix.shell.tui),\
+	bundle:(symbolicname=org.apache.felix.shell)
+-resolve: auto
+-runbundles: org.apache.felix.shell;resolution=file:/home/guillaume/workspace/cnf/repo/org.apache.felix.shell/org.apache.felix.shell-1.4.2.jar;version='[1.4.2,1.4.3)',\
+	org.apache.felix.shell.tui;resolution=file:/home/guillaume/workspace/cnf/repo/org.apache.felix.shell.tui/org.apache.felix.shell.tui-1.4.1.jar;version='[1.4.1,1.4.2)'
+-sub: *.bnd
+-buildpath: org.apache.felix.framework

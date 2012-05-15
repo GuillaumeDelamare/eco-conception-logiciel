@@ -1,0 +1,3 @@
+Private-Package: tutorial.example3
+Bundle-Version: 1.0.0
+Bundle-Activator: tutorial.example3.Activator
