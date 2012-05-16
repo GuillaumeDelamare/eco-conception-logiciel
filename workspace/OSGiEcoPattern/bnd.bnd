@@ -1,1 +1,7 @@
 -sub: *.bnd
+-buildpath: org.apache.felix.framework,\
+	org.apache.felix.shell,\
+	biz.aQute.bnd.annotation,\
+	osgi.core,\
+	osgi.cmpn,\
+	junit.osgi

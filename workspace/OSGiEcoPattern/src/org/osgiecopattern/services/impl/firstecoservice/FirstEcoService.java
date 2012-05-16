@@ -1,4 +1,4 @@
-package org.osgiecopattern.services.impl;
+package org.osgiecopattern.services.impl.firstecoservice;
 
 import org.osgiecopattern.services.api.EcoService;
 

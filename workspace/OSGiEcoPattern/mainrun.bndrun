@@ -1,11 +1,21 @@
 -runfw: org.apache.felix.framework;version='[4,5)'
 
--runbundles: OSGiEcoPattern.ecoServiceAPI;resolution=file:/home/guillaume/workspace/OSGiEcoPattern/generated/OSGiEcoPattern.ecoServiceAPI.jar;version=latest,\
-	org.apache.felix.shell;resolution=file:/home/guillaume/workspace/cnf/repo/org.apache.felix.shell/org.apache.felix.shell-1.4.2.jar;version='[1.4.2,1.4.3)',\
-	org.apache.felix.shell.tui;resolution=file:/home/guillaume/workspace/cnf/repo/org.apache.felix.shell.tui/org.apache.felix.shell.tui-1.4.1.jar;version='[1.4.1,1.4.2)',\
-	OSGiEcoPattern.firstEcoService;resolution=file:/home/guillaume/workspace/OSGiEcoPattern/generated/OSGiEcoPattern.firstEcoService.jar;version=latest
 
 -runrequire: bundle:(symbolicname=org.apache.felix.shell),\
 	bundle:(symbolicname=org.apache.felix.shell.tui),\
-	bundle:(symbolicname=OSGiEcoPattern.firstEcoService)
+	bundle:(symbolicname=org.apache.felix.scr),\
+	bundle:(symbolicname=OSGiEcoPattern.org.osgiecopattern.core)
+-runee: JavaSE-1.6
+-runrepos: Local Repository,\
+	Release,\
+	Workspace
+	
+	
 -resolve: auto
+-runbundles: org.apache.felix.shell;resolution=file:/home/guillaume/workspace/cnf/repo/org.apache.felix.shell/org.apache.felix.shell-1.4.2.jar;version='[1.4.2,1.4.3)',\
+	org.apache.felix.shell.tui;resolution=file:/home/guillaume/workspace/cnf/repo/org.apache.felix.shell.tui/org.apache.felix.shell.tui-1.4.1.jar;version='[1.4.1,1.4.2)',\
+	OSGiEcoPattern.org.osgiecopattern.core.api;resolution=file:/home/guillaume/workspace/OSGiEcoPattern/generated/OSGiEcoPattern.org.osgiecopattern.core.api.jar;version=latest,\
+	OSGiEcoPattern.org.osgiecopattern.services.api;resolution=file:/home/guillaume/workspace/OSGiEcoPattern/generated/OSGiEcoPattern.org.osgiecopattern.services.api.jar;version=latest,\
+	org.apache.felix.scr;resolution=file:/home/guillaume/workspace/cnf/repo/org.apache.felix.scr/org.apache.felix.scr-1.6.0.jar;version='[1.6.0,1.6.1)',\
+	OSGiEcoPattern.org.osgiecopattern.core;resolution=file:/home/guillaume/workspace/OSGiEcoPattern/generated/OSGiEcoPattern.org.osgiecopattern.core.jar;version=latest,\
+	osgi.cmpn;resolution=http://bundles.bndtools.org.s3.amazonaws.com/osgi.cmpn/osgi.cmpn-4.2.1.jar;version='[4.2.1,4.2.2)'
