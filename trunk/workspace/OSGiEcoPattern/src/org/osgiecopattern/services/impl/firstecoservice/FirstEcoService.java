@@ -22,7 +22,7 @@ public class FirstEcoService implements EcoService {
 	}
 
 	@Override
-	public int getConsuption() {
+	public double getConsuption() {
 		return 3;
 	}
 

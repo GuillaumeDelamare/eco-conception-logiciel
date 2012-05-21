@@ -5,9 +5,6 @@ import java.io.PrintStream;
 import org.apache.felix.shell.Command;
 import org.osgiecopattern.core.api.ServiceManager;
 
-import aQute.bnd.annotation.component.*;
-
-@Component
 public class ConsoCommand implements Command{
 	private ServiceManager sm;
 	
@@ -17,7 +14,6 @@ public class ConsoCommand implements Command{
 
 	@Override
 	public void execute(String arg0, PrintStream arg1, PrintStream arg2) {
-		System.out.println(sm);
 		System.out.println(sm.getTotalConsumption());
 	}
 
