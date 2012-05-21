@@ -2,6 +2,9 @@ package org.osgiecopattern.services.impl.secondecoservice;
 
 import org.osgiecopattern.services.api.EcoService;
 
+import aQute.bnd.annotation.component.Component;
+
+@Component
 public class SecondEcoService implements EcoService {
 
 	@Override
@@ -16,8 +19,8 @@ public class SecondEcoService implements EcoService {
 	}
 
 	@Override
-	public int getConsuption() {
-		return 5;
+	public double getConsuption() {
+		return 5.3;
 	}
 
 }

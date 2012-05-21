@@ -4,10 +4,6 @@ import java.util.ArrayList;
 
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
-import org.osgi.framework.BundleEvent;
-import org.osgi.framework.BundleListener;
-import org.osgi.framework.FrameworkEvent;
-import org.osgi.framework.FrameworkListener;
 import org.osgi.framework.ServiceEvent;
 import org.osgi.framework.ServiceListener;
 import org.osgiecopattern.core.api.ServiceManager;
@@ -16,7 +12,7 @@ import org.osgiecopattern.services.api.EcoService;
 import aQute.bnd.annotation.component.Component;
 
 @Component
-public class ServiceManagerImpl implements BundleListener, ServiceListener, FrameworkListener, ServiceManager{
+public class ServiceManagerImpl implements ServiceListener, ServiceManager{
 	BundleContext bc;
 	ArrayList<Bundle> registeredBundle = new ArrayList<Bundle>();
 	ArrayList<EcoService> registeredService = new ArrayList<EcoService>();
@@ -34,42 +30,7 @@ public class ServiceManagerImpl implements BundleListener, ServiceListener, Fram
 		}
 		return s;
 	}
-	@Override
-	public void bundleChanged(BundleEvent event) {
-		//TODO inutile
-		switch (event.getType()) {
-		case BundleEvent.STARTED :
-			Bundle b = event.getBundle();
-			
-			registeredBundle.add(b);
-			break;
-		case BundleEvent.STOPPED :
-			registeredBundle.remove(event.getBundle());
-			break;
-		default:
-			break;
-		}
-		
-		System.out.println("Bundle : "+registeredBundle);
-	}
-	@Override
-	public void frameworkEvent(FrameworkEvent event) {
-		//TODO inutile
-		switch (event.getType()) {
-		case FrameworkEvent.STARTED :
-			Bundle b = event.getBundle();
-			
-			registeredFramework.add(b);
-			break;
-		case FrameworkEvent.STOPPED :
-			registeredFramework.remove(event.getBundle());
-			break;
-		default:
-			break;
-		}
-		
-		System.out.println("Framework : "+registeredFramework);
-	}
+	
 	@Override
 	public void serviceChanged(ServiceEvent event) {
 		switch (event.getType()) {
@@ -86,10 +47,6 @@ public class ServiceManagerImpl implements BundleListener, ServiceListener, Fram
 		default:
 			break;
 		}
-//		System.out.println(event.getServiceReference());
-//		System.out.println(((Object[])event.getServiceReference().getProperty("objectClass"))[0].getClass());
-//		System.out.println(event.getServiceReference().getProperty("service.id"));
-		System.out.println("Service : "+registeredService);
 	}
 	
 	@Override
