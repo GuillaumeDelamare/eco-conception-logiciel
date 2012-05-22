@@ -6,21 +6,26 @@ import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.BundleException;
 import org.osgi.framework.Constants;
+import org.osgiecopattern.core.api.Installer;
 
-public class Intaller {
+public class IntallerImpl implements Installer{
 	private static final String BUNDLE_LOCATION = "file:/home/guillaume/workspace/OSGiEcoPattern/generated/";
 	
-	ArrayList<Bundle> installedBundle;
+	private BundleContext context;
+	private ArrayList<Bundle> installedBundle;
 	
-	public Intaller() {
+	public IntallerImpl(BundleContext context) {
+		this.context = context;
 		installedBundle = new ArrayList<Bundle>();
 	}
 	
-	public Bundle Install(BundleContext bc, String bundle) throws BundleException {
-		Bundle b = bc.installBundle(BUNDLE_LOCATION + bundle);
-		
-		b.start();
-		
+	public Bundle Install(String bundle) {
+		Bundle b;
+		try {
+			b = context.installBundle(BUNDLE_LOCATION + bundle);
+		} catch (BundleException e) {
+			return null;
+		}
 		
 		if(b.getHeaders().get("Import-Package")!=null){
 			System.out.println("toto : " + b.getHeaders().get(Constants.IMPORT_PACKAGE));

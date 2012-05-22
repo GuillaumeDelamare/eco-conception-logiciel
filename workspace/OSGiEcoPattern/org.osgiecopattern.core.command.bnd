@@ -1,3 +1,0 @@
-Private-Package: org.osgiecopattern.core.command
-Service-Component: *
-Bundle-Version: 1.0.0
