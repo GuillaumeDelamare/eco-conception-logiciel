@@ -1,0 +1,4 @@
+Private-Package: org.osgiecopattern.shell
+Service-Component: *
+Bundle-Activator: org.osgiecopattern.shell.Activator
+Bundle-Version: 1.0.0
