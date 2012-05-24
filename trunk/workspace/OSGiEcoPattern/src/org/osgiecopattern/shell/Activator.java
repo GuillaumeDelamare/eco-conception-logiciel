@@ -8,7 +8,8 @@ public class Activator implements BundleActivator {
 	@Override
 	public void start(BundleContext context) throws Exception {
 		context.registerService(org.apache.felix.shell.Command.class.getName(), new ConsoCommand(context), null);
-		context.registerService(org.apache.felix.shell.Command.class.getName(), new MyInstallCommand(context), null);
+		context.registerService(org.apache.felix.shell.Command.class.getName(), new InstallAPICommand(context), null);
+		context.registerService(org.apache.felix.shell.Command.class.getName(), new InstallServiceBundleCommand(context), null);
 	}
 
 	@Override
