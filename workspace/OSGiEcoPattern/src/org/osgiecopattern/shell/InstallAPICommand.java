@@ -5,12 +5,13 @@ import java.util.StringTokenizer;
 
 import org.apache.felix.shell.Command;
 import org.osgi.framework.BundleContext;
+import org.osgi.framework.BundleException;
 import org.osgiecopattern.core.api.Installer;
 
-public class MyInstallCommand implements Command{
+public class InstallAPICommand implements Command{
 	private Installer installer;
 	
-	public MyInstallCommand(BundleContext context) {
+	public InstallAPICommand(BundleContext context) {
 		installer = context.getService(context.getServiceReference(Installer.class));
 	}
 	
@@ -20,23 +21,27 @@ public class MyInstallCommand implements Command{
 		tokenizer.nextToken(); // discard first token
 
 		if (tokenizer.hasMoreTokens())
-			if(installer.Install(tokenizer.nextToken())==null)
-				err.println("Installation failled !");
+			try {
+				installer.installAPIBundle(tokenizer.nextToken());
+			} catch (BundleException e) {
+				err.println("API installation failled !");
+			}
+				
 	}
 
 	@Override
 	public String getName() {
-		return "myinstall";
+		return "iapi";
 	}
 
 	@Override
 	public String getShortDescription() {
-		return "Install the bundle in the OSGi Eco Pattern";
+		return "Install the bundle of an API in the OSGi Eco Pattern";
 	}
 
 	@Override
 	public String getUsage() {
-		return "myinstall <bundle name>";
+		return "iapi <bundle name>";
 	}
 
 }

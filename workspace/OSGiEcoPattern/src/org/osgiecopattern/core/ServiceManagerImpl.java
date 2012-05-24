@@ -2,7 +2,6 @@ package org.osgiecopattern.core;
 
 import java.util.ArrayList;
 
-import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceEvent;
 import org.osgi.framework.ServiceListener;
@@ -13,10 +12,8 @@ import aQute.bnd.annotation.component.Component;
 
 @Component
 public class ServiceManagerImpl implements ServiceListener, ServiceManager{
-	BundleContext bc;
-	ArrayList<Bundle> registeredBundle = new ArrayList<Bundle>();
-	ArrayList<EcoService> registeredService = new ArrayList<EcoService>();
-	ArrayList<Bundle> registeredFramework = new ArrayList<Bundle>();
+	private BundleContext bc;
+	private ArrayList<EcoService> registeredService = new ArrayList<EcoService>();
 
 	public ServiceManagerImpl(BundleContext bc) {
 		this.bc = bc;
