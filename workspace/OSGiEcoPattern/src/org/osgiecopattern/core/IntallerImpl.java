@@ -99,7 +99,6 @@ public class IntallerImpl implements Installer{
 	}
 	
 	public void replaceServiceBundle(Bundle oldBundle, Bundle newBundle) {
-		// TODO Auto-generated method stub
 		
 	}
 }
