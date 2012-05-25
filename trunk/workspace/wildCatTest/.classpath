@@ -6,5 +6,57 @@
 	<classpathentry kind="lib" path="jar/org.restlet.jar"/>
 	<classpathentry kind="lib" path="jar/wildcat-api-2.3.0.jar"/>
 	<classpathentry kind="lib" path="jar/wildcat-core-2.3.0.jar"/>
+	<classpathentry kind="lib" path="jar/esper-3.4.0.jar"/>
+	<classpathentry kind="lib" path="jar/cmi-jndi-2.2.1.jar"/>
+	<classpathentry kind="lib" path="jar/activation-1.1.jar"/>
+	<classpathentry kind="lib" path="jar/antlr-2.7.7.jar"/>
+	<classpathentry kind="lib" path="jar/antlr-runtime-3.1.1.jar"/>
+	<classpathentry kind="lib" path="jar/avalon-framework-4.1.5.jar"/>
+	<classpathentry kind="lib" path="jar/carol-3.0.6.jar"/>
+	<classpathentry kind="lib" path="jar/carol-interceptors-1.0.1.jar"/>
+	<classpathentry kind="lib" path="jar/cglib-nodep-2.1_3.jar"/>
+	<classpathentry kind="lib" path="jar/cmi-admin-2.2.1.jar"/>
+	<classpathentry kind="lib" path="jar/cmi-api-client-2.2.1.jar"/>
+	<classpathentry kind="lib" path="jar/cmi-api-server-2.2.1.jar"/>
+	<classpathentry kind="lib" path="jar/cmi-components-event-2.2.1.jar"/>
+	<classpathentry kind="lib" path="jar/cmi-core-client-2.2.1.jar"/>
+	<classpathentry kind="lib" path="jar/cmi-core-common-2.2.1.jar"/>
+	<classpathentry kind="lib" path="jar/cmi-core-server-2.2.1.jar"/>
+	<classpathentry kind="lib" path="jar/cmi-jms-2.2.1.jar"/>
+	<classpathentry kind="lib" path="jar/cmi-lb-2.2.1.jar"/>
+	<classpathentry kind="lib" path="jar/cmi-rpc-2.2.1.jar"/>
+	<classpathentry kind="lib" path="jar/commons-collections-3.2.jar"/>
+	<classpathentry kind="lib" path="jar/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="jar/commons-logging-api-1.1.jar"/>
+	<classpathentry kind="lib" path="jar/geronimo-jms_1.1_spec-1.1.jar"/>
+	<classpathentry kind="lib" path="jar/irmi-1.1.2.jar"/>
+	<classpathentry kind="lib" path="jar/jacorb-2.2.3-jonas-patch-20071018.jar"/>
+	<classpathentry kind="lib" path="jar/jacorb-idl-2.2.3-jonas-patch-20071018.jar"/>
+	<classpathentry kind="lib" path="jar/jakarta-regexp-1.4.jar"/>
+	<classpathentry kind="lib" path="jar/jcup-4.3.28.jar"/>
+	<classpathentry kind="lib" path="jar/joram-client-5.2.1.jar"/>
+	<classpathentry kind="lib" path="jar/joram-mom-5.2.1.jar"/>
+	<classpathentry kind="lib" path="jar/joram-shared-5.2.1.jar"/>
+	<classpathentry kind="lib" path="jar/log4j-1.2.15.jar"/>
+	<classpathentry kind="lib" path="jar/logkit-1.2.jar"/>
+	<classpathentry kind="lib" path="jar/mail-1.4.jar"/>
+	<classpathentry kind="lib" path="jar/monolog-2.1.11.jar"/>
+	<classpathentry kind="lib" path="jar/ow2-ejb-3.0-spec-1.0.2.jar"/>
+	<classpathentry kind="lib" path="jar/servlet-api-6.0.18.jar"/>
+	<classpathentry kind="lib" path="jar/stringtemplate-3.2.jar"/>
+	<classpathentry kind="lib" path="jar/util-archive-api-1.0.17.jar"/>
+	<classpathentry kind="lib" path="jar/util-component-api-1.0.17.jar"/>
+	<classpathentry kind="lib" path="jar/util-component-impl-1.0.17.jar"/>
+	<classpathentry kind="lib" path="jar/util-event-api-1.0.17.jar"/>
+	<classpathentry kind="lib" path="jar/util-event-impl-1.0.17.jar"/>
+	<classpathentry kind="lib" path="jar/util-execution-1.0.17.jar"/>
+	<classpathentry kind="lib" path="jar/util-i18n-1.0.17.jar"/>
+	<classpathentry kind="lib" path="jar/util-log-1.0.17.jar"/>
+	<classpathentry kind="lib" path="jar/util-pool-api-1.0.17.jar"/>
+	<classpathentry kind="lib" path="jar/util-pool-impl-1.0.17.jar"/>
+	<classpathentry kind="lib" path="jar/util-scan-api-1.0.17.jar"/>
+	<classpathentry kind="lib" path="jar/util-url-1.0.17.jar"/>
+	<classpathentry kind="lib" path="jar/util-xml-1.0.17.jar"/>
+	<classpathentry kind="lib" path="jar/util-xmlconfig-1.0.17.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
