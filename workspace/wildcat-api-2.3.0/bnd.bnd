@@ -1,0 +1,8 @@
+-buildpath: lib/wildcat-api-2.3.0.jar;version=file
+Export-Package: org.ow2.wildcat;version=${Bundle-Version},\
+	org.ow2.wildcat.event;version=${Bundle-Version},\
+	org.ow2.wildcat.hierarchy;version=${Bundle-Version},\
+	org.ow2.wildcat.hierarchy.attribute;version=${Bundle-Version},\
+	org.ow2.wildcat.hierarchy.resource;version=${Bundle-Version},\
+	org.ow2.wildcat.util;version=${Bundle-Version}
+Bundle-Version: 0.0.0
