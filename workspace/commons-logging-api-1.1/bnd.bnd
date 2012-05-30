@@ -1,0 +1,4 @@
+-buildpath: lib/commons-logging-api-1.1.jar;version=file
+Export-Package: org.apache.commons.logging;version=${Bundle-Version},\
+	org.apache.commons.logging.impl;version=${Bundle-Version}
+Bundle-Version: 1.1.0
