@@ -1,0 +1,13 @@
+-buildpath: lib/wildcat-core-2.3.0.jar;version=file
+Export-Package: org.ow2.wildcat;version=${Bundle-Version},\
+	org.ow2.wildcat.hierarchy;version=${Bundle-Version},\
+	org.ow2.wildcat.hierarchy.resource;version=${Bundle-Version},\
+	org.ow2.wildcat.remote;version=${Bundle-Version},\
+	org.ow2.wildcat.remote.dispatcher;version=${Bundle-Version},\
+	org.ow2.wildcat.remote.dispatcher.jms;version=${Bundle-Version},\
+	org.ow2.wildcat.remote.dispatcher.rmi;version=${Bundle-Version},\
+	org.ow2.wildcat.remote.provider;version=${Bundle-Version},\
+	org.ow2.wildcat.remote.provider.joram;version=${Bundle-Version},\
+	org.ow2.wildcat.sensors;version=${Bundle-Version},\
+	org.ow2.wildcat.util;version=${Bundle-Version}
+Bundle-Version: 0.0.0
