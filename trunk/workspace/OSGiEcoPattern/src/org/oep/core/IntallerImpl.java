@@ -3,6 +3,7 @@ package org.oep.core;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 
 import org.oep.core.api.Installer;
 import org.osgi.framework.Bundle;
@@ -100,5 +101,13 @@ public class IntallerImpl implements Installer{
 	
 	public void replaceServiceBundle(Bundle oldBundle, Bundle newBundle) {
 		
+	}
+	
+	public Set<String> getInstalledAPIBundle() {
+		return serviceBundle.keySet();
+	}
+	
+	public List<Bundle> getInstalledServiceBundle(String APIBundle) {
+		return serviceBundle.get(APIBundle);
 	}
 }

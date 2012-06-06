@@ -1,2 +1,4 @@
+Export-Package: org.oep.gui
+Bundle-Version: 1.0.0
 Private-Package: org.oep.gui
-Service-Component: *
+Bundle-Activator: org.oep.gui.Activator
