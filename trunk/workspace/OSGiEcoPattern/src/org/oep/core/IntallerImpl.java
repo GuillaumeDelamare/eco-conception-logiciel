@@ -3,6 +3,7 @@ package org.oep.core;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Observable;
 import java.util.Set;
 
 import org.oep.core.api.Installer;
@@ -11,7 +12,7 @@ import org.osgi.framework.BundleContext;
 import org.osgi.framework.BundleException;
 import org.osgi.framework.Constants;
 
-public class IntallerImpl implements Installer{
+public class IntallerImpl extends Observable implements Installer{
 	private static final String BUNDLE_LOCATION = "file:/home/guillaume/workspace/OSGiEcoPattern/generated/";
 	
 	private BundleContext context;
@@ -50,6 +51,7 @@ public class IntallerImpl implements Installer{
 				serviceBundle.put(sub, new ArrayList<Bundle>());
 				startedServiceBundle.put("sub", null);
 			}
+			notifyObservers();
 		}
 		
 		return b;
@@ -73,6 +75,8 @@ public class IntallerImpl implements Installer{
 					System.out.println("Installer : add bundle implementing " + sub);
 				}
 			}
+			setChanged();
+			notifyObservers();
 		}
 		
 		return b;
@@ -97,6 +101,8 @@ public class IntallerImpl implements Installer{
 				startedServiceBundle.put(sub, bundle);
 			}
 		}
+		setChanged();
+		notifyObservers();
 	}
 	
 	public void replaceServiceBundle(Bundle oldBundle, Bundle newBundle) {

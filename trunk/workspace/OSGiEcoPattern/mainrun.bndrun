@@ -5,7 +5,8 @@
 	bundle:(symbolicname=org.apache.felix.shell.tui),\
 	bundle:(symbolicname=org.apache.felix.scr),\
 	bundle:(symbolicname=OSGiEcoPattern.org.oep.core),\
-	bundle:(symbolicname=OSGiEcoPattern.org.oep.gui)
+	bundle:(symbolicname=OSGiEcoPattern.org.oep.gui),\
+	bundle:(symbolicname=OSGiEcoPattern.org.oep.shell)
 -runee: JavaSE-1.6
 -runrepos: Local Repository,\
 	Release,\
@@ -20,4 +21,5 @@
 	org.apache.felix.shell.tui;resolution=file:/home/guillaume/workspace/cnf/repo/org.apache.felix.shell.tui/org.apache.felix.shell.tui-1.4.1.jar;version='[1.4.1,1.4.2)',\
 	OSGiEcoPattern.org.oep.gui;resolution=file:/home/guillaume/workspace/OSGiEcoPattern/generated/OSGiEcoPattern.org.oep.gui.jar;version=latest,\
 	org.apache.felix.scr;resolution=file:/home/guillaume/workspace/cnf/repo/org.apache.felix.scr/org.apache.felix.scr-1.6.0.jar;version='[1.6.0,1.6.1)',\
+	OSGiEcoPattern.org.oep.shell;resolution=file:/home/guillaume/workspace/OSGiEcoPattern/generated/OSGiEcoPattern.org.oep.shell.jar;version=latest,\
 	osgi.cmpn;resolution=http://bundles.bndtools.org.s3.amazonaws.com/osgi.cmpn/osgi.cmpn-4.2.1.jar;version='[4.2.1,4.2.2)'
