@@ -4,4 +4,5 @@
 	biz.aQute.bnd.annotation,\
 	osgi.core,\
 	osgi.cmpn,\
-	junit.osgi
+	junit.osgi,\
+	wildcat-bundle
