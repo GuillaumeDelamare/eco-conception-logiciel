@@ -8,6 +8,10 @@ public class Core implements BundleActivator{
 	private IntallerImpl installer;
 	private ServiceManagerImpl serviceManager;
 	
+	public Core() {
+		// TODO Auto-generated constructor stub
+	}
+	
 	@Override
 	public void start(BundleContext context) throws Exception {
 		installer = new IntallerImpl(context);
@@ -23,4 +27,10 @@ public class Core implements BundleActivator{
 		
 	}
 	
+	public IntallerImpl getInstaller() {
+		return installer;
+	}
+	public ServiceManagerImpl getServiceManager() {
+		return serviceManager;
+	}
 }

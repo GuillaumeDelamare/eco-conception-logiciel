@@ -4,8 +4,7 @@
 -runrequire: bundle:(symbolicname=org.apache.felix.shell),\
 	bundle:(symbolicname=org.apache.felix.shell.tui),\
 	bundle:(symbolicname=org.apache.felix.scr),\
-	bundle:(symbolicname=OSGiEcoPattern.org.osgiecopattern.shell),\
-	bundle:(symbolicname=OSGiEcoPattern.org.osgiecopattern.core),\
+	bundle:(symbolicname=OSGiEcoPattern.org.oep.core),\
 	bundle:(symbolicname=OSGiEcoPattern.org.oep.gui)
 -runee: JavaSE-1.6
 -runrepos: Local Repository,\
@@ -14,3 +13,11 @@
 	
 	
 -resolve: auto
+-runbundles: OSGiEcoPattern.org.oep.core;resolution=file:/home/guillaume/workspace/OSGiEcoPattern/generated/OSGiEcoPattern.org.oep.core.jar;version=latest,\
+	OSGiEcoPattern.org.oep.core.api;resolution=file:/home/guillaume/workspace/OSGiEcoPattern/generated/OSGiEcoPattern.org.oep.core.api.jar;version=latest,\
+	org.apache.felix.shell;resolution=file:/home/guillaume/workspace/cnf/repo/org.apache.felix.shell/org.apache.felix.shell-1.4.2.jar;version='[1.4.2,1.4.3)',\
+	OSGiEcoPattern.org.oep.services.api;resolution=file:/home/guillaume/workspace/OSGiEcoPattern/generated/OSGiEcoPattern.org.oep.services.api.jar;version=latest,\
+	org.apache.felix.shell.tui;resolution=file:/home/guillaume/workspace/cnf/repo/org.apache.felix.shell.tui/org.apache.felix.shell.tui-1.4.1.jar;version='[1.4.1,1.4.2)',\
+	OSGiEcoPattern.org.oep.gui;resolution=file:/home/guillaume/workspace/OSGiEcoPattern/generated/OSGiEcoPattern.org.oep.gui.jar;version=latest,\
+	org.apache.felix.scr;resolution=file:/home/guillaume/workspace/cnf/repo/org.apache.felix.scr/org.apache.felix.scr-1.6.0.jar;version='[1.6.0,1.6.1)',\
+	osgi.cmpn;resolution=http://bundles.bndtools.org.s3.amazonaws.com/osgi.cmpn/osgi.cmpn-4.2.1.jar;version='[4.2.1,4.2.2)'
