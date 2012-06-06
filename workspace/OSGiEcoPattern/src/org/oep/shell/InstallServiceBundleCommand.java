@@ -26,7 +26,6 @@ public class InstallServiceBundleCommand implements Command {
 			} catch (BundleException e) {
 				err.println("Service Bundle installation failled !");
 			}
-
 	}
 
 	@Override

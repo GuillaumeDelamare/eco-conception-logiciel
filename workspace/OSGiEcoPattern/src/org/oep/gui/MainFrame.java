@@ -11,10 +11,10 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.TreeNode;
 
 import org.oep.core.api.Installer;
 import org.oep.core.api.ServiceManager;
+import org.oep.gui.controller.TreeNodeController;
 import org.osgi.framework.Bundle;
 
 public class MainFrame extends JFrame {
@@ -82,10 +82,10 @@ public class MainFrame extends JFrame {
 	
 	private void createController() {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+		new TreeNodeController(root, installer);
 	}
 	
-	private TreeNode createTreeNode() {
+	private void createTreeNode() {
 		root = new DefaultMutableTreeNode("root");
 		
 		DefaultMutableTreeNode dmtn;
@@ -98,8 +98,6 @@ public class MainFrame extends JFrame {
 			
 			root.add(dmtn);
 		}
-		
-		return root;
 	}
 	
 	public void display(){

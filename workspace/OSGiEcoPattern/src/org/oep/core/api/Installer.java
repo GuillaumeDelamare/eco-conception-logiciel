@@ -1,6 +1,7 @@
 package org.oep.core.api;
 
 import java.util.List;
+import java.util.Observer;
 import java.util.Set;
 
 import org.osgi.framework.Bundle;
@@ -13,4 +14,5 @@ public interface Installer {
 	public void startServiceBundle(Bundle bundle) throws BundleException;
 	public Set<String> getInstalledAPIBundle();
 	public List<Bundle> getInstalledServiceBundle(String APIBundle);
+	public void addObserver(Observer o);
 }
