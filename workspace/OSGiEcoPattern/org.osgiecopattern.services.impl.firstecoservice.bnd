@@ -1,3 +1,3 @@
-Private-Package: org.osep.services.impl.firstecoservice
+Private-Package: org.oep.services.impl.firstecoservice
 Bundle-Version: 1.0.0
 Bundle-Activator: org.osgiecopattern.services.impl.firstecoservice.Activator
