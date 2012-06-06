@@ -1,2 +1,2 @@
 Private-Package: org.oep.services.exampleservice.impl1
-Bundle-Activator: org.osgiecopattern.services.exampleservice.impl1.Activator
+Bundle-Activator: org.oep.services.exampleservice.impl1.Activator
