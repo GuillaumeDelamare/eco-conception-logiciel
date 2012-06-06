@@ -1,1 +1,2 @@
 Private-Package: org.oep.gui
+Service-Component: *

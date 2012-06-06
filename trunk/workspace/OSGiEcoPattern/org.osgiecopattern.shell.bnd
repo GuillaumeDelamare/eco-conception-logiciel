@@ -1,4 +1,4 @@
 Private-Package: org.oep.shell
 Service-Component: *
-Bundle-Activator: org.osgiecopattern.shell.Activator
+Bundle-Activator: org.oep.shell.Activator
 Bundle-Version: 1.0.0
