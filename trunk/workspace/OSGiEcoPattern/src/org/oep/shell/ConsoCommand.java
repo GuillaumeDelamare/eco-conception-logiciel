@@ -3,7 +3,7 @@ package org.oep.shell;
 import java.io.PrintStream;
 
 import org.apache.felix.shell.Command;
-import org.oep.core.api.ServiceManager;
+import org.oep.core.ServiceManager;
 import org.osgi.framework.BundleContext;
 
 public class ConsoCommand implements Command{

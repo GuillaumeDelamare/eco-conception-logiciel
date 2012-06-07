@@ -2,7 +2,6 @@ package org.oep.core;
 
 import java.util.ArrayList;
 
-import org.oep.core.api.ServiceManager;
 import org.oep.services.api.EcoService;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceEvent;
@@ -11,11 +10,11 @@ import org.osgi.framework.ServiceListener;
 import aQute.bnd.annotation.component.Component;
 
 @Component
-public class ServiceManagerImpl implements ServiceListener, ServiceManager{
+public class ServiceManager implements ServiceListener {
 	private BundleContext bc;
 	private ArrayList<EcoService> registeredService = new ArrayList<EcoService>();
 
-	public ServiceManagerImpl(BundleContext bc) {
+	public ServiceManager(BundleContext bc) {
 		this.bc = bc;
 	}
 	
@@ -46,7 +45,6 @@ public class ServiceManagerImpl implements ServiceListener, ServiceManager{
 		}
 	}
 	
-	@Override
 	public float getTotalConsumption(){
 		float i = 0;
 		for (EcoService es : registeredService) {

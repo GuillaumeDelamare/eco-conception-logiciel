@@ -15,7 +15,6 @@
 	
 -resolve: auto
 -runbundles: OSGiEcoPattern.org.oep.core;resolution=file:/home/guillaume/workspace/OSGiEcoPattern/generated/OSGiEcoPattern.org.oep.core.jar;version=latest,\
-	OSGiEcoPattern.org.oep.core.api;resolution=file:/home/guillaume/workspace/OSGiEcoPattern/generated/OSGiEcoPattern.org.oep.core.api.jar;version=latest,\
 	org.apache.felix.shell;resolution=file:/home/guillaume/workspace/cnf/repo/org.apache.felix.shell/org.apache.felix.shell-1.4.2.jar;version='[1.4.2,1.4.3)',\
 	OSGiEcoPattern.org.oep.services.api;resolution=file:/home/guillaume/workspace/OSGiEcoPattern/generated/OSGiEcoPattern.org.oep.services.api.jar;version=latest,\
 	org.apache.felix.shell.tui;resolution=file:/home/guillaume/workspace/cnf/repo/org.apache.felix.shell.tui/org.apache.felix.shell.tui-1.4.1.jar;version='[1.4.1,1.4.2)',\
