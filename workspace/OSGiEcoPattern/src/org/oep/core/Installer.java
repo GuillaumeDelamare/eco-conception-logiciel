@@ -6,21 +6,20 @@ import java.util.List;
 import java.util.Observable;
 import java.util.Set;
 
-import org.oep.core.api.Installer;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.BundleException;
 import org.osgi.framework.Constants;
 
-public class IntallerImpl extends Observable implements Installer{
-	private static final String BUNDLE_LOCATION = "file:/home/guillaume/workspace/OSGiEcoPattern/generated/";
+public class Installer extends Observable{
+	private static final String BUNDLE_LOCATION = "file:";
 	
 	private BundleContext context;
 	private ArrayList<Bundle> installedBundle;
 	private HashMap<String, List<Bundle>> serviceBundle;
 	private HashMap<String, Bundle> startedServiceBundle;
 	
-	public IntallerImpl(BundleContext context) {
+	public Installer(BundleContext context) {
 		this.context = context;
 		installedBundle = new ArrayList<Bundle>();
 		serviceBundle = new HashMap<String, List<Bundle>>();
@@ -46,10 +45,13 @@ public class IntallerImpl extends Observable implements Installer{
 			s = s.replaceAll(";version=\".+\"", "");
 			s = s.replaceAll(";uses:=\".+\"", "");
 			String[] importPackage = s.split(",");
+			
 			for(String sub : importPackage){
 				System.out.println("Installer : add API " + sub);
 				serviceBundle.put(sub, new ArrayList<Bundle>());
 				startedServiceBundle.put("sub", null);
+
+				setChanged();
 			}
 			notifyObservers();
 		}
@@ -73,9 +75,11 @@ public class IntallerImpl extends Observable implements Installer{
 				if(l != null){
 					l.add(b);
 					System.out.println("Installer : add bundle implementing " + sub);
+
+					setChanged();
 				}
 			}
-			setChanged();
+			
 			notifyObservers();
 		}
 		
@@ -99,9 +103,9 @@ public class IntallerImpl extends Observable implements Installer{
 				
 				bundle.start();
 				startedServiceBundle.put(sub, bundle);
+				setChanged();
 			}
 		}
-		setChanged();
 		notifyObservers();
 	}
 	

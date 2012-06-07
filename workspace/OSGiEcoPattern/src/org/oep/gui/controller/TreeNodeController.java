@@ -4,36 +4,44 @@ import java.util.Observable;
 import java.util.Observer;
 
 import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
 
-import org.oep.core.api.Installer;
+import org.oep.core.Installer;
 import org.osgi.framework.Bundle;
 
 public class TreeNodeController implements Observer {
-	DefaultMutableTreeNode root;
-	//TODO Corriger le nom de la classe IntallerImpl
-	//TODO Corriger le lien vers la classe d'implémentation
+	DefaultTreeModel root;
 	Installer installer;
 	
-	public TreeNodeController(DefaultMutableTreeNode root, Installer installer) {
+	public TreeNodeController(DefaultTreeModel root, Installer installer) {
 		this.root = root;
-		this.installer = installer;
 		
+		this.installer = installer;
 		this.installer.addObserver(this);
 	}
+	
 	@Override
 	public void update(Observable o, Object arg) {
-		root.removeAllChildren();
-		
-		DefaultMutableTreeNode dmtn;
-		for(String s : installer.getInstalledAPIBundle()){
-			System.out.println("coucou controller");
-			dmtn = new DefaultMutableTreeNode(s);
+		Object obj = root.getRoot(); 
+		if(obj instanceof DefaultMutableTreeNode) {
+			DefaultMutableTreeNode r = (DefaultMutableTreeNode) obj;
 			
-			for(Bundle b : installer.getInstalledServiceBundle(s)){
-				dmtn.add(new DefaultMutableTreeNode(b.getSymbolicName()));
+			r.removeAllChildren();
+			
+			DefaultMutableTreeNode dmtn;
+			for(String s : installer.getInstalledAPIBundle()){
+				dmtn = new DefaultMutableTreeNode(s);
+				
+				for(Bundle b : installer.getInstalledServiceBundle(s)) {
+					dmtn.add(new DefaultMutableTreeNode(b.getSymbolicName()));
+				}
+				
+				r.add(dmtn);
 			}
 			
-			root.add(dmtn);
+			root.setRoot(r);
+		} else {
+			System.err.println("Cas étrange !");
 		}
 	}
 

@@ -4,7 +4,7 @@ import java.io.PrintStream;
 import java.util.StringTokenizer;
 
 import org.apache.felix.shell.Command;
-import org.oep.core.api.Installer;
+import org.oep.core.Installer;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.BundleException;
 

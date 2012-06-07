@@ -5,8 +5,8 @@ import org.osgi.framework.BundleContext;
 
 
 public class Core implements BundleActivator{
-	private IntallerImpl installer;
-	private ServiceManagerImpl serviceManager;
+	private Installer installer;
+	private ServiceManager serviceManager;
 	
 	public Core() {
 		// TODO Auto-generated constructor stub
@@ -14,12 +14,12 @@ public class Core implements BundleActivator{
 	
 	@Override
 	public void start(BundleContext context) throws Exception {
-		installer = new IntallerImpl(context);
-		serviceManager = new ServiceManagerImpl(context);
+		installer = new Installer(context);
+		serviceManager = new ServiceManager(context);
 		
 		context.addServiceListener(serviceManager);
-		context.registerService(org.oep.core.api.ServiceManager.class.getName(), serviceManager, null);
-		context.registerService(org.oep.core.api.Installer.class.getName(), installer, null);
+		context.registerService(org.oep.core.ServiceManager.class.getName(), serviceManager, null);
+		context.registerService(org.oep.core.Installer.class.getName(), installer, null);
 	}
 
 	@Override
@@ -27,10 +27,10 @@ public class Core implements BundleActivator{
 		
 	}
 	
-	public IntallerImpl getInstaller() {
+	public Installer getInstaller() {
 		return installer;
 	}
-	public ServiceManagerImpl getServiceManager() {
+	public ServiceManager getServiceManager() {
 		return serviceManager;
 	}
 }
