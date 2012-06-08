@@ -3,18 +3,18 @@ package org.oep.gui;
 import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
 
-import org.oep.core.Installer;
+import org.oep.core.BundleManager;
 
 public class MainFrame extends JFrame {
 	private static final long serialVersionUID = -4909438209076360578L;
-	private Installer installer;
+	private BundleManager installer;
 	
 	private JTabbedPane tabbedPane;
 	private BundleListPanel bundleListPanel;
 	private RunningListPanel runningListPanel;
 	
 	
-	public MainFrame(Installer installer) {
+	public MainFrame(BundleManager installer) {
 		this.installer = installer;
 
 		this.setTitle("OSGiEcoPattern");
@@ -43,7 +43,7 @@ public class MainFrame extends JFrame {
 	private void createComponent() {
 		tabbedPane = new JTabbedPane();
 		bundleListPanel = new BundleListPanel(installer);
-		runningListPanel = new RunningListPanel();
+		runningListPanel = new RunningListPanel(installer);
 	}
 
 

@@ -4,19 +4,19 @@ import java.io.PrintStream;
 import java.util.StringTokenizer;
 
 import org.apache.felix.shell.Command;
-import org.oep.core.Installer;
+import org.oep.core.BundleManager;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.BundleException;
 import org.osgi.framework.InvalidSyntaxException;
 import org.osgi.framework.ServiceReference;
 
 public class InstallAPICommand implements Command{
-	private Installer installer;
+	private BundleManager installer;
 
 	public InstallAPICommand(BundleContext context) {
 		ServiceReference[] refs;
 		try {
-			refs = context.getServiceReferences(Installer.class.getName(), null);
+			refs = context.getServiceReferences(BundleManager.class.getName(), null);
 			if (refs != null) {
 				installer = context.getService(refs[0]);
 

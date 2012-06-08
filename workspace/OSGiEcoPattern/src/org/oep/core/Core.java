@@ -1,11 +1,12 @@
 package org.oep.core;
 
+import org.oep.core.controller.basic.Controller;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 
 
 public class Core implements BundleActivator{
-	private Installer installer;
+	private BundleManager installer;
 	private ServiceManager serviceManager;
 	
 	public Core() {
@@ -14,12 +15,14 @@ public class Core implements BundleActivator{
 	
 	@Override
 	public void start(BundleContext context) throws Exception {
-		installer = new Installer(context);
+		installer = new BundleManager(context);
 		serviceManager = new ServiceManager(context);
 		
 		context.addServiceListener(serviceManager);
 		context.registerService(org.oep.core.ServiceManager.class.getName(), serviceManager, null);
-		context.registerService(org.oep.core.Installer.class.getName(), installer, null);
+		context.registerService(org.oep.core.BundleManager.class.getName(), installer, null);
+		
+		new Controller(serviceManager, installer).start();
 	}
 
 	@Override
@@ -27,7 +30,7 @@ public class Core implements BundleActivator{
 		
 	}
 	
-	public Installer getInstaller() {
+	public BundleManager getInstaller() {
 		return installer;
 	}
 	public ServiceManager getServiceManager() {

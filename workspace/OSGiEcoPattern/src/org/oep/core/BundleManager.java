@@ -11,29 +11,29 @@ import org.osgi.framework.BundleContext;
 import org.osgi.framework.BundleException;
 import org.osgi.framework.Constants;
 
-public class Installer extends Observable{
+public class BundleManager extends Observable{
 	private static final String BUNDLE_LOCATION = "file:";
 	
 	private BundleContext context;
-	private ArrayList<Bundle> installedBundle;
-	private HashMap<String, List<Bundle>> serviceBundle;
-	private HashMap<String, Bundle> startedServiceBundle;
+	private HashMap<String, List<Bundle>> bundleRegister;
+	private HashMap<String, Bundle> startedBundle;
 	
-	public Installer(BundleContext context) {
+	//-------------------------------------------------------------------//
+	//-------------------------Constructor-------------------------------//
+	//-------------------------------------------------------------------//
+	
+	public BundleManager(BundleContext context) {
 		this.context = context;
-		installedBundle = new ArrayList<Bundle>();
-		serviceBundle = new HashMap<String, List<Bundle>>();
-		startedServiceBundle = new HashMap<String, Bundle>();
+		bundleRegister = new HashMap<String, List<Bundle>>();
+		startedBundle = new HashMap<String, Bundle>();
 	}
 	
-	public Bundle install(String bundle) throws BundleException {
-		Bundle b;
-		
-		b = context.installBundle(BUNDLE_LOCATION + bundle);
-		
-		installedBundle.add(b);
-		
-		return b;
+	//-------------------------------------------------------------------//
+	//-------------------Installation Method-----------------------------//
+	//-------------------------------------------------------------------//
+	
+	public Bundle install(String bundle) throws BundleException {		
+		return context.installBundle(BUNDLE_LOCATION + bundle);
 	}
 	public Bundle installAPIBundle(String bundle) throws BundleException{
 		Bundle b = install(bundle);
@@ -42,14 +42,16 @@ public class Installer extends Observable{
 		
 		if(s!=null){
 			System.out.println("Installer : EXPORT_PACKAGE = "+ s);
+			
 			s = s.replaceAll(";version=\".+\"", "");
 			s = s.replaceAll(";uses:=\".+\"", "");
 			String[] importPackage = s.split(",");
 			
 			for(String sub : importPackage){
 				System.out.println("Installer : add API " + sub);
-				serviceBundle.put(sub, new ArrayList<Bundle>());
-				startedServiceBundle.put("sub", null);
+				
+				bundleRegister.put(sub, new ArrayList<Bundle>());
+				startedBundle.put(sub, null);
 
 				setChanged();
 			}
@@ -58,19 +60,21 @@ public class Installer extends Observable{
 		
 		return b;
 	}
-	public Bundle installServiceBundle(String bundle) throws BundleException{
+	public Bundle installImplBundle(String bundle) throws BundleException{
 		Bundle b = install(bundle);
 		
 		String s = b.getHeaders().get(Constants.IMPORT_PACKAGE);
 		
 		if(s!=null){
 			System.out.println("Installer : EXPORT_PACKAGE = "+ s);
+			
 			s = s.replaceAll(";version=\".+?\"", "");
 			String[] exportPackage = s.split(",");
 			
 			for(String sub : exportPackage){
 				System.out.println("Installer : try to find " + sub);
-				List<Bundle> l = serviceBundle.get(sub);
+				
+				List<Bundle> l = bundleRegister.get(sub);
 				
 				if(l != null){
 					l.add(b);
@@ -86,6 +90,10 @@ public class Installer extends Observable{
 		return b;
 	}
 	
+	//-------------------------------------------------------------------//
+	//-------------------Start and Stop Method---------------------------//
+	//-------------------------------------------------------------------//
+	
 	public void startServiceBundle(Bundle bundle) throws BundleException{
 		String s = bundle.getHeaders().get(Constants.IMPORT_PACKAGE);
 		
@@ -95,29 +103,43 @@ public class Installer extends Observable{
 			
 			for(String sub : exportPackage){
 				System.out.println("Installer : try to find " + sub);
-				Bundle b = startedServiceBundle.get(sub);
+				Bundle b = startedBundle.get(sub);
 				
 				if(b != null){
 					throw new IllegalStateException("Installer : trying to start a bundle whereas another bundle is already started");
 				}
 				
 				bundle.start();
-				startedServiceBundle.put(sub, bundle);
+				startedBundle.put(sub, bundle);
 				setChanged();
 			}
 		}
 		notifyObservers();
 	}
-	
-	public void replaceServiceBundle(Bundle oldBundle, Bundle newBundle) {
-		
+	public void stopServiceBundle(Bundle bundle) throws BundleException {
+		String s = bundle.getHeaders().get(Constants.IMPORT_PACKAGE);
+		if(s!=null){
+			s = s.replaceAll(";version=\".+?\"", "");
+			String[] exportPackage = s.split(",");
+			
+			for(String sub : exportPackage){
+				startedBundle.remove(sub);
+			}
+		}
+		bundle.stop();
 	}
+	
+	//-------------------------------------------------------------------//
+	//----------------------Getter an Setter-----------------------------//
+	//-------------------------------------------------------------------//
 	
 	public Set<String> getInstalledAPIBundle() {
-		return serviceBundle.keySet();
+		return bundleRegister.keySet();
 	}
-	
 	public List<Bundle> getInstalledServiceBundle(String APIBundle) {
-		return serviceBundle.get(APIBundle);
+		return bundleRegister.get(APIBundle);
+	}
+	public HashMap<String, Bundle> getStartedBundle(){
+		return new HashMap<String, Bundle>(startedBundle);
 	}
 }

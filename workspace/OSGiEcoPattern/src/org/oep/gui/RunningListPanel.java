@@ -6,13 +6,23 @@ import java.awt.FlowLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
+import org.oep.core.BundleManager;
+import org.oep.gui.controller.TableModelController;
 public class RunningListPanel extends JPanel {
 	private static final long serialVersionUID = -2396252588618798929L;
 	
-	private JLabel consuptionLabel, consumptionValueLabel, consumptionUnitLabel, serviceListLabel;
+	private BundleManager installer;
+	
+	private DefaultTableModel tableModel;
+	
+	private JLabel consuptionLabel, consumptionValueLabel, consumptionUnitLabel;
 	private JTable table;
 	
-	public RunningListPanel() {
+	public RunningListPanel(BundleManager installer) {
+		this.installer = installer;
+		
 		createComponent();
 		placeComponent();
 		createController();
@@ -21,12 +31,13 @@ public class RunningListPanel extends JPanel {
 	private void createComponent(){
 		consumptionUnitLabel = new JLabel("W");
 		consumptionValueLabel = new JLabel("0");
-		consuptionLabel = new JLabel("Consumption : ");
-		serviceListLabel = new JLabel("List of Services");
+		consuptionLabel = new JLabel("Total consumption : ");
 		
 		String[] columnNames = {"Service Name",	"Implementation Name", "State", "Consumption"};
-		Object[][] o = {{"", "", "", ""}};
-		table = new JTable(o, columnNames);
+		Object[][] o = {};
+		
+		tableModel = new DefaultTableModel(o, columnNames);
+		table = new JTable(tableModel);
 	}
 	private void placeComponent(){
 		setLayout(new BorderLayout());
@@ -39,12 +50,14 @@ public class RunningListPanel extends JPanel {
 			add(p1, BorderLayout.NORTH);
 		}
 		
-		add(serviceListLabel, BorderLayout.CENTER);
-		
-		add(table, BorderLayout.SOUTH);
-		
+		JPanel p2 = new JPanel(new BorderLayout());{
+			p2.add(table.getTableHeader(), BorderLayout.PAGE_START);
+			p2.add(table, BorderLayout.CENTER);
+			
+			add(p2, BorderLayout.CENTER);
+		}
 	}
 	private void createController(){
-		
+		new TableModelController(tableModel, installer);
 	}
 }

@@ -2,17 +2,17 @@ package org.oep.gui;
 
 import javax.swing.SwingUtilities;
 
-import org.oep.core.Installer;
+import org.oep.core.BundleManager;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
 
 public class Activator implements BundleActivator {
-	private Installer i;
+	private BundleManager i;
 	
 	@Override
 	public void start(BundleContext context) throws Exception {
-		ServiceReference[] refs = context.getServiceReferences(Installer.class.getName(), null);
+		ServiceReference[] refs = context.getServiceReferences(BundleManager.class.getName(), null);
 		if (refs != null)
         {
             i = context.getService(refs[0]);
