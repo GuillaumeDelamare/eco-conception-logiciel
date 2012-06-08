@@ -7,12 +7,12 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-import org.oep.core.Installer;
+import org.oep.core.BundleManager;
 
 public class InstallImplController implements ActionListener{
-private Installer installer;
+private BundleManager installer;
 	
-	public InstallImplController(Installer installer) {
+	public InstallImplController(BundleManager installer) {
 			this.installer = installer;
 	}
 	
@@ -27,7 +27,7 @@ private Installer installer;
 		
 		if(returnVal == JFileChooser.APPROVE_OPTION) {
 			try {
-				installer.installServiceBundle(chooser.getSelectedFile().getPath());
+				installer.installImplBundle(chooser.getSelectedFile().getPath());
 			} catch (Exception e2) {
 				JOptionPane.showMessageDialog(null, "Bundle instalation failled", "Installation error", JOptionPane.ERROR_MESSAGE);
 			}

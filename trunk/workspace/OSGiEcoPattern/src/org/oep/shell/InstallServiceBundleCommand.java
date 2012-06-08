@@ -4,15 +4,15 @@ import java.io.PrintStream;
 import java.util.StringTokenizer;
 
 import org.apache.felix.shell.Command;
-import org.oep.core.Installer;
+import org.oep.core.BundleManager;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.BundleException;
 
 public class InstallServiceBundleCommand implements Command {
-	private Installer installer;
+	private BundleManager installer;
 
 	public InstallServiceBundleCommand(BundleContext context) {
-		installer = context.getService(context.getServiceReference(Installer.class));
+		installer = context.getService(context.getServiceReference(BundleManager.class));
 	}
 
 	@Override
@@ -22,7 +22,7 @@ public class InstallServiceBundleCommand implements Command {
 
 		if (tokenizer.hasMoreTokens())
 			try {
-				installer.installServiceBundle(tokenizer.nextToken());
+				installer.installImplBundle(tokenizer.nextToken());
 			} catch (BundleException e) {
 				err.println("Service Bundle installation failled !");
 			}

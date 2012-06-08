@@ -13,7 +13,7 @@ import javax.swing.JTree;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 
-import org.oep.core.Installer;
+import org.oep.core.BundleManager;
 import org.oep.gui.controller.InstallAPIController;
 import org.oep.gui.controller.InstallImplController;
 import org.oep.gui.controller.TreeNodeController;
@@ -22,7 +22,7 @@ import org.osgi.framework.Bundle;
 public class BundleListPanel extends JPanel {
 	private static final long serialVersionUID = 6244150962254780615L;
 	
-	private Installer installer;
+	private BundleManager installer;
 	
 	private DefaultTreeModel root;
 	
@@ -31,7 +31,7 @@ public class BundleListPanel extends JPanel {
 	private JButton installServiceButton, removeServiceButton, installImplButton, removeImplButton;
 	
 	
-	public BundleListPanel(Installer installer) {
+	public BundleListPanel(BundleManager installer) {
 		this.installer = installer;
 		
 		createTreeNode();

@@ -6,14 +6,14 @@ import java.util.Observer;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 
-import org.oep.core.Installer;
+import org.oep.core.BundleManager;
 import org.osgi.framework.Bundle;
 
 public class TreeNodeController implements Observer {
 	DefaultTreeModel root;
-	Installer installer;
+	BundleManager installer;
 	
-	public TreeNodeController(DefaultTreeModel root, Installer installer) {
+	public TreeNodeController(DefaultTreeModel root, BundleManager installer) {
 		this.root = root;
 		
 		this.installer = installer;
