@@ -1,0 +1,2 @@
+Private-Package: org.oep.services.exampleservice.impl2
+Bundle-Activator: org.oep.services.exampleservice.impl2.Activator
