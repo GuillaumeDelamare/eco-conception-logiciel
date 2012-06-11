@@ -26,11 +26,9 @@ public class ServiceManager extends Observable implements ServiceListener, Obser
 	public void serviceChanged(ServiceEvent event) {
 		ServiceReference<?> sr = event.getServiceReference();
 		Object o =bc.getService(sr);
-		System.out.println("toto");
 		if(o instanceof EcoService){
 			switch (event.getType()) {
 			case ServiceEvent.REGISTERED :
-				System.out.println("coucou");
 				registeredService.add(sr);
 				break;
 			case ServiceEvent.UNREGISTERING:

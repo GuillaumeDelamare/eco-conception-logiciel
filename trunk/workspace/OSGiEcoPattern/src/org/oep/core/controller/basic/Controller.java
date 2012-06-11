@@ -2,6 +2,8 @@ package org.oep.core.controller.basic;
 
 import org.oep.core.BundleManager;
 import org.oep.core.ServiceManager;
+import org.oep.services.api.EcoService;
+import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleException;
 
 public class Controller extends Thread{
@@ -29,20 +31,20 @@ public class Controller extends Thread{
 			}
 			max = serviceManager.getNbOfEcoService();
 			if(cursor<max - 1){
-				System.out.println("If : max = "+ max+" cursor = "+cursor);
 				cursor++;
 			}
 			else {
-				System.out.println("else : max = "+ max+" cursor = "+cursor);
 				cursor=-1;
 			}
 			
 			if(cursor >= 0){
-				System.out.println("consumption = "+serviceManager.getEcoService(cursor).getConsuption());
-				if(serviceManager.getEcoService(cursor).getConsuption() > 3){
-					System.out.println("tata");
+				EcoService es = serviceManager.getEcoService(cursor);
+				System.out.println("consumption = " + es.getConsuption());
+				if(es.getConsuption() > 3.0){
+					Bundle bundle = serviceManager.getBundle(cursor);
 					try {
-						bundleManager.stopServiceBundle(serviceManager.getBundle(cursor));
+						System.out.println("Controller - changement de bundle");
+						bundleManager.replaceServiceBundle(bundle, bundleManager.getEquivalentBundle(bundle).get(0));
 					} catch (BundleException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
