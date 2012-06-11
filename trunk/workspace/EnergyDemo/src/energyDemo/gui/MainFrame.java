@@ -14,12 +14,13 @@ import energyDemo.threads.SleepThread;
 import energyDemo.threads.cpu.CalculeThead;
 import energyDemo.threads.cpu.FactorielThread;
 import energyDemo.threads.cpu.QuickSortThread;
+import energyDemo.threads.cpu.ReturnTestThread;
 import energyDemo.threads.ram.StringThread;
 
 public class MainFrame extends JFrame {
 	private static final long serialVersionUID = 7214913835484410337L;
 
-	private String[] comboBoxItem = {"SleepThread", "ComputeThread", "FactorialThread", "QuickSortThread", "StringThread"};
+	private String[] comboBoxItem = {"SleepThread", "ComputeThread", "FactorialThread", "QuickSortThread", "StringThread", "ReturnTestThread"};
 	
 	private JButton jbStart, jbClear;
 	private JComboBox jcChoice;
@@ -80,10 +81,12 @@ public class MainFrame extends JFrame {
 						else if(s == "StringThread") {
 							t = new StringThread(99999999);
 						}
-						else{
+						else if(s == "ReturnTestThread") {
+							t = new ReturnTestThread();
+						}
+						else {
 							System.err.println("Choix inconnu !!!");
 						}
-						
 						if(t != null){
 							t.start();
 							jbStart.setText("Stop");
