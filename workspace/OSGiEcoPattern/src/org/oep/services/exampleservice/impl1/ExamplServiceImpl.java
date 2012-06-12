@@ -20,16 +20,7 @@ public class ExamplServiceImpl implements ExampleService {
 
 	@Override
 	public void compute() {
-		consumption = 3.7;
+		// TODO Auto-generated method stub
 		
-		int x, i = 0;
-		
-		while(i>100000) {
-			i++;
-			x = (7*13)/3;
-		}
-		
-		consumption = 0.1;
 	}
-
 }

@@ -5,7 +5,6 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -16,23 +15,25 @@ import javax.swing.tree.DefaultTreeModel;
 import org.oep.core.BundleManager;
 import org.oep.gui.controller.InstallAPIController;
 import org.oep.gui.controller.InstallImplController;
+import org.oep.gui.controller.RemoveAPIController;
+import org.oep.gui.controller.RemoveImplController;
 import org.oep.gui.controller.TreeNodeController;
 import org.osgi.framework.Bundle;
 
 public class BundleListPanel extends JPanel {
 	private static final long serialVersionUID = 6244150962254780615L;
 	
-	private BundleManager installer;
+	private BundleManager bundleManager;
 	
 	private DefaultTreeModel root;
 	
 	private JLabel serviceListLabel;
 	private JTree serviceListTree;
-	private JButton installServiceButton, removeServiceButton, installImplButton, removeImplButton;
+	private JButton installAPIButton, removeAPIButton, installImplButton, removeImplButton;
 	
 	
-	public BundleListPanel(BundleManager installer) {
-		this.installer = installer;
+	public BundleListPanel(BundleManager bundleManager) {
+		this.bundleManager = bundleManager;
 		
 		createTreeNode();
 		
@@ -47,10 +48,10 @@ public class BundleListPanel extends JPanel {
 		this.serviceListTree = new JTree(root);
 		this.serviceListTree.setRootVisible(false);
 		
-		this.installImplButton = new JButton("Install impl");
-		this.installServiceButton = new JButton("Install Service");
-		this.removeImplButton = new JButton("Remove impl");
-		this.removeServiceButton = new JButton("Remove Services");
+		this.installImplButton = new JButton("Install Impl");
+		this.installAPIButton = new JButton("Install API");
+		this.removeImplButton = new JButton("Remove Impl");
+		this.removeAPIButton = new JButton("Remove API");
 	}
 	
 	private void placeComponent() {
@@ -64,8 +65,8 @@ public class BundleListPanel extends JPanel {
 		
 		JPanel p1 = new JPanel(new GridLayout(2, 1));{
 			JPanel p2 = new JPanel(new FlowLayout());{
-				p2.add(installServiceButton);
-				p2.add(removeServiceButton);
+				p2.add(installAPIButton);
+				p2.add(removeAPIButton);
 				
 				p1.add(p2);
 			}
@@ -82,18 +83,20 @@ public class BundleListPanel extends JPanel {
 	}
 	
 	private void createController() {
-		new TreeNodeController(root, installer);
-		installServiceButton.addActionListener(new InstallAPIController(installer));
-		installImplButton.addActionListener(new InstallImplController(installer));
+		new TreeNodeController(root, bundleManager);
+		installAPIButton.addActionListener(new InstallAPIController(bundleManager));
+		installImplButton.addActionListener(new InstallImplController(bundleManager));
+		removeAPIButton.addActionListener(new RemoveAPIController());
+		removeImplButton.addActionListener(new RemoveImplController(bundleManager));
 	}
 	
 	private void createTreeNode() {
 		DefaultMutableTreeNode r = new DefaultMutableTreeNode("root");
 		DefaultMutableTreeNode dmtn;
-		for(String s : installer.getInstalledAPIBundle()){
+		for(String s : bundleManager.getInstalledAPIBundle()){
 			dmtn = new DefaultMutableTreeNode(s);
 			
-			for(Bundle b : installer.getInstalledServiceBundle(s)) {
+			for(Bundle b : bundleManager.getInstalledServiceBundle(s)) {
 				dmtn.add(new DefaultMutableTreeNode(b.getSymbolicName()));
 			}
 			

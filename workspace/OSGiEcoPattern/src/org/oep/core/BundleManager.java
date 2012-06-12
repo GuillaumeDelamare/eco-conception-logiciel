@@ -56,7 +56,6 @@ public class BundleManager extends Observable{
 	}
 	public Bundle installImplBundle(String bundle) throws BundleException{
 		Bundle b = install(bundle);
-		
 		String[] importPackage = getImportedPackage(b);
 			
 		for(String sub : importPackage){
@@ -72,6 +71,25 @@ public class BundleManager extends Observable{
 		
 		return b;
 	}
+	public void uninstallImplBundle(Bundle bundle) throws BundleException {
+		if(startedBundle.containsValue(bundle)){
+			throw new IllegalStateException("Impossible to uninstall started bundle");
+		}
+		else{
+			for(List<Bundle> l : bundleRegister.values()){
+				l.remove(bundle);
+				setChanged();
+			}
+			bundle.uninstall();
+		}
+		notifyObservers();
+	}
+	public void uninstallAPIBundle(Bundle bundle){
+		String[] exportedPackage = getExportedPackage(bundle);
+		
+		
+	}
+	
 	
 	//-------------------------------------------------------------------//
 	//-------------------Start and Stop Method---------------------------//
@@ -126,7 +144,6 @@ public class BundleManager extends Observable{
 	}
 	public List<Bundle> getEquivalentBundle(Bundle bundle) {
 		String[] tabS = getImportedPackage(bundle);
-		String export = null;
 		
 		for(String s : tabS){
 			if(bundleRegister.containsKey(s)){

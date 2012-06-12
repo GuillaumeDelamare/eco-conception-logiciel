@@ -18,28 +18,17 @@ public class ServiceManager extends Observable implements ServiceListener, Obser
 	private BundleContext bc;
 	private ArrayList<ServiceReference<?>> registeredService = new ArrayList<ServiceReference<?>>();
 
+	//-------------------------------------------------------------------//
+	//-------------------------Constructor-------------------------------//
+	//-------------------------------------------------------------------//
+	
 	public ServiceManager(BundleContext bc) {
 		this.bc = bc;
 	}
 	
-	@Override
-	public void serviceChanged(ServiceEvent event) {
-		ServiceReference<?> sr = event.getServiceReference();
-		Object o =bc.getService(sr);
-		if(o instanceof EcoService){
-			switch (event.getType()) {
-			case ServiceEvent.REGISTERED :
-				registeredService.add(sr);
-				break;
-			case ServiceEvent.UNREGISTERING:
-				registeredService.remove(sr);
-				break;
-			default:
-				break;
-			}
-		}
-		
-	}
+	//-------------------------------------------------------------------//
+	//----------------------Getter an Setter-----------------------------//
+	//-------------------------------------------------------------------//
 	
 	public float getTotalConsumption(){
 		float i = 0;
@@ -59,9 +48,31 @@ public class ServiceManager extends Observable implements ServiceListener, Obser
 		return registeredService.size();
 	}
 
+	//-------------------------------------------------------------------//
+	//----------------------Implemented Method---------------------------//
+	//-------------------------------------------------------------------//
+	
 	@Override
 	public void update(Observable o, Object arg) {
 		setChanged();
 		notifyObservers();
+	}
+	@Override
+	public void serviceChanged(ServiceEvent event) {
+		ServiceReference<?> sr = event.getServiceReference();
+		Object o =bc.getService(sr);
+		if(o instanceof EcoService){
+			switch (event.getType()) {
+			case ServiceEvent.REGISTERED :
+				registeredService.add(sr);
+				break;
+			case ServiceEvent.UNREGISTERING:
+				registeredService.remove(sr);
+				break;
+			default:
+				break;
+			}
+		}
+		
 	}
 }
