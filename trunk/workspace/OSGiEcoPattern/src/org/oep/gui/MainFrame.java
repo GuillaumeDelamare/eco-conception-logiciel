@@ -4,18 +4,21 @@ import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
 
 import org.oep.core.BundleManager;
+import org.oep.core.ServiceManager;
 
 public class MainFrame extends JFrame {
 	private static final long serialVersionUID = -4909438209076360578L;
-	private BundleManager installer;
+	private BundleManager bundleManager;
+	private ServiceManager serviceManager;
 	
 	private JTabbedPane tabbedPane;
 	private BundleListPanel bundleListPanel;
 	private RunningListPanel runningListPanel;
 	
 	
-	public MainFrame(BundleManager installer) {
-		this.installer = installer;
+	public MainFrame(BundleManager installer, ServiceManager serviceManager) {
+		this.bundleManager = installer;
+		this.serviceManager = serviceManager;
 
 		this.setTitle("OSGiEcoPattern");
 		
@@ -32,6 +35,7 @@ public class MainFrame extends JFrame {
 
 
 
+
 	private void placeComponent() {
 		tabbedPane.add("Bundle list",bundleListPanel);
 		tabbedPane.add("Running list", runningListPanel);
@@ -42,8 +46,8 @@ public class MainFrame extends JFrame {
 
 	private void createComponent() {
 		tabbedPane = new JTabbedPane();
-		bundleListPanel = new BundleListPanel(installer);
-		runningListPanel = new RunningListPanel(installer);
+		bundleListPanel = new BundleListPanel(bundleManager);
+		runningListPanel = new RunningListPanel(bundleManager, serviceManager);
 	}
 
 

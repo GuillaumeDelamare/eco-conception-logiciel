@@ -35,7 +35,7 @@ public class BundleManager extends Observable{
 	public Bundle install(String bundle) throws BundleException {
 		return context.installBundle(BUNDLE_LOCATION + bundle);
 	}
-	public Bundle installAPIBundle(String bundle) throws BundleException{
+	public synchronized Bundle installAPIBundle(String bundle) throws BundleException{
 		Bundle b = install(bundle);
 		
 		String[] exportedPackage = getExportedPackage(b);
@@ -45,16 +45,18 @@ public class BundleManager extends Observable{
 		}
 		else {
 			for(String sub : exportedPackage){
-				bundleRegister.put(sub, new ArrayList<Bundle>());
-				startedBundle.put(sub, null);
-
-				setChanged();
+				if(!bundleRegister.containsKey(sub)){
+					bundleRegister.put(sub, new ArrayList<Bundle>());
+					startedBundle.put(sub, null);
+		
+					setChanged();
+				}
 			}
 			notifyObservers();
 		}	
 		return b;
 	}
-	public Bundle installImplBundle(String bundle) throws BundleException{
+	public synchronized Bundle installImplBundle(String bundle) throws BundleException{
 		Bundle b = install(bundle);
 		String[] importPackage = getImportedPackage(b);
 			
@@ -71,7 +73,7 @@ public class BundleManager extends Observable{
 		
 		return b;
 	}
-	public void uninstallImplBundle(Bundle bundle) throws BundleException {
+	public synchronized void uninstallImplBundle(Bundle bundle) throws BundleException {
 		if(startedBundle.containsValue(bundle)){
 			throw new IllegalStateException("Impossible to uninstall started bundle");
 		}
@@ -84,49 +86,52 @@ public class BundleManager extends Observable{
 		}
 		notifyObservers();
 	}
-	public void uninstallAPIBundle(Bundle bundle){
-		String[] exportedPackage = getExportedPackage(bundle);
-		
-		
-	}
 	
 	
 	//-------------------------------------------------------------------//
 	//-------------------Start and Stop Method---------------------------//
 	//-------------------------------------------------------------------//
 	
-	public void startServiceBundle(Bundle bundle) throws BundleException{
+	public synchronized void startServiceBundle(Bundle bundle) throws BundleException{
 		String[] importPackage = getImportedPackage(bundle);
 		
 		for(String sub : importPackage){
-			Bundle b = startedBundle.get(sub);
-			
-			if(b != null){
-				throw new IllegalStateException("Installer : trying to start a bundle whereas another bundle is already started");
+			if(startedBundle.containsKey(sub)){
+				Bundle b = startedBundle.get(sub);
+				
+				if(b != null){
+					throw new IllegalStateException("Installer : trying to start a bundle whereas another bundle is already started");
+				}
+				startedBundle.put(sub, bundle);
+				setChanged();
 			}
-			startedBundle.put(sub, bundle);
-			setChanged();
 		}
 		bundle.start();
+		
 		notifyObservers();
 	}
-	public void stopServiceBundle(Bundle bundle) throws BundleException {
+	public synchronized void stopServiceBundle(Bundle bundle) throws BundleException {
 		String[] importPackage = getImportedPackage(bundle);	
 		
 		for(String sub : importPackage){
-			startedBundle.remove(sub);
+			if(startedBundle.containsKey(sub)){
+				startedBundle.put(sub, null);
+				setChanged();
+			}
 		}
 		bundle.stop();
+		
+		notifyObservers();
 	}
 	public void replaceServiceBundle(Bundle oldBundle, Bundle newBundle) throws BundleException{
-		//if(startedBundle.containsValue(oldBundle)){
+		if(startedBundle.containsValue(oldBundle)){
 			stopServiceBundle(oldBundle);
 			
 			startServiceBundle(newBundle);
-//		}
-//		else {
-//			throw new IllegalStateException();
-//		}
+		}
+		else {
+			throw new IllegalStateException();
+		}
 	}
 	
 	//-------------------------------------------------------------------//
@@ -139,8 +144,11 @@ public class BundleManager extends Observable{
 	public List<Bundle> getInstalledServiceBundle(String APIBundle) {
 		return bundleRegister.get(APIBundle);
 	}
-	public HashMap<String, Bundle> getStartedBundle(){
+	public HashMap<String, Bundle> getStartedBundles(){
 		return new HashMap<String, Bundle>(startedBundle);
+	}
+	public Bundle getStartedBundle(String APIBundle){
+		return startedBundle.get(APIBundle);
 	}
 	public List<Bundle> getEquivalentBundle(Bundle bundle) {
 		String[] tabS = getImportedPackage(bundle);

@@ -1,0 +1,2 @@
+Private-Package: org.oep.io.exportconso
+Bundle-Activator: org.oep.io.exportconso.Activator

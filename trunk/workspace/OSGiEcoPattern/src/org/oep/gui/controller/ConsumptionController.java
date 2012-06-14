@@ -1,27 +1,42 @@
 package org.oep.gui.controller;
 
-import java.util.Observable;
-import java.util.Observer;
+import java.text.DecimalFormat;
 
-import javax.swing.JLabel;
+import javax.swing.table.TableModel;
 
+import org.oep.core.BundleManager;
 import org.oep.core.ServiceManager;
 
-
-public class ConsumptionController implements Observer{
-	private ServiceManager manager;
-	private JLabel label;
+public class ConsumptionController extends Thread {
+	private TableModel tablemodel;
+	private ServiceManager servicemanager;
+	private BundleManager bundleManager;
 	
-	public ConsumptionController(ServiceManager manager, JLabel label){
-		this.manager = manager;
-		this.label = label;
-		
-		this.manager.addObserver(this);
+	
+	public ConsumptionController(TableModel tablemodel, ServiceManager servicemanager, BundleManager bundelManager) {
+		this.tablemodel = tablemodel;
+		this.servicemanager = servicemanager;
+		this.bundleManager = bundelManager;
 	}
-	
+
+
 	@Override
-	public void update(Observable o, Object arg) {
-		label.setText(String.valueOf(manager.getTotalConsumption()));
+	public void run() {
+		double consumption = 0.;
+		DecimalFormat twoDForm = new DecimalFormat("#.##");
+		
+		while(true){
+			try {
+				sleep(1000);
+				
+				for(int i = 0; i < tablemodel.getRowCount(); i++){
+					consumption = servicemanager.getConsumption(bundleManager.getStartedBundles().get((String)tablemodel.getValueAt(i, 0)));
+					tablemodel.setValueAt(twoDForm.format(consumption) , i, 2);
+				}
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
-
 }

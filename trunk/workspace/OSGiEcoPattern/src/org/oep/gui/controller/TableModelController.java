@@ -10,29 +10,33 @@ import org.oep.core.BundleManager;
 import org.osgi.framework.Bundle;
 
 public class TableModelController implements Observer{
-	private BundleManager installer;
+	private BundleManager bundleManager;
 	private DefaultTableModel tableModel;
 	
-	public TableModelController(DefaultTableModel tableModel, BundleManager installer) {
-		this.installer = installer;
+	public TableModelController(DefaultTableModel tableModel, BundleManager bundleManager) {
+		this.bundleManager = bundleManager;
 		this.tableModel = tableModel;
 		
-		this.installer.addObserver(this);
+		this.bundleManager.addObserver(this);
 	}
 	@Override
 	public void update(Observable o, Object arg) {
-		HashMap<String, Bundle> started = this.installer.getStartedBundle();
+		clearTableModel();
 		
+		HashMap<String, Bundle> started = this.bundleManager.getStartedBundles();
 		
 		for(String s : started.keySet()){
 			Object[] obj = {	s,
 					(started.get(s) == null) ? "none" : started.get(s).getSymbolicName(),
-					"TODO",
-					"TODO"
+					0
 			};
 			
 			tableModel.addRow(obj);
 		}
 	}
-	
+	private void clearTableModel(){
+		for(int i = 0; i < tableModel.getRowCount(); i++){
+			tableModel.removeRow(i);
+		}
+	}
 }
