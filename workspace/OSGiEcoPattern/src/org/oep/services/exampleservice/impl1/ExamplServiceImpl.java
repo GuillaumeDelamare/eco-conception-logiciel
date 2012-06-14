@@ -3,7 +3,7 @@ package org.oep.services.exampleservice.impl1;
 import org.oep.services.exampleservice.api.ExampleService;
 
 public class ExamplServiceImpl implements ExampleService {
-	private double consumption = 5;
+	private double consumption = 2.0;
 	@Override
 	public void start() {
 	}
@@ -14,7 +14,8 @@ public class ExamplServiceImpl implements ExampleService {
 	}
 
 	@Override
-	public double getConsuption() {
+	public double getConsumption() {
+		consumption+=(Math.random()*0.2)-0.08;
 		return consumption;
 	}
 

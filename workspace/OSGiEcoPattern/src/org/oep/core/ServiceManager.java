@@ -1,8 +1,9 @@
 package org.oep.core;
 
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map.Entry;
 import java.util.Observable;
-import java.util.Observer;
 
 import org.oep.services.api.EcoService;
 import org.osgi.framework.Bundle;
@@ -14,9 +15,9 @@ import org.osgi.framework.ServiceReference;
 import aQute.bnd.annotation.component.Component;
 
 @Component
-public class ServiceManager extends Observable implements ServiceListener, Observer {
+public class ServiceManager extends Observable implements ServiceListener {
 	private BundleContext bc;
-	private ArrayList<ServiceReference<?>> registeredService = new ArrayList<ServiceReference<?>>();
+	private HashMap<Bundle, EcoService> registeredService = new HashMap<Bundle, EcoService>();
 
 	//-------------------------------------------------------------------//
 	//-------------------------Constructor-------------------------------//
@@ -30,49 +31,69 @@ public class ServiceManager extends Observable implements ServiceListener, Obser
 	//----------------------Getter an Setter-----------------------------//
 	//-------------------------------------------------------------------//
 	
-	public float getTotalConsumption(){
+	public synchronized double getTotalConsumption(){
 		float i = 0;
-		for (ServiceReference<?> sr : registeredService) {
-			EcoService es = (EcoService) bc.getService(sr);
-			i+=es.getConsuption();
+		for (EcoService es : registeredService.values()) {
+			i+=es.getConsumption();
 		}
 		return i;
 	}
-	public EcoService getEcoService(int id){
-		return (EcoService)bc.getService(registeredService.get(id));
+	public double getConsumption(Bundle b) {
+		if(registeredService.get(b) == null){
+			return 0;
+		}
+		else{
+			return registeredService.get(b).getConsumption();
+		}
 	}
-	public Bundle getBundle(int id) {
-		return registeredService.get(id).getBundle();
+	public EcoService getEcoService(Bundle bundle){
+		return registeredService.get(bundle);
 	}
 	public int getNbOfEcoService(){
 		return registeredService.size();
+	}
+	public Entry<Bundle, EcoService> getSet(int index) {
+		int i = 0;
+		Iterator<Entry<Bundle, EcoService>> iterator = registeredService.entrySet().iterator();
+		Entry<Bundle, EcoService> e = iterator.next();
+		
+		for(i = 0; i < index; i++){
+			e = iterator.next();
+		}
+		
+		return e;
 	}
 
 	//-------------------------------------------------------------------//
 	//----------------------Implemented Method---------------------------//
 	//-------------------------------------------------------------------//
 	
-	@Override
-	public void update(Observable o, Object arg) {
-		setChanged();
-		notifyObservers();
-	}
+
 	@Override
 	public void serviceChanged(ServiceEvent event) {
 		ServiceReference<?> sr = event.getServiceReference();
 		Object o =bc.getService(sr);
 		if(o instanceof EcoService){
+			EcoService es = (EcoService)o;
 			switch (event.getType()) {
 			case ServiceEvent.REGISTERED :
-				registeredService.add(sr);
+				synchronized (this) {
+					registeredService.put(sr.getBundle() ,es);
+				}
+				
+				setChanged();
 				break;
 			case ServiceEvent.UNREGISTERING:
-				registeredService.remove(sr);
+				synchronized (this) {
+					registeredService.remove(sr.getBundle());
+				}
+				
+				setChanged();
 				break;
 			default:
 				break;
 			}
 		}
-		
+		notifyObservers();
 	}
 }

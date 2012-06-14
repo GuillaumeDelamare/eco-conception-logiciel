@@ -10,5 +10,5 @@ public interface EcoService {
 	
 	public String getName();
 	
-	public double getConsuption();
+	public double getConsumption();
 }
