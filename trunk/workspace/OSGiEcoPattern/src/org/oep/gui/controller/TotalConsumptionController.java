@@ -22,7 +22,7 @@ public class TotalConsumptionController extends Thread{
 		while(true){
 			try {
 				sleep(1000);
-				label.setText(String.valueOf(twoDForm.format(manager.getTotalConsumption())));
+				label.setText(String.valueOf(twoDForm.format(manager.getTotalConsumption())) );
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
