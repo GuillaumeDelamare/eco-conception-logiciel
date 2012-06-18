@@ -1,0 +1,128 @@
+\documentclass[a4paper, 11pt]{report}
+
+\usepackage[utf8]{inputenc}
+\usepackage[francais]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[final]{pdfpages}
+\usepackage{graphicx}
+\usepackage{parskip}
+
+\setlength{\parindent}{0.7cm}
+
+\title{Éco-conception de logiciels\\ \large Rapport de stage de 5ème année}
+\author{Guillaume Delamare}
+\date{\today}
+
+\begin{document}
+\renewcommand{\labelitemi}{$\bullet$}
+\renewcommand{\labelitemii}{$\diamond$}
+\renewcommand{\labelitemiii}{$\ast$}
+\renewcommand{\labelitemiv}{$\cdot$}
+
+\maketitle
+
+\section*{Remerciement}
+
+Je tiens, tout d'abord, à remercier mon tuteur, Thomas Ledoux, pour m'avoir offert l'opportunité de travailler au sein de l'équipe ASCOLA. Je le remercie d'autant plus pour l'apport d'expérience et la richesse des situations dans lesquelles il me permet de travailler.
+
+Je souhaite ensuite remercier Rémi Sharrock, pour sa bonne humeur et son aide précieuse tout au long de mon travail, ainsi que, l'ensemble des membres de l'équipe ASCOLA et du département d'informatique de l'école des Mines de Nantes pour leurs accueils, leurs aides et leurs conseils.
+
+Je remercie aussi mon encadrant, Benoit Parrein, pour l'aide et le suivi tout au long de cet exercice qu'est le stage de fin d'étude. Et pour finir je souhaite remercier Polytech Nantes, dans son ensemble, pour les trois années de formation et d'encadrement dont j'ai pu profiter.
+
+\newpage
+
+\section*{Résumé}
+%TODO écrire le résumé
+
+\newpage
+
+\tableofcontents
+
+\chapter{Introduction}
+%TODO écrire l'introduction
+% Contexte de la rédaction de ce document
+% Préssentation du plan
+
+\chapter{Présentation du stage}
+\section{Présentation du lieu de stage}
+Mon stage de cinquième année se déroule au sein de l’équipe ASCOLA du laboratoire LINA dans les locaux de l’école des Mines de Nantes.
+\subsection{L'école des Mines de Nantes}
+L’école des Mines de Nantes (EMN) est une école d’ingénieur française sous tutelle du ministère de l’industrie. L’école est rattachée à l’institut Mines-Télécom, au Groupe des écoles des Mines et à la Conférence des grandes écoles.
+
+Elle a été créée en 1990 sur le site de la Chantrerie à Nantes et accueille 850 élèves ingénieurs en formation initiale. Le recrutement est effectué par concours après deux années de classe préparatoire. En 2011, l’EMN a décerné 250 diplômes d’ingénieur.
+
+L’école est séparée en 5 départements axé sur les thématiques des équipes de recherche de l'école. On dénombre les départements :
+\begin{itemize}
+  \item D'informatique
+  \item D'automatique et productique (DAP)
+  \item De systèmes énergétiques et environnement (DSEE)
+  \item De physique subatomique et technologies associées (Subatech)
+  \item De sciences sociales et de gestion (DSSG)
+\end{itemize}
+
+\subsection{L'équipe de Recherche}
+Mon stage se déroule dans l'équipe ASCOLA. Cette équipe est installée au sein du département informatique de l’EMN au côté de l'équipe TASK. L'équipe ASCOLA fait partie du LINA (Laboratoire d'Informatique de Nantes Atlantique) ainsi que de l'INRIA (Institut National de Recherche en Informatique et en Automatique).
+
+Cette équipe regroupe une trentaine de personnes qui travaillent sur les langages d'aspects et de composition. Les axes de recherche, tel qu'ils le sont présentés sur la page dédié à l'équipe ASCOLA sur le site de l'INRIA\footnote{http://www.inria.fr/equipes/ascola}, sont :
+\begin{itemize}
+  \item le développement de nouveaux concepts, de support linguistique, et d'outils pour les applications distribuées permettant de gérer notamment les préoccupations transverses comme la distribution elle-même, les comportements transactionnels et la sécurité ;
+  \item la définition d'un modèle qui intègre de manière transparente composants et aspects, en particulier au travers d'une notion d'interface rendant possible le découplage des composants et des aspects concrets, tout en permettant l'analyse et l'application de propriétés de composition dans un contexte hybride composant/aspect ;
+  \item l'investigation des relations entre langages dédiés, langages d'aspects et langages de composition. Nous comptons exploiter les similitudes entre ces classes de langages dans le cadre du développement de techniques de conception et d'implémentation des langages de manière à faciliter un développement par transformations d'applications efficaces et correctes à partir d'abstraction de programmation de haut niveau ;
+  \item l'étude des fondements de la programmation par aspects et de leurs propriétés de composition au moyen de sémantiques formelles pour les aspects (et les composants) ainsi que des techniques d'analyse, de vérification et de validation correspondantes.
+\end{itemize}
+
+Mon stage se déroule sous la tutelle de Thomas Ledoux qui, avec Jean Marc Menaud, Adrien Lèbre, Rémi Sharrock, ainsi que leurs doctorants, travaille sur des aspects cloud computing, virtualisation et écologie des systèmes d'informations.
+
+\section{Présentation du sujet de stage}
+Dans cette partie je vais décrire ce qu'est dans la pratique mon sujet de stage. Je joins en annexe le document original de sujet de stage tel qu'il été écrit au moment de la signature de ma convention.
+
+\subsection{Contexte}
+Mon stage se positionne dans les travaux GreenIT de l’équipe ASCOLA. Je travaille donc principalement avec la sous-partie de l'équipe qui effectue de la recherche dans ce domaine là. L'équipe travaille déja sur diférant projet portant sur le cloud computing, la virtualisation avec en dénominateur commun le GreenIT. On peut citer par exemple des travaux sur la migration à chaud de machine virtuelle qui donné lieu à la création de la startup easyVirt.
+
+L'équipe travail aussi sur d'autre travaux comme %TODO finir le paragraphe
+
+\subsection{Sujet}
+De nos jour, l'informatique est omniprésent. Que ce soit au travail, à la maison, dans nos manières de nous documenté comme dans nos façons de produire, nous utilisons l'outil informatique. Cette informatique est devenu au fil des années de plus en plus gourmande en énergie. La multiplication des réseaux, des centres de données, des terminaux pour se raccorder au système, tout ceci demande toujours plus d'énergie.
+
+Actuellement des efforts sont fait pour optimiser la couche matérielle afin de la rendre toujours plus efficace. Seulement ce n'est pas suffisant. Afin de limiter l'augmentation certaine de la consommation d'énergie des équipements informatique, il faut aussi s'attaquer à la source de ce besoin d'énergie, le logiciel. C'est lui, en effet qui a besoin d'effectuer des calcule, des entrées/sorties, des communications réseaux qui font consommer le matériel.
+
+Des travaux ont bien mis en évidence que, les choix fait lors de la conception d'un logiciel, peuvent être déterminant par rapport à la consommation de celui ci. Ces choix sont divers et variés. Il peut s'agir de la technologie utilisé, mais aussi de l'architecture choisie pour le logiciel ou encore de l'environnement dans lequel ce logiciel fonctionne.
+
+Le sujet de ce stage est donc de proposer, d'étudier et de valider par l'expériementation un certain nombre de suggestions qui permettraient de réduire l'emprunte énergétique d'un logiciel.
+
+\subsection{Objectifs}
+Le Sujet de mon stage est donc l'éco-conception de logiciel. Il s'agit d'étudier les différentes pistes qui s'ouvrent à nous pour rendre plus écologique les systèmes d'informations en jouant sur la composante logicielle de ceci. Mon travail est donc de plusieurs ordres.
+
+Je dois tout d'abords rechercher les travaux existants dans ce domaine, qu'il soit centré sur l'éco-conception ou bien positionné sur des domaines anexes comme l'analyse de codes ou bien le cycle de vie du logiciel. Suite à ça, je devrais élaborer un certain nombre de propositions de contribution afin de centrer mon travail à venir. Enfin je devrais expérimenter et valider mes résultats afin de pouvoir emmètre des recommandations en terme d'éco-conception.
+
+Deux travaux transversaux sont à effectuer. Premièrement je dois étudier et mettre en place une méthodologie permettant d'évaluer l'efficacité énergétique d'un code.
+
+\chapter{État de l'art}
+
+\chapter{Comment peut on mesurer la consommation d'un logiciel}
+\section{Qu'est ce qui consomme dans un ordinateur}
+\section{Outils de mesure de la consommation des ressources par un logiciel}
+
+\chapter{Mise en valeur de l'impact du code sur la consommation}
+\section{Impact du choix du langage}
+\section{Impact des choix de programmation}
+\subsection{Description des tests}
+\subsection{Resultats obtenus}
+
+\chapter{La programmation modulaire au service de l'économie d'énergie}
+\section{Présentation de l'infrastructure développé}
+\section{Développer une application pour ce framework}
+\section{Un exemple d'application : lecteur audio}
+
+\chapter{Conclusion}
+%TODO écrire la conclusion.
+
+\listoffigures{}
+\listoftables{}
+\appendix
+
+\chapter{Sujet de stage}
+\includepdf[lastpage=3,pages=-]{imports/Sujet_Master_EcoConceptionGL.pdf}
+
+
+\end{document}
