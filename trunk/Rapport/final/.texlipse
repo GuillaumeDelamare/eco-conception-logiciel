@@ -1,7 +1,7 @@
 #TeXlipse project settings
-#Mon Jun 18 14:48:13 CEST 2012
+#Mon Jun 18 16:33:29 CEST 2012
 markTmpDer=true
-builderNum=2
+builderNum=4
 outputDir=
 makeIndSty=
 bibrefDir=
@@ -11,4 +11,4 @@ mainTexFile=document.tex
 outputFile=document.pdf
 langSpell=fr
 markDer=true
-srcDir=src
+srcDir=src/
