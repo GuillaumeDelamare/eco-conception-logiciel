@@ -1,0 +1,116 @@
+\documentclass[a4paper, 11pt]{report}
+
+\usepackage[utf8]{inputenc}
+\usepackage[francais]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[final]{pdfpages}
+\usepackage{graphicx}
+\usepackage{parskip}
+
+\setlength{\parindent}{0.7cm}
+
+\title{Éco-conception de logiciels\\ \large Rapport de stage de 5ème année}
+\author{Guillaume Delamare}
+\date{\today}
+
+\begin{document}
+\renewcommand{\labelitemi}{$\bullet$}
+\renewcommand{\labelitemii}{$\diamond$}
+\renewcommand{\labelitemiii}{$\ast$}
+\renewcommand{\labelitemiv}{$\cdot$}
+
+\maketitle
+\newpage
+
+\tableofcontents
+
+\chapter{Introduction}
+%TODO Chapitre à écrire
+% Présenter l'exercice du PRED
+% Contexte de rattrappage
+
+\chapter{Sujet}
+%TODO Chapitre à écrire
+	\section{Contexte}
+Comme préciser dans le chapitre précédent, ce travail s'inscrit dans le cadre d'un rattrapage d'unité d'ensegnement de mon semestre 9. Je l'effectue durant le semestre 10 de ma formation. Se semestre est dédié au stage de fin de formation. C'est donc durant mon stage que je le réalise. Le sujet traité dans ce travail est étroitement lié à celui que j'effectu en stage. Je dois donc commencer par le décrire avant de pouvoir expliquer le sujet ainsi que les objectifs du travail dont ce rapport fait l'objet.
+
+Mon stage se déroule dans le l'équipe ASCOLA au sein de l'école des Mines de Nantes. Cette équipe fait partie du LINA\footnote{Laboratoire d'informatique de Nantes Atlantique} ainsi que de l'INRIA\footnote{Institut National de Recherche en Informatique et Automatique}. Je suis encadré par Thomas Ledoux, enseignant chercheur à l'école des mines.
+
+Pour résumer, mon stage consiste à définir des axes de recherches et à explorer des pistes afin de mettre en valeur les possibilités offertes par une approche écologique de la conception de logiciel. Pour être plus précis, je travail sur différents aspect de la fabrication de logiciel et de la maitrise de la consommation d'énergie par les systèmes d'informations. Pour la première partie, cela va de la conception à l'execution. Pour la deuxième partie, je travail principalement sur la mesure de consommation d'un logiciel et un peu sur les aspect d'analyse du cycle de vie.
+
+
+	\section{Sujet}
+Avec la montée en puissance de l’informatique dans les nuages, il est nécessaire de renforcer l’infrastructure sur laquelle repose cette technologie. La première conséquence est le besoin, grandissant, en nouveaux centres de données. Afin de limiter cette multiplication, différentes actions ont été entreprises afin de rationaliser l’utilisation de ceux existant (virtualisation, migration de données à chaud...). Cependant, cela n'empêche pas les centres de données de consommer toujours plus d’énergie et d’atteindre en 2010 entre 1,1\% et 1,5\% de la consommation mondiale d’électricité \footnote{voir : http://www.analyticspress.com/datacenters.html}.
+
+Afin de pouvoir réduire les besoins en énergie de ces centres de données, il est important de mieux comprendre comment ils consomment. Pour cela une étude plus détaillée des composants mis en action dans l’utilisation des serveurs, apparaît comme évidente.
+
+Ce projet propose d’étudier plus particulièrement la consommation des disques durs sous différentes configurations (technologie RAID, système de fichiers...). Afin de compléter l’étude de l’impact énergétique, il faudra y concaténer d’autres études sur la fabrication et la mise en déchet de ces mêmes disques durs. Cela nous permettra d’avoir un point de vue global de type ACV (Analyse du Cycle de Vie) sur ce composant particulier.
+	
+	\section{Objectif}
+		\subsection{Recherche bibliographique}
+\begin{itemize}
+	\item Recherche d’études préalables.
+	\item Recherche d’informations sur la consommation du produit aux étapes de fabrication et de mise en déchet.
+\end{itemize}
+
+		\subsection{Réalisation}
+\begin{itemize}
+	\item Définir une méthodologie de mesure de la consommation d’un disque dur.
+	\item Développer une collection de tests permettant d’effectuer des mesures sur les disques durs.
+	\item Réaliser ces tests sur plusieurs architectures de disques.
+\end{itemize}
+
+\chapter{État de l'art}
+%TODO Chapitre à écrire
+	\section{Introduction}
+
+	\section{La mesure de consommation d'énergie}
+		\subsection{Différentes approches pour mesurer la consommation des ressources}
+			\subsubsection{La mesure par un appareil externe}
+Wattmètre\ldots
+
+			\subsubsection{La mesure par un logiciel interne}
+Analyse de la charge CPU, RAM, Réseau, Disque\ldots
+
+			\subsubsection{Vers une mesure par un appareil interne}
+Le future !!! des wattmètres/des sondes installer dans chaque composant.
+		
+		\subsection{Comment comparer la consommation de deux logiciels}
+			\subsubsection{Deux versions d'un logiciel}
+Article Green mining\cite{GreenMining} décrivant une méthodologie
+
+			\subsubsection{Deux logiciels similaires}
+Parler des métriques.
+
+			\subsubsection{Deux logiciels diférents}
+	
+	\section{Un composant central des systèmes d'information : le disque dur}
+		\subsection{Consommation d'un disque dure}
+		
+		\subsection{système de fichier}
+		
+		\subsection{La technologie Raid}
+	
+	\section{Conclusion}
+
+\chapter{Propositions}
+%TODO Chapitre à écrire
+	\section{Mise en place d'une procédure de mesure de la consommation au moyen d'un wattmètre}
+	
+	\section{Création d'un logiciel d'estimation de la consommation d'un disque dur}
+	
+
+\chapter{Réalisation}
+%TODO Chapitre à écrire
+
+\chapter{Conclusion}
+%TODO Chapitre à écrire
+
+\bibliographystyle{plain}
+\bibliography{biblio}
+\listoffigures{}
+\listoftables{}
+
+\appendix
+
+\end{document}
