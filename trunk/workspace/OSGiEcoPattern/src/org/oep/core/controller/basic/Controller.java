@@ -9,15 +9,16 @@ import org.oep.services.api.EcoService;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleException;
 
-public class Controller extends Thread{
+public class Controller extends Thread implements org.oep.core.controller.api.Controller{
 	private final static long SLEPPING_TIME = 1000;
 	private ServiceManager serviceManager;
 	private BundleManager bundleManager;
+	private double maxConsumption;
 	
-	public Controller(ServiceManager serviceManager, BundleManager bundleManager) {
+	public Controller(ServiceManager serviceManager, BundleManager bundleManager){
 		this.serviceManager = serviceManager;
 		this.bundleManager = bundleManager;
-	
+		this.maxConsumption = 3.0;
 	}
 	
 	@Override
@@ -54,7 +55,7 @@ public class Controller extends Thread{
 					bundle = e.getKey();
 					es = e.getValue();
 					
-					if(es.getConsumption() > 3.0){
+					if(es.getConsumption() > this.maxConsumption){
 						try {
 							List<Bundle> newBundle = bundleManager.getEquivalentBundle(bundle);
 							if(newBundle.size()>0){
@@ -75,5 +76,10 @@ public class Controller extends Thread{
 				
 			}
 		}
+	}
+
+	@Override
+	public void setMaxConsumption(double maxConsumption) {
+		this.maxConsumption = maxConsumption;
 	}
 }

@@ -1,6 +1,5 @@
 package org.oep.core;
 
-import org.oep.core.controller.basic.Controller;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 
@@ -21,8 +20,6 @@ public class Core implements BundleActivator{
 		context.addServiceListener(serviceManager);
 		context.registerService(org.oep.core.ServiceManager.class.getName(), serviceManager, null);
 		context.registerService(org.oep.core.BundleManager.class.getName(), installer, null);
-		
-		new Controller(serviceManager, installer).start();
 	}
 
 	@Override

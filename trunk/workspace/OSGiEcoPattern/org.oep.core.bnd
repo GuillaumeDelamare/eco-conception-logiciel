@@ -2,4 +2,3 @@ Bundle-Activator: org.oep.core.Core
 Bundle-Version: 1.0.0
 
 Export-Package: org.oep.core
-Private-Package: org.oep.core.controller.basic
