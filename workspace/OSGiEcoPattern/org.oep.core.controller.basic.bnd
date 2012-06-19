@@ -1,1 +1,2 @@
-Export-Package: org.oep.core.controller.basic
+Private-Package: org.oep.core.controller.basic
+Bundle-Activator: org.oep.core.controller.basic.Activator
