@@ -6,9 +6,5 @@ package org.oep.services.api;
  * @author guillaume
  */
 public interface EcoService {
-	public void start();
-	
-	public String getName();
-	
 	public double getConsumption();
 }
