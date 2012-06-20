@@ -7,7 +7,7 @@
 \usepackage{graphicx}
 \usepackage{parskip}
 
-\setlength{\parindent}{0.7cm}
+%\setlength{\parindent}{0.7cm}
 
 \title{Éco-conception de logiciels\\ \large Rapport de stage de 5ème année}
 \author{Guillaume Delamare}
@@ -100,6 +100,8 @@ Deux travaux transversaux sont à effectuer. Premièrement je dois étudier et m
 \chapter{État de l'art}
 	\section{Introduction}
 		\subsection{Pourquoi économiser de l'énergie}
+
+		
 		\subsection{L'éco-conception : définition}
 			\subsubsection{L'analyse du cycle de vie}
 			
@@ -107,17 +109,35 @@ Deux travaux transversaux sont à effectuer. Premièrement je dois étudier et m
 	\section{La mesure de consommation d'énergie}
 		\subsection{Différentes approches pour mesurer la consommation des ressources}
 			\subsubsection{La mesure par un appareil externe}
-Wattmètre\ldots
+La première méthodes, la plus commune pour mesurer les resources consommées par un appareil électrique, est de placer un wattmètre en série sur l'alimentation de cet appareil. Avec un wattmètre récent on peut mesurer un ensemble de paramètre tel que les watts, les watts/heure, les volts et les ampères. De plus la plupart des outils récent propose un système d'enregistrement et/ou de transfert des données vers un ordinateur.
+
+Par exemple, les \textit{plugwizes} sont des modules qui se placent sur la prise. sont capable de couper l'alimentation de l'appareil branché dessus et de mesurer la consommation électrique de celui ci. Ils sont capable de transmètre ces informations sans fils jusqu'à un ordinateur. Un autre exemple de ce type de matériel, les wattmètres de la marque \textit{watts up\/?}. Ils permettent, suivant leur gamme, de collecter de l'information et de la transmètre. Le \textit{watts up\/? pro .net} (figure~\ref{wattsUp}) dispose d'un système d'enregitrement de, au maximum, 120000 mesures de watts et de deux interface de communication, USB et Ethernet.
+
+\begin{figure}
+	\begin{center}
+		\includegraphics[width=7cm,height=7cm]{figures/wattsUp.eps}
+		\caption{Photo d'un wattmètre watts up pro .net}
+		\label{wattsUp}
+	\end{center}
+\end{figure}
+
+Cette technique de mesure n'offre qu'une vu global de notre système. Il est impossible par cette méthode d'identifier de manière certaine la consommation d'un logiciel. On peut par contre corréler un changement de consommation avec un événement survenu (le démarage d'une application, le lancement d'une tache gourmande en traitement\ldots). 
+
 			\subsubsection{La mesure par un logiciel interne}
-Analyse de la charge CPU, RAM, Réseau, Disque\ldots
+La deuxième méthode consiste à analyser les ressources utiliser par un programme et, à partir d'un modèle de consommation, d'en déduire la consommation énergétique de l'application. Différentes ressources peuvent être ciblé. On peut les classer en deux catégories : les unité de calcul (CPU, GPU\ldots) et les dispositifs d'entrées/sorties (disque dur, interface réseau\ldots).
+
+
+
 			\subsubsection{Vers une mesure par un appareil interne}
 Le future !!! des wattmètres/des sondes installer dans chaque composant.
 		
 		\subsection{Comment comparer la consommation de deux logiciels}
 			\subsubsection{Deux versions d'un logiciel}
 Article Green mining\cite{GreenMining} décrivant une méthodologie
-			\subsubsection{Deux logiciels similaires}
+
+			\subsubsection{Deux logiciels isofonctionnel}
 Parler des métriques.
+
 			\subsubsection{Deux logiciels diférents}
 Parler de métrique plus complexe.
 		
@@ -172,7 +192,7 @@ Parler de métrique plus complexe.
 \appendix
 
 \chapter{Sujet de stage}
-\includepdf[lastpage=3,pages=-]{imports/Sujet_Master_EcoConceptionGL.pdf}
+\includepdf[lastpage=3;pages=-]{imports/Sujet_Master_EcoConceptionGL.pdf}
 
 \chapter{Plannification}
 %TODO insérer le diagramme de GANT
