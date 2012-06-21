@@ -10,7 +10,7 @@ import javax.swing.JPanel;
 public class EcoclientGUI extends JFrame{
 	private static final long serialVersionUID = -5689376965600505446L;
 	protected JButton load, start;
-	protected XuggleView xuggleView;
+	protected XuggleViewImpl xuggleView;
 
 	public EcoclientGUI() {
 		createComponnent();
@@ -21,7 +21,7 @@ public class EcoclientGUI extends JFrame{
 		load = new JButton("Load");
 		start = new JButton("Start");
 		
-		xuggleView = new XuggleView();
+		xuggleView = new XuggleViewImpl();
 	}
 	private void placeComponnent() {
 		JPanel p1 = new JPanel(new FlowLayout());{

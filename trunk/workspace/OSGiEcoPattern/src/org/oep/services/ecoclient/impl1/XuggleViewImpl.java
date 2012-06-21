@@ -6,17 +6,20 @@ import java.awt.Image;
 
 import javax.swing.JComponent;
 
+import org.oep.services.ecoclient.api.xuggle.XuggleView;
 
-public class XuggleView extends JComponent {
+
+public class XuggleViewImpl extends JComponent implements XuggleView {
 	private static final long serialVersionUID = 5584422798735147930L;
 	private Image mImage;
 	private Dimension mSize;
 
-	public XuggleView() {
+	public XuggleViewImpl() {
 		mSize = new Dimension(0, 0);
 		setSize(mSize);
 	}
 
+	@Override
 	public void setImage(Image image) {
 		mImage = image;
 		Dimension newSize = new Dimension(mImage.getWidth(null), mImage.getHeight(null));

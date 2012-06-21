@@ -10,8 +10,9 @@ public class Activator implements BundleActivator {
 
 	@Override
 	public void start(BundleContext context) throws Exception {
-		context.registerService(EcoServerImpl.class.getName(), new EcoServerImpl(), null);
-		context.registerService(XuggleServer.class.getName(), new XuggleServerImpl(), null);
+		EcoServerImpl esi = new EcoServerImpl();
+		context.registerService(EcoServerImpl.class.getName(), esi, null);
+		context.registerService(XuggleServer.class.getName(), new XuggleServerImpl(esi), null);
 	}
 
 	@Override
