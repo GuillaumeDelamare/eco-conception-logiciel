@@ -1,1 +1,2 @@
-Export-Package: org.oep.services.ecoclient.api
+Export-Package: org.oep.services.ecoclient.api,\
+	org.oep.services.ecoclient.api.xuggle

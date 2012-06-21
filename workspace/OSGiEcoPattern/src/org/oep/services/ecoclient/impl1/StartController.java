@@ -5,16 +5,22 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
+import org.oep.services.ecoserveur.api.xuggle.XuggleServer;
+
 public class StartController implements ActionListener {
-	XuggleReader reader;
-	public StartController(JButton start, XuggleReader reader) {
-		this.reader = reader;
+	XuggleServer server;
+	public StartController(JButton start, XuggleServer server) {
+		this.server = server;
 		
 		start.addActionListener(this);
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		reader.play();
+		server.play();
+	}
+	
+	public void setServer(XuggleServer server) {
+		this.server = server;
 	}
 
 }

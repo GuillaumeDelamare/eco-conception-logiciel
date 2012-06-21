@@ -13,10 +13,13 @@ public class EcoClientImpl implements EcoClient, ServiceListener{
 	private double consumption = 0;
 	
 	private EcoclientGUI gui;
-	private XuggleReader reader;
 	private XuggleServer serveur;
-	private LoadController controller;
+	private LoadController loadController;
+	private StartController startController;
 	private BundleContext context;
+	
+	private String videoPath = null;
+	private boolean started = false;
 
 	public EcoClientImpl(BundleContext context) {
 		this.context = context;
@@ -31,17 +34,18 @@ public class EcoClientImpl implements EcoClient, ServiceListener{
 		
 		context.addServiceListener(this);
 		
-		reader = new XuggleReader();
-		reader.setServer(this.serveur);
-		
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				gui = new EcoclientGUI();
-				gui.display();
-				reader.setmScreen(gui.xuggleView);
 				
-				new StartController(EcoClientImpl.this.gui.start, EcoClientImpl.this.reader);
-				controller = new LoadController(EcoClientImpl.this.gui.load, EcoClientImpl.this.serveur);
+				if(serveur!=null){
+					serveur.setmScreen(gui.xuggleView);
+				}
+				
+				startController = new StartController(EcoClientImpl.this.gui.start, EcoClientImpl.this.serveur);
+				loadController = new LoadController(EcoClientImpl.this.gui.load, EcoClientImpl.this.serveur);
+				
+				gui.display();
 			}
 		});
 	}
@@ -59,17 +63,32 @@ public class EcoClientImpl implements EcoClient, ServiceListener{
 		Object o =context.getService(sr);
 		
 		if(o instanceof XuggleServer){
-			this.serveur = (XuggleServer)o;
-			
 			switch (event.getType()) {
 			case ServiceEvent.REGISTERED :
-				reader.setServer(serveur);
-				controller.setServer(serveur);
+				this.serveur = (XuggleServer)o;
+				
+				loadController.setServer(serveur);
+				startController.setServer(serveur);
+				
+				serveur.setmScreen(gui.xuggleView);
+				serveur.setVideo(videoPath);
+				if(started){
+					serveur.play();
+				}
+				
 				break;
 			
 			case ServiceEvent.UNREGISTERING:
-				reader.setServer(null);
-				controller.setServer(null);
+				loadController.setServer(null);
+				startController.setServer(null);
+				
+				started = serveur.isStarted();
+				if(started){
+					serveur.stop();
+				}
+				videoPath = serveur.getVideo();
+				
+				this.serveur = null;
 				break;
 			
 			default:

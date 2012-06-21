@@ -1,13 +1,14 @@
 package org.oep.services.ecoserveur.api.xuggle;
 
-import com.xuggle.xuggler.IContainer;
-import com.xuggle.xuggler.IStreamCoder;
+import org.oep.services.ecoclient.api.xuggle.XuggleView;
+
 
 public interface XuggleServer {
-	public IStreamCoder getVideoCoder();
-	public IStreamCoder getAudioCoder();
-	public IContainer getContainer();
-	public int getVideoStreamId();
-	public int getAudioStreamId();
+	public void setmScreen(XuggleView mScreen);
 	public void setVideo(String path);
+	public String getVideo();
+	public void play();
+	public void stop();
+	public boolean isStarted();
+	
 }
