@@ -1,0 +1,2 @@
+Private-Package: org.oep.services.ecoserveur.impl1
+Bundle-Activator: org.oep.services.ecoserveur.impl1.Activator

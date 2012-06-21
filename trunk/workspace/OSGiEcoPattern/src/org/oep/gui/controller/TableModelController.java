@@ -35,8 +35,8 @@ public class TableModelController implements Observer{
 		}
 	}
 	private void clearTableModel(){
-		for(int i = 0; i < tableModel.getRowCount(); i++){
-			tableModel.removeRow(i);
+		while(tableModel.getRowCount()>0) {
+			tableModel.removeRow(0);
 		}
 	}
 }

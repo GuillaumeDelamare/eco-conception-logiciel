@@ -5,4 +5,5 @@
 	osgi.core,\
 	osgi.cmpn,\
 	junit.osgi,\
-	wildcat-bundle
+	wildcat-bundle,\
+	com.xuggle
