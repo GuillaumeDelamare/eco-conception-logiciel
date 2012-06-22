@@ -18,8 +18,8 @@ public class EcoclientGUI extends JFrame{
 		createController();
 	}
 	private void createComponnent(){
-		load = new JButton("Load");
-		start = new JButton("Start");
+		load = new JButton("Open");
+		start = new JButton("Play");
 		
 		xuggleView = new XuggleViewImpl();
 	}

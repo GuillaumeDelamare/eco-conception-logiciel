@@ -37,7 +37,7 @@ public class XuggleServerImpl implements XuggleServer {
 			@Override
 			public void run() {
 				play = true;
-				ecoServerImpl.consumption += 4.2;
+				//ecoServerImpl.consumption += 4.2;
 				
 				if (audioCoder != null) {
 					if (audioCoder.open() < 0)
@@ -75,7 +75,7 @@ public class XuggleServerImpl implements XuggleServer {
 						do {} while(false);
 				}
 				
-				ecoServerImpl.consumption -= 4.2;
+				//ecoServerImpl.consumption -= 4.2;
 				play = false;
 			}
 		});
