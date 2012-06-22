@@ -49,7 +49,7 @@ public class XuggleServerImpl implements XuggleServer{
 			@Override
 			public void run() {
 				play = true;
-				ecoServerImpl.consumption += 11.5;
+				//ecoServerImpl.consumption += 11.5;
 				
 				IVideoResampler resampler = null;
 				if (videoCoder!= null) {
@@ -132,7 +132,7 @@ public class XuggleServerImpl implements XuggleServer{
 						do {} while(false);
 				}
 				
-				ecoServerImpl.consumption -= 11.5;
+				//ecoServerImpl.consumption -= 11.5;
 				play = false;
 			}
 		});
