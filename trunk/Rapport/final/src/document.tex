@@ -6,6 +6,8 @@
 \usepackage[final]{pdfpages}
 \usepackage{graphicx}
 \usepackage{parskip}
+\usepackage{hyperref}
+\usepackage{subfig}
 
 %\setlength{\parindent}{0.7cm}
 
@@ -19,10 +21,11 @@
 \renewcommand{\labelitemiii}{$\ast$}
 \renewcommand{\labelitemiv}{$\cdot$}
 
+%TODO faire la page de garde
 \maketitle
 
 \section*{Remerciement}
-
+%TODO Relire les remerciement
 Je tiens, tout d'abord, à remercier mon tuteur, Thomas Ledoux, pour m'avoir offert l'opportunité de travailler au sein de l'équipe ASCOLA. Je le remercie d'autant plus pour l'apport d'expérience et la richesse des situations dans lesquelles il me permet de travailler.
 
 Je souhaite ensuite remercier Rémi Sharrock, pour sa bonne humeur et son aide précieuse tout au long de mon travail, ainsi que, l'ensemble des membres de l'équipe ASCOLA et du département d'informatique de l'école des Mines de Nantes pour leurs accueils, leurs aides et leurs conseils.
@@ -44,6 +47,7 @@ Je remercie aussi mon encadrant, Benoit Parrein, pour l'aide et le suivi tout au
 % Préssentation du plan
 
 \chapter{Présentation du stage}
+%TODO Relire le chapitre Présentation du stage
 	\section{Présentation du lieu de stage}
 Mon stage de cinquième année se déroule au sein de l’équipe ASCOLA du laboratoire LINA dans les locaux de l’école des Mines de Nantes.
 		\subsection{L'école des Mines de Nantes}
@@ -60,10 +64,10 @@ L’école est séparée en 5 départements axé sur les thématiques des équip
 	\item De sciences sociales et de gestion (DSSG)
 \end{itemize}
 
-\subsection{L'équipe de Recherche}
+		\subsection{L'équipe de Recherche}
 Mon stage se déroule dans l'équipe ASCOLA. Cette équipe est installée au sein du département informatique de l’EMN au côté de l'équipe TASK. L'équipe ASCOLA fait partie du LINA (Laboratoire d'Informatique de Nantes Atlantique) ainsi que de l'INRIA (Institut National de Recherche en Informatique et en Automatique).
 
-Cette équipe regroupe une trentaine de personnes qui travaillent sur les langages d'aspects et de composition. Les axes de recherche, tel qu'ils le sont présentés sur la page dédié à l'équipe ASCOLA sur le site de l'INRIA\footnote{http://www.inria.fr/equipes/ascola}, sont :
+Cette équipe regroupe une trentaine de personnes qui travaillent sur les langages d'aspects et de composition. Les axes de recherche, tel qu'ils le sont présentés sur la page dédié à l'équipe ASCOLA sur le site de l'INRIA\footnote{\href{http://www.inria.fr/equipes/ascola}{www.inria.fr/equipes/ascola}}, sont :
 \begin{itemize}
 	\item le développement de nouveaux concepts, de support linguistique, et d'outils pour les applications distribuées permettant de gérer notamment les préoccupations transverses comme la distribution elle-même, les comportements transactionnels et la sécurité ;
 	\item la définition d'un modèle qui intègre de manière transparente composants et aspects, en particulier au travers d'une notion d'interface rendant possible le découplage des composants et des aspects concrets, tout en permettant l'analyse et l'application de propriétés de composition dans un contexte hybride composant/aspect ;
@@ -99,6 +103,7 @@ Deux travaux transversaux sont à effectuer. Premièrement je dois étudier et m
 
 \chapter{État de l'art}
 	\section{Introduction}
+	% TODO Ecrire l'introduction de l'état de l'art
 		\subsection{Pourquoi économiser de l'énergie}
 
 		
@@ -107,6 +112,7 @@ Deux travaux transversaux sont à effectuer. Premièrement je dois étudier et m
 			
 		
 	\section{La mesure de consommation d'énergie}
+	%TODO Finir d'écrire la section sur la mesure de cosommation
 		\subsection{Différentes approches pour mesurer la consommation des ressources}
 			\subsubsection{La mesure par un appareil externe}
 La première méthodes, la plus commune pour mesurer les resources consommées par un appareil électrique, est de placer un wattmètre en série sur l'alimentation de cet appareil. Avec un wattmètre récent on peut mesurer un ensemble de paramètre tel que les watts, les watts/heure, les volts et les ampères. De plus la plupart des outils récent propose un système d'enregistrement et/ou de transfert des données vers un ordinateur.
@@ -124,12 +130,14 @@ Par exemple, les \textit{plugwizes} sont des modules qui se placent sur la prise
 Cette technique de mesure n'offre qu'une vu global de notre système. Il est impossible par cette méthode d'identifier de manière certaine la consommation d'un logiciel. On peut par contre corréler un changement de consommation avec un événement survenu (le démarage d'une application, le lancement d'une tache gourmande en traitement\ldots). 
 
 			\subsubsection{La mesure par un logiciel interne}
-La deuxième méthode consiste à analyser les ressources utiliser par un programme et, à partir d'un modèle de consommation, d'en déduire la consommation énergétique de l'application. Différentes ressources peuvent être ciblé. On peut les classer en deux catégories : les unité de calcul (CPU, GPU\ldots) et les dispositifs d'entrées/sorties (disque dur, interface réseau\ldots).
+La deuxième méthode consiste à analyser les ressources utiliser par un programme et, à partir d'un modèle de consommation, d'en déduire la consommation énergétique de l'application. Différentes ressources peuvent être ciblées. On peut les classer en deux catégories : les unités de calcul (CPU, GPU\ldots) et les dispositifs d'entrées/sorties (disque dur, interface réseau\ldots).
 
+Pour les unités de calcul, deux modèles sont possible pour extraire une consommation. On peut soit utiliser le pourcentage d'utilisation par l'application de l'unité, soit utiliser le temps 
 
+référence à cet article \cite{noureddine:hal-00681560}
 
 			\subsubsection{Vers une mesure par un appareil interne}
-Le future !!! des wattmètres/des sondes installer dans chaque composant.
+Le future !!! des wattmètres/des sondes installer dans chaque composant. référernce à cet article\cite{Esmaeilzadeh:2011:LBL:1950365.1950402}
 		
 		\subsection{Comment comparer la consommation de deux logiciels}
 			\subsubsection{Deux versions d'un logiciel}
@@ -142,6 +150,7 @@ Parler des métriques.
 Parler de métrique plus complexe.
 		
 	\section{Fabriquer un éco-logiciel}
+	%TODO Ecrire la section Fabriquer un eco-logiciel
 		\subsection{De la Conception\ldots}
 		
 		\subsection{\ldots à la programmation}
@@ -153,25 +162,39 @@ Parler de métrique plus complexe.
 		
 		
 	\section{Travaux similaire}
+	%TODO Ecrire la section Travaux similaire
 		\subsection{Le Green code Lab}
 		\subsection{Le projet code vert}
 		
 	\section{Conclusion}
+	%TODO Ecrire la section Conclusion de l'état de l'art
 
-\chapter{Comment peut on mesurer la consommation d'un logiciel}
-%TODO écrire le chapitre
-	\section{Qu'est ce qui consomme dans un ordinateur}
+\chapter{Comment peut on mesurer la consommation d'un logiciel ?}
+%TODO écrire le chapitre Comment peut on mesurer la consommation d'un logiciel
+	\section{Qu'est ce qui consomme dans un ordinateur ?}
 	\section{Outils de mesure de la consommation des ressources par un logiciel}
 
 \chapter{Mise en valeur de l'impact du code sur la consommation}
-%TODO écrire le chapitre
+%TODO écrire le chapitre Mise en valeur de l'impact du code sur la consommation
 	\section{Impact du choix du langage}
 	\section{Impact des choix de programmation}
 		\subsection{Description des tests}
 		\subsection{Resultats obtenus}
 
 \chapter{La programmation modulaire au service de l'économie d'énergie}
-%TODO écrire le chapitre
+%TODO écrire le chapitre La programmation modulaire au service de l'économie d'énergie
+Afin de mettre en valeur l'importance de l'architecture logiciel dans la consommation, j'ai proposé de développer une application basé sur la technologie java OSGi\footnote{\href{http://www.osgi.org}{www.osgi.org}}. L'objectif de ce projet est de pouvoir réaliser facilement des démonstrations d'application modulaire qui s'adapte en fonction de contrainte énergétique. J'ai donc choisi d'élaborer un quadriciel qui permettrai d'échanger une partie de l'application (dans notre context un bundle OSGi) contre une autre afin d'optimiser la consommation.
+
+Un cas d'utilisation abstrait de cet application serait qu'un programme réalise une tache. Le développeur connait deux algorithmes pour coder cette tache. Ils ont chacun leurs forces et leurs faiblesses.
+
+\begin{figure}[htp]
+  \centering
+  \subfloat[Courbe de consommation du bundle A]{\label{AbsBdlA}\includegraphics[width=5cm]{figures/Abstract_bundle_A.eps}}                
+  \subfloat[Courbe de consommation du bundle B]{\label{AbsBdlB}\includegraphics[width=5cm]{figures/Abstract_bundle_B.eps}}
+  \caption{Illustration de l'optimisation de la consommation par l'échange de bundle}
+  \label{AbsBdl}
+\end{figure}
+
 	\section{Présentation de l'infrastructure développé}
 \begin{figure}
 	\begin{center}
