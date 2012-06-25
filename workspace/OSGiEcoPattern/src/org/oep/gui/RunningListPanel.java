@@ -43,8 +43,8 @@ public class RunningListPanel extends JPanel {
 		consuptionLabel = new JLabel("Total consumption : ");
 		
 		tableModel = new DefaultTableModel();
-		tableModel.addColumn("API name");
-		tableModel.addColumn("Running implementation");
+		tableModel.addColumn("Family name");
+		tableModel.addColumn("Running Bundle");
 		tableModel.addColumn("Consumption");
 		
 		table = new JTable(tableModel);

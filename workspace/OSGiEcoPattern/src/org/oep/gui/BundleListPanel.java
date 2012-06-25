@@ -48,10 +48,10 @@ public class BundleListPanel extends JPanel {
 		this.serviceListTree = new JTree(root);
 		this.serviceListTree.setRootVisible(false);
 		
-		this.installImplButton = new JButton("Install Impl");
-		this.installAPIButton = new JButton("Install API");
-		this.removeImplButton = new JButton("Remove Impl");
-		this.removeAPIButton = new JButton("Remove API");
+		this.installImplButton = new JButton("Install Bundle");
+		this.installAPIButton = new JButton("Install Bundle Family");
+		this.removeImplButton = new JButton("Remove Bundle");
+		this.removeAPIButton = new JButton("Remove Bundle Family");
 	}
 	
 	private void placeComponent() {
