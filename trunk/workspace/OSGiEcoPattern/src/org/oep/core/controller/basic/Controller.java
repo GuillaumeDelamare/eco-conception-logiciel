@@ -35,18 +35,7 @@ public class Controller extends Thread implements org.oep.core.controller.api.Co
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-//			synchronized (serviceManager) {
-//				max = serviceManager.getNbOfEcoService();
-//				if(cursor<max - 1){
-//					cursor++;
-//					es = serviceManager.getEcoService(cursor);
-//					bundle = serviceManager.getBundle(cursor);
-//				}
-//				else {
-//					cursor=-1;
-//				}
-//				
-//			}
+
 			synchronized (serviceManager) {
 				max = serviceManager.getNbOfEcoService();
 				if(cursor < max - 1) {
