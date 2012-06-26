@@ -26,20 +26,23 @@
 \renewcommand{\labelitemiii}{$\ast$}
 \renewcommand{\labelitemiv}{$\cdot$}
 
-%TODO faire la page de garde
 \maketitle
 
 \section*{Remerciement}
-Je tiens, tout d'abord, à remercier mon tuteur, Thomas Ledoux, pour m'avoir offert l'opportunité de travailler au sein de l'équipe ASCOLA. Je le remercie d'autant plus pour l'apport d'expérience et la richesse des situations dans lesquelles il me permet de travailler.
+Je tiens, tout d'abord, à remercier mon tuteur, Thomas Ledoux, pour m'avoir offert l'opportunité de travailler au sein de l'équipe ASCOLA. Je le remercie d'autant plus pour l'apport d'expérience et la richesse des situations dans lesquelles il m'a permis de travailler.
 
-Je souhaite ensuite remercier Rémi Sharrock, pour sa bonne humeur et son aide précieuse tout au long de mon travail, ainsi que, l'ensemble des membres de l'équipe ASCOLA et du département d'informatique de l'école des Mines de Nantes pour leurs accueils, leurs aides et leurs conseils.
+Je souhaite ensuite remercier Rémi Sharrock, pour sa bonne humeur et son aide précieuse tout au long de mon travail, ainsi que l'ensemble des membres de l'équipe ASCOLA et du département d'informatique de l'école des Mines de Nantes pour leur accueil, leur aide et leurs conseils.
 
 Je remercie aussi mon encadrant, Benoit Parrein, pour l'aide et le suivi tout au long de cet exercice qu'est le stage de fin d'étude. Et pour finir je souhaite remercier Polytech Nantes, dans son ensemble, pour les trois années de formation et d'encadrement dont j'ai pu profiter.
 
 \newpage
 
 \section*{Résumé}
-%TODO écrire le résumé
+Dans un futur où il y aura toujours plus d'appareils électroniques, où leurs capacités seront toujours plus grande et où les interconexions seront systèmatique, la maîtrise de la consommation d'énergie sera l'un des grands défis. On le sait, il nous faut rationnaliser l'utilisation de l'énergie si l'on ne veux pas agraver la situation écologique actuel.
+
+Dans ce rapport de stage, je démontre qu'il est possible d'agir sur la conception des logiciels afin de les rendres plus \textit{vert}, c'est-à-dire moins gourmand en ressources énergétiques. Mon objectif était de montrer la variété des champs d'action sur lesquels on peut agir. J'ai aussi mis en valeur une des grandes difficultés de ce travail. Mesurer la consommation énergétique d'un logiciel.
+
+Mon travail durant ce stage n'a pas apporté une solution finit au problème initialement posé. J'ai plutôt oeuvré à poser des bases pour d'autres projets. J'espère que ce travail est suffisament complet et qu'il pourra servir.
 
 \newpage
 
@@ -48,21 +51,21 @@ Je remercie aussi mon encadrant, Benoit Parrein, pour l'aide et le suivi tout au
 \chapter{Introduction}
 Ce document est le rapport de mon stage de cinquième année à Polytech Nantes. Je l'écris pour rendre compte du travail que j'ai effectué durant mes 5 mois de stage au sein de l'équipe ASCOLA à l'école des Mines de Nantes.
 
-Ce rapport est découpé en 5 chapitres. Dans le premier chapitre, je présenterai le contexte de mon stage. Plus précisément, je présenterai le lieu dans lequel se déroule mon stage, puis je parlerai du sujet sur lequel j'ai été amené à travailler pendant cinq mois.
+Ce rapport est découpé en 4 chapitres. Dans le premier chapitre, je présenterai le contexte de mon stage. Plus précisément, je présenterai le lieu dans lequel se déroule mon stage, puis je parlerai du sujet sur lequel j'ai été amené à travailler pendant cinq mois.
 
 Dans la deuxième partie je ferai un état de l'art de mon sujet de stage dans lequel je tenterai de définir les notions essentiels à la résolution du problème qui m'est posé.
 
-Ensuite, dans les trois derniers chapitres, je détaillerai le contenu de mon travail. Le premier sera dédié à mes expérimentations sur la mesure de cosommation d'énergie. Dans le deuxième, j'expliquerai certaines expériences que j'ai effectué sur l'impact du code sur la consommation d'énergie. Et enfin, je présenterais dans le dernier chapitre un cadriciel Java dédié à la gestion d'énergie.
+Ensuite, dans les deux derniers chapitres, je détaillerai le contenu de mon travail. Le premier sera dédié à mes expérimentations sur la mesure de cosommation d'énergie. Et enfin, je présenterais dans le dernier chapitre un cadriciel Java dédié à la gestion d'énergie.
 
 \chapter{Présentation du stage}
 	\section{Présentation du lieu de stage}
-Mon stage de cinquième année se déroule au sein de l’équipe ASCOLA du laboratoire LINA dans les locaux de l’école des Mines de Nantes.
+Mon stage de cinquième année se déroule au sein de l’équipe ASCOLA du laboratoire LINA, dans les locaux de l’école des Mines de Nantes.
 		\subsection{L'école des Mines de Nantes}
 L’école des Mines de Nantes (EMN) est une école d’ingénieur française sous tutelle du ministère de l’industrie. L’école est rattachée à l’institut Mines-Télécom, au Groupe des écoles des Mines et à la Conférence des grandes écoles.
 
 Elle a été créée en 1990 sur le site de la Chantrerie à Nantes et accueille 850 élèves ingénieurs en formation initiale. Le recrutement est effectué par concours après deux années de classe préparatoire. En 2011, l’EMN a décerné 250 diplômes d’ingénieur.
 
-L’école est séparée en 5 départements axé sur les thématiques des équipes de recherche de l'école. On dénombre les départements :
+L’école est séparée en 5 départements axés sur les thématiques des équipes de recherche de l'école. On dénombre les départements :
 \begin{itemize}
 	\item D'informatique
 	\item D'automatique et productique (DAP)
@@ -74,7 +77,7 @@ L’école est séparée en 5 départements axé sur les thématiques des équip
 		\subsection{L'équipe de Recherche}
 Mon stage se déroule dans l'équipe ASCOLA. Cette équipe est installée au sein du département informatique de l’EMN au côté de l'équipe TASK. L'équipe ASCOLA fait partie du LINA (Laboratoire d'Informatique de Nantes Atlantique) ainsi que de l'INRIA (Institut National de Recherche en Informatique et en Automatique).
 
-Cette équipe regroupe une trentaine de personnes qui travaillent sur les langages d'aspects et de composition. Les axes de recherche, tel qu'ils le sont présentés sur la page dédié à l'équipe ASCOLA sur le site de l'INRIA\footnote{\href{http://www.inria.fr/equipes/ascola}{www.inria.fr/equipes/ascola}}, sont :
+Cette équipe regroupe une trentaine de personnes qui travaillent sur les langages d'aspects et de composition. Les axes de recherche, tel qu'ils le sont présentés sur la page dédiée à l'équipe ASCOLA sur le site de l'INRIA\footnote{\href{http://www.inria.fr/equipes/ascola}{www.inria.fr/equipes/ascola}}, sont :
 \begin{itemize}
 	\item le développement de nouveaux concepts, de support linguistique, et d'outils pour les applications distribuées permettant de gérer notamment les préoccupations transverses comme la distribution elle-même, les comportements transactionnels et la sécurité ;
 	\item la définition d'un modèle qui intègre de manière transparente composants et aspects, en particulier au travers d'une notion d'interface rendant possible le découplage des composants et des aspects concrets, tout en permettant l'analyse et l'application de propriétés de composition dans un contexte hybride composant/aspect ;
@@ -85,51 +88,50 @@ Cette équipe regroupe une trentaine de personnes qui travaillent sur les langag
 Mon stage se déroule sous la tutelle de Thomas Ledoux qui, avec Jean Marc Menaud, Adrien Lèbre, Rémi Sharrock, ainsi que leurs doctorants, travaille sur des aspects cloud computing, virtualisation et écologe des systèmes d'informations.
 
 	\section{Présentation du sujet de stage}
-Dans cette partie je vais décrire ce qu'est dans la pratique mon sujet de stage. Je joins en annexe le document original de sujet de stage tel qu'il été écrit au moment de la signature de ma convention.
+Dans cette partie je vais décrire ce qu'est, dans la pratique, mon sujet de stage. Je joins en annexe le document original de sujet de stage tel qu'il été écrit au moment de la signature de ma convention.
 
 		\subsection{Contexte}
-Mon stage se positionne dans les travaux GreenIT de l’équipe ASCOLA. Je travaille donc principalement avec la sous-partie de l'équipe qui effectue de la recherche dans ce domaine là. L'équipe travaille déja sur diférant projet portant sur le cloud computing, la virtualisation avec en dénominateur commun le GreenIT. On peut citer par exemple des travaux sur la migration à chaud de machine virtuelle qui donné lieu à la création de la startup easyVirt.
-
-L'équipe travail aussi sur d'autre travaux comme %TODO finir le paragraphe
+Mon stage se positionne dans les travaux GreenIT de l’équipe ASCOLA. Je travaille donc principalement avec la sous-partie de l'équipe qui effectue de la recherche dans ce domaine là. L'équipe travaille déjà sur différents projets portants sur le cloud computing, la virtualisation avec en dénominateur commun le GreenIT. On peut citer par exemple des travaux sur la migration à chaud de machine virtuelle qui ont donné lieu à la création de la startup easyVirt.
 
 		\subsection{Sujet}
-De nos jour, l'informatique est omniprésent. Que ce soit au travail, à la maison, dans nos manières de nous documenté comme dans nos façons de produire, nous utilisons l'outil informatique. Cette informatique est devenu au fil des années de plus en plus gourmande en énergie. La multiplication des réseaux, des centres de données, des terminaux pour se raccorder au système, tout ceci demande toujours plus d'énergie.
+De nos jours, l'informatique est omniprésent. Que ce soit au travail, à la maison, dans nos manières de nous documenter comme dans nos façons de produire, nous utilisons l'outil informatique. Cet informatique est devenu au fil des années de plus en plus gourmand en énergie. La multiplication des réseaux, des centres de données, des terminaux pour se raccorder au système, tout ceci demande toujours plus d'énergie.
 
-Actuellement des efforts sont fait pour optimiser la couche matérielle afin de la rendre toujours plus efficace. Seulement ce n'est pas suffisant. Afin de limiter l'augmentation certaine de la consommation d'énergie des équipements informatique, il faut aussi s'attaquer à la source de ce besoin d'énergie, le logiciel. C'est lui, en effet qui a besoin d'effectuer des calcules, des entrées/sorties, des communications réseaux qui font consommer le matériel.
+Actuellement des efforts sont fait pour optimiser la couche matérielle afin de la rendre toujours plus efficace. Seulement ce n'est pas suffisant. Afin de limiter l'augmentation certaine de la consommation d'énergie des équipements informatiques, il faut aussi s'attaquer à la source de ce besoin d'énergie, le logiciel. C'est lui, en effet qui a besoin d'effectuer des calculs, des entrées/sorties, des communications réseaux qui font consommer le matériel.
 
-Des travaux ont bien mis en évidence que, les choix fait lors de la conception d'un logiciel, peuvent être déterminant par rapport à la consommation de celui ci. Ces choix sont divers et variés. Il peut s'agir de la technologie utilisée, mais aussi de l'architecture choisie pour le logiciel ou encore de l'environnement dans lequel ce logiciel fonctionne.
+Des travaux ont bien mis en évidence que, les choix fait lors de la conception d'un logiciel, peuvent être déterminants par rapport à la consommation de celui-ci. Ces choix sont divers et variés. Il peut s'agir de la technologie utilisée, mais aussi de l'architecture choisie pour le logiciel ou encore de l'environnement dans lequel ce logiciel fonctionne.
 
 Le sujet de ce stage est donc de proposer, d'étudier et de valider par l'expérimentation un certain nombre de suggestions qui permettraient de réduire l'emprunte énergétique d'un logiciel.
 
 		\subsection{Objectifs}
-Le Sujet de mon stage est donc \textit{l'éco-conception} de logiciel. Il s'agit d'étudier les différentes pistes qui s'ouvrent à nous pour rendre plus écologique les systèmes d'informations en jouant sur la composante logicielle de ceci. Mon travail est donc de plusieurs ordres.
+Le Sujet de mon stage est donc \textit{l'éco-conception} de logiciel. Il s'agit d'étudier les différentes pistes qui s'ouvrent à nous pour rendre plus écologique les systèmes d'informations en jouant sur la composante logicielle de ceux-ci. Mon travail est donc de plusieurs ordres.
 
-Je dois tout d'abords rechercher les travaux existants dans ce domaine, qu'il soit centré sur l'éco-conception ou bien positionné sur des domaines anexes comme l'analyse de codes ou bien le cycle de vie du logiciel. Suite à ça, je devrais élaborer un certain nombre de propositions de contribution afin de centrer mon travail à venir. Enfin je devrais expérimenter et valider mes résultats afin de pouvoir emmètre des recommandations en terme d'éco-conception.
+Je dois tout d'abord rechercher les travaux existants dans ce domaine, qu'ils soient centrés sur l'éco-conception ou bien positionnés sur des domaines anexes comme l'analyse de codes ou bien le cycle de vie du logiciel. Suite à ça, je devrais élaborer un certain nombre de propositions de contribution afin de centrer mon travail à venir. Enfin je devrais expérimenter et valider mes résultats afin de pouvoir emmètre des recommandations en terme d'éco-conception.
 
 Deux travaux transversaux sont à effectuer. Premièrement je dois étudier et mettre en place une méthodologie permettant d'évaluer l'efficacité énergétique d'un code.
 
 \chapter{État de l'art}
 	\section{Introduction}
-Dans ce troisième chapitre, je vais tenter de faire un état de l'art, le plus complet possible, des sujets abordés durant mon stage. j'ai découpé cette état de l'art en quatre parties. Une introduction dans laquelle je détaillerais des généralités sur le développement durable en informatique. j'attaquerais ensuite le coeur de mon sujet en commençant par les méthodes de mesure de la consommation d'énergie d'un logiciel. Puis j'abborderais les notions et concepts que j'ai utilisé durant mon stage pour faire des expérimentations sur l'éco-conception de logiciel. Enfin je teminerais cet état de l'art en présentant une liste non exhaustive de projet en rapport avec développement durable du coté logiciel.
+Dans ce troisième chapitre, je vais tenter de faire un état de l'art, le plus complet possible, des sujets abordés durant mon stage. j'ai découpé cette état de l'art en quatre parties. Une introduction dans laquelle je détaillerais des généralités sur le développement durable en informatique. J'entrerai ensuite dans le coeur de mon sujet, en commençant par les méthodes de mesure de la consommation d'énergie d'un logiciel. Puis j'abborderai les notions et concepts que j'ai utilisé durant mon stage pour faire des expérimentations sur l'éco-conception de logiciel. Enfin je teminerai cet état de l'art en présentant une liste non exhaustive de projet en rapport avec le développement durable du coté logiciel.
 
 		\subsection{Pourquoi économiser de l'énergie ?}
-D'un première abord, la réponse à cette question parait assez évidente. Cela peut être pour une raison économique, pour une question d'éthique ou encore pour répondre à une contrainte de consommation. Cela dit, si je souhaite commencer cet état de l'art par cette question, c'est que je pense qu'il faut bien réffléchir au besoin de l'économie d'énergie. Ici, ce que l'on souhaite faire c'est réduire l'emprunte énergétique d'un logiciel et non pas optimiser un programme. Biensur, si l'on améliore un algorithme en terme de complexité ou bien même en rapidité, on réduit le coup énergétique de son éxécution. Mais ceci n'est qu'un aspect de ce que l'on souhaite effectuer dans ce projet. 
+D'un premier abord, la réponse à cette question parait assez évidente. Cela peut être pour une raison économique, pour une question d'éthique ou encore pour répondre à une contrainte de consommation. Cela dit, si je souhaite commencer cet état de l'art par cette question, c'est que je pense qu'il faut bien réfléchir au besoin de l'économie d'énergie. Ici, ce que l'on souhaite faire c'est réduire l'empreinte énergétique d'un logiciel et non pas optimiser un programme. Bien sur, si on améliore un algorithme en terme de complexité ou bien même en rapidité, on réduit le coût énergétique de son éxécution. Mais ceci n'est qu'un aspect de ce que l'on souhaite effectuer dans ce projet. 
 
-Cet aspect ne sera pas abbordé dans mes travaux car il fait parti de bien d'autre sujet comme l'optimisation d'algorithmes ou l'amélioration de compilateur et que ces sujet font l'objet de travaux depuis plusieurs années. De plus, ce que l'on souhaite dans ce projet, c'est placer le critère de consommation d'énergie au premier plan et pourquoi pas, si cela est nécessaire, dégrader la qualité de service de l'application. Au final, à la question \og Pourquoi économiser de l'énergie ?\fg la réponse que je souhaite donner est \og Pour économiser de l'énergie\fg.
+Cet aspect ne sera pas abordé dans mes travaux car il fait partie de bien d'autres sujets comme l'optimisation d'algorithmes ou l'amélioration de compilateur et que ces sujets font l'objet de travaux depuis plusieurs années. De plus, ce que l'on souhaite dans ce projet, c'est placer le critère de consommation d'énergie au premier plan et pourquoi pas, si cela est nécessaire, dégrader la qualité de service de l'application. Au final, à la question \og Pourquoi économiser de l'énergie ?\fg la réponse que je souhaite donner est \og Pour économiser de l'énergie\fg.
 		
 		\subsection{L'éco-conception logiciel : définition}
-L'éco-conception n'est pas une notion propre à l'informatique. C'est un terme qui désigne une volonté de concevoir un produit respectueux de l'environement. Actuellement, on parle facilement de l'éco-conception d'un batiment ou bien de celle d'une baie de serveur. Mais parler de l'éco-conception d'un logiciel est assez rare. Certaines entreprise commence à y réfléchir, à l'image de Facebook qui, devant sa facture d'électricité, a décidé d'abbandonner le langage PHP pour le C++, en créant au passage le compilateur HipHop. Cette initiative a permi à la société de réduire sa consommation d'électricité par deux.%TODO ref nécéssaire
+L'éco-conception n'est pas une notion propre à l'informatique. C'est un terme qui désigne une volonté de concevoir un produit respectueux de l'environement. Actuellement, on parle facilement de l'éco-conception d'un batiment ou bien de celle d'une baie de serveur. Mais parler de l'éco-conception d'un logiciel est assez rare. Certaines entreprises commencent à y réfléchir, à l'image de Facebook qui, devant sa facture d'électricité, a décidé d'abbandonner le langage PHP pour le C++, en créant au passage le compilateur HipHop. Cette initiative a permi à la société de diviser sa consommation d'électricité par deux.
+%TODO ref nécéssaire
 
-Ce genre d'exemple reste pour l'instant assez rare. Il doit ammener les géants de l'informatique à mieux réfléchir au choix de conception de leurs produits. Cependant, il ne faut pas limiter l'éco-conception de logiciel à la maitrise de la consommation à l'exécution. La réduction de l’emprunte énergétique peut être vue de plusieurs façons, qui sont autant de sujet de reflection pour notre projet :
+Ce genre d'exemple reste pour l'instant assez rare. Il doit ammener les géants de l'informatique à mieux réfléchir au choix de conception de leurs produits. Cependant, il ne faut pas limiter l'éco-conception de logiciel à la maitrise de la consommation à l'exécution. La réduction de l’emprunte énergétique peut être vue de plusieurs façons, qui sont autant de sujet de reflexion pour notre projet :
 \begin{itemize}
 	\item La baisse de la consommation d’énergie à l'exécution/Augmentation de l’autonomie des appareils mobiles;
-	\item La baisse des coûts énergétique de développement et de maintenance;
-	\item L'allongement de la durée de vie du matériel sur lequel est executé le logiciel;
+	\item La baisse des coûts énergétiques de développement et de maintenance;
+	\item L'allongement de la durée de vie du matériel sur lequel est exécuté le logiciel;
 	\item L'allongement de la durée de vie du logiciel.
 \end{itemize}
 
 			\subsubsection{L'analyse du cycle de vie}
-L'analyse du cycle de vie (ACV) est l'un outil l'un des outils principale utilisé par l'industrie dans l'éco-conception d'un produit. Il se base sur le cycle de vie de celui ci de sa conception à sa mise en déchet en passant par sa fabrication et son utilisation (figure~\ref{CdV}). On utilise ensuite un modèle pour transposer ces étapes en un impact environnementaux.
+L'analyse du cycle de vie (ACV) est l'un des outils principal utilisé par l'industrie dans l'éco-conception d'un produit. Il se base sur le cycle de vie de celui-ci de sa conception à sa mise en déchet en passant par sa fabrication et son utilisation (figure~\ref{CdV}). On utilise ensuite un modèle pour transposer ces étapes en un impact environnemental.
 
 \begin{figure}
 	\centering
@@ -138,16 +140,16 @@ L'analyse du cycle de vie (ACV) est l'un outil l'un des outils principale utilis
 	\label{CdV}
 \end{figure}
 
-La particularité du produit qu'est le logiciel par rapport aux produits standard de l'industrie (la dématérialisation en particulier) fait qu'il est difficile d'appliquer un modèle existant pour effectier une ACV d'un logiciel. Il serai donc nécéssaire de travailler à l'élaboration d'un modèle propre au logiciel.
+La particularité du produit qu'est le logiciel par rapport aux produits standards de l'industrie (la dématérialisation en particulier) fait qu'il est difficile d'appliquer un modèle existant pour effectuer une ACV d'un logiciel. Il serait donc nécessaire de travailler à l'élaboration d'un modèle propre au logiciel.
 			\subsubsection{}
 			
 		
 	\section{La mesure de consommation d'énergie}
-	%TODO Finir d'écrire la section sur la mesure de consommation
-Dans cet partie de l'état de l'art je vais parler des différentes techniques pour extraire et utiliser une information sur la consommation d'un logiciel.
+Dans cette partie de l'état de l'art je vais parler des différentes techniques pour extraire et utiliser une information sur la consommation d'un logiciel.
 		\subsection{Différentes approches pour mesurer la consommation des ressources}
+J'ai pu identifier trois méthodes différentes pour mesurer l'énergie consommé. Elles ont chacunes leurs avantages et leurs défaut.
 			\subsubsection{La mesure par un appareil externe}
-La première méthode, la plus commune pour mesurer les resources consommées par un appareil électrique, est de placer un wattmètre en série sur l'alimentation de cet appareil. Avec un wattmètre récent on peut mesurer un ensemble de paramètre tel que les watts, les watts/heure, les volts et les ampères. De plus la plupart des outils récent propose un système d'enregistrement et/ou de transfert des données vers un ordinateur.
+La première méthode, la plus commune pour mesurer les resources consommées par un appareil électrique, est de placer un wattmètre en série sur l'alimentation de cet appareil. Avec un wattmètre récent on peut mesurer un ensemble de paramètred tels que les watts, les watts/heure, les volts et les ampères. De plus, la plupart des outils récents proposent un système d'enregistrement et/ou de transfert des données vers un ordinateur.
 
 \begin{wrapfigure}{dR}{0.3\textwidth}
 		\includegraphics[width=0.3\textwidth]{figures/wattsUp}
@@ -155,45 +157,60 @@ La première méthode, la plus commune pour mesurer les resources consommées pa
 		\label{wattsUp}
 \end{wrapfigure}
 
-Par exemple, les \textit{plugwizes} sont des modules qui se placent sur la prise. sont capable de couper l'alimentation de l'appareil branché dessus et de mesurer la consommation électrique de celui ci. Ils sont capable de transmètre ces informations sans fils jusqu'à un ordinateur. Un autre exemple de ce type de matériel, les wattmètres de la marque \textit{watts up\/?}. Ils permettent, suivant leur gamme, de collecter de l'information et de la transmètre. Le \textit{watts up\/? pro .net} (figure~\ref{wattsUp}) dispose d'un système d'enregitrement de, au maximum, 120000 mesures de watts et de deux interface de communication, USB et Ethernet.
+Par exemple, les \textit{plugwizes} sont des modules qui se placent sur la prise sont capables de couper l'alimentation de l'appareil branché dessus et de mesurer la consommation électrique de celui ci. Ils sont capable de transmètre ces informations sans fils jusqu'à un ordinateur. Un autre exemple de ce type de matériel, les wattmètres de la marque \textit{watts up\/?}. Ils permettent, suivant leur gamme, de collecter de l'information et de la transmètre. Le \textit{watts up\/? pro .net} (figure~\ref{wattsUp}) dispose d'un système d'enregitrement de, au maximum, 120000 mesures de watts et de deux interface de communication, USB et Ethernet.
 
-Cette technique de mesure n'offre qu'une vu global de notre système. Il est impossible par cette méthode d'identifier de manière certaine la consommation d'un logiciel. On peut par contre corréler un changement de consommation avec un événement survenu (le démarage d'une application, le lancement d'une tache gourmande en traitement\ldots). 
+Cette technique de mesure n'offre qu'une vue globale de notre système. Il est impossible par cette méthode d'identifier de manière certaine la consommation d'un logiciel. On peut par contre corréler un changement de consommation avec un événement survenu\cite{GreenMining} (le démarage d'une application, le lancement d'une tache gourmande en traitement\ldots). 
 
 			\subsubsection{La mesure par un logiciel interne}
-La deuxième méthode consiste à analyser les ressources utiliser par un programme et, à partir d'un modèle de consommation, d'en déduire la consommation énergétique de l'application. Différentes ressources peuvent être ciblées. On peut les classer en deux catégories : les unités de calcul (CPU, GPU\ldots) et les dispositifs d'entrées/sorties (disque dur, interface réseau\ldots).
+La deuxième méthode consiste à analyser les ressources utilisées par un programme et, à partir d'un modèle de consommation, d'en déduire la consommation énergétique de l'application. Différentes ressources peuvent être ciblées. On peut les classer en deux catégories : les unités de calcul (CPU, GPU\ldots) et les dispositifs d'entrées/sorties (disque dur, interface réseau\ldots).
 
-Pour les unités de calcul, deux modèles sont possible pour extraire une consommation. On peut soit utiliser le pourcentage d'utilisation par l'application de l'unité, soit utiliser le temps 
+Dans cette article\cite{noureddine:hal-00681560}, les auteurs détail le modèle de consommation qu'ils ont mis au point pour application de mesure PowerAPI. On peux y voir qu'ils obtiennent des résultats intéressant par rapport à la mesure faites en parallèle sur un wattmètre. L'inconvénient de ce type de méthode est qu'il faut calibrer le modèle. Cela est nécéssaire car chaque procésseur  fonctionne différement et donc ne consomme pas la même chose. De plus ce type de méthode sont intrusive est peuvent perturber le fonctionnement du logiciel.
 
-référence à cet article \cite{noureddine:hal-00681560}
+En revanche cette technique permet facilement d'isoler un logiciel en particulier (ou plutôt un processus). c'est donc une technique intéressante pour mon projet.
 
 			\subsubsection{Vers une mesure par un appareil interne}
 Enfin une troisième technique est à envisagé dans un futur plus ou moins proche. Comme l'explique l'article \textit{Looking back on the language and hardware revolutions
-: measured power, performance, and scaling}\cite{Esmaeilzadeh:2011:LBL:1950365.1950402}, les fabricants de matériel intègre de plus en plus dans leur composant des mécanisme de mesure ils d'adaptent leur fonctionnement à leur consommation. À la fin de l'article, les auteur recommande l'ouverture de ces mecanisme au travers d'API pour que les développeur puissent y accéder.
+: measured power, performance, and scaling}\cite{Esmaeilzadeh:2011:LBL:1950365.1950402}, les fabricants de matériel intègrent, de plus en plus, dans leurs composants, des mécanismes de mesure afin d'adapter leurs fonctionnements à leurs consommations. À la fin de l'article, les auteur recommande l'ouverture de ces mecanisme au travers d'API pour que les développeur puissent y accéder.
 
-Si les constructeurs acceptent de faire cet effort, on pourra facilement savoir ce que consomme réellement une application et en temps réel.
-		\subsection{Comment comparer la consommation de deux logiciels}
-			\subsubsection{Deux versions d'un logiciel}
-Article Green mining\cite{GreenMining} décrivant une méthodologie
+Si les constructeurs acceptent de faire cet effort, on pourra facilement savoir ce que consomme réellement une application et en temps réel. Ce type de mécanisme serait idéal dans mon projet car il permettrait d'avoir une consommation réel de l'application mesuré. On pourrait même concevoir, très facilement, des applications qui s'adaptent en fonction de leur consommation.
 
-			\subsubsection{Deux logiciels isofonctionnel}
-Parler des métriques.
+%		\subsection{Comment comparer la consommation de deux logiciels}
+%TODO écrire la subsection Comment comparer la consommation de deux logiciels
+%TODO chager le titre Comment comparer la consommation de deux logiciels
+%			\subsubsection{Deux versions d'un logiciel}
+%Article Green mining\cite{GreenMining} décrivant une méthodologie
+
+%			\subsubsection{Deux logiciels isofonctionnel}
+%Parler des métriques.
 
 			\subsubsection{Deux logiciels diférents}
 Parler de métrique plus complexe.
 		
 	\section{Fabriquer un éco-logiciel}
-	%TODO Ecrire la section Fabriquer un eco-logiciel
+Cette partie ne va pas expliquer comment fabriquer à coup sur un éco-logiciel. Je souhaite seulement y présenter certain concept important pour appliquer le développement durable au logiciel.
 		\subsection{De la Conception\ldots}
-		
+La conception d'un éco-logiciel doit être particulièrement bien pensé. C'est lors la conception que l'on prend la majorité des décisions qui entraineront une sur-consomation par la suite. Il m'est difficile de lister l'ensemble des question à se poser lors de cette phase. Je ne citerais que quelque point important.
+
+La première question à se poser est celle de l'architecture et de la localisation des traitements\cite{EcoLogiciels}. Des traitements effectué dans un Centre de données auront un coup plus faible car un centre de données dispose souvent de mécanisme d'optimisation énergétique. Une autre question importante à se poser, est celle de la configuration par défaut\cite{GreenPattern}. En effet, une majorité d'utilisateur laisseront l'application avec son mode de fonctionnement par défault.
+
+On pourait faire une liste gigantesque de ce qu'il faut ou ce qu'il ne faut pas faire. En résumé, il faut réfléchir en terme d'écologie chaque choix  fait durant la conception.
+
 		\subsection{\ldots~À la programmation}
-		
+La programmation d'application verte est encore plus dur à définir que la conception. Il n'y a pas de méthode miracle. Il faut avoir une bonne connaissance du langage, bien choisir les mécanisme utilisé (boucle, saut conditionnel\ldots). Le plus simple ici est de s'assister d'outils d'aide à la programmation. Il n'en existe pas encore de suffisament évolué dans l'éco-conception, mais beaucoup d'optimisation proposé par des outils comme sonar\footnote{http://www.sonarsource.org/} réduisent l'emprunte énergétique d'un code.
+
+Ensuite, je dirais que l'expérimentation peu permettre de trouver des amélioration dans un code (dépliage de boucle, organisation des données\ldots).
 		\subsection{La programmation Modulaire}
 			\subsubsection{Intéret de la programmation modulaire dans l'économie d'énergie}
+La programmation modulaire présente beaucoup d'avantage pour l'éco-conception de logiciel. Dans l'absolu, un programme modulaire est plus facile à maintenir et a une durée vie potentiellement plus longue qu'un programme standard. Comme ses modules sont indépendant les uns des autres, il suffit de remplacer la brique deffectueuse pour réparer un problème. De même, l'évolution du programme se fait par l'ajout de nouvel briques.
+
+D'autres aspects intéressant pour l'éco-conception sont à prendre en compte. Si dans une application modulaire l'utilisateur ne se sert pas de toute les fonctionnalités, on doit pouvoir retirer les modules qui ne servent à rien. Cela peux potentielement économiser de l'énergie à l'exécution mais surtout allége considérablement le logiciel et donc allonge la durée de vie de l'ordinateur.
+
 			\subsubsection{OSGi : du java modulaire}
+OSGi\footnote{Open Services Gateway initiative} est une cadriciel java élaboré par l'OSGi Alliance. C'est un consortum formé en 1999 composé entre autre d'IBM, Motorola,Oracle ou encore Samsung. Le but de ce cadriciel est de faciliter la création d'application modulaire en Java. 
+
+Différentes implémentations de ce framework ont été développés à partir de la spécification produite par l'OSGi Alliance. Les plus connu sont Equinox développé par l’équipe du projet eclipse, Felix issu du projet universitaire Oscar et maintenu par apache ou encore Knopflerfish élaboré par MakeWave.
 		
-		
-		
-	\section{Travaux similaire}
+	\section{Travaux similair}
 Dans cette section je vais présenter les projets en rapport avec mon sujet de stage et dont j'ai soit entendu parler soit pu rencontrer les acteurs.
 		\subsection{Le Green code Lab}
 Le green code lab est un groupement de personne souhaitant promouvoir le développement durable dans le logiciel. C'est une communauté virtuelle qui se charge de publié des articles d'informations, d'organiser des évenements et des formation autour de l'éco-conception de logiciel.
@@ -207,13 +224,14 @@ Code Vert est un projet labélisé par le pôle de compétitivité Images et Ré
 L'objectif de ce projet est de mettre en place un référentiel pour juger de l'éco-conception du code d'un logiciel. Cela passera par une analyse statique du code qui sera noté. On pourra ressortir de cette analyse des recommandations qui permettront de l'améliorer.
 		
 	\section{Conclusion}
-	%TODO Ecrire la section Conclusion de l'état de l'art
+Voici que se termine mon état de l'art. Avec les connaissance présenté dans ce chapitre j'ai pu réaliser un certain nombre de chose que je vais maintenant présenter.
 
 \chapter{Comment peut on mesurer la consommation d'un logiciel ?}
-	\section{Qu'est ce qui consomme dans un ordinateur ?}
+Dans ce chapitre je ne vais m'intéresser qu'à la consommation du logiciel lors de l'exécution. Je ne prendrais pas en compte les différentes étapes du cycle de vie.
+	%\section{Qu'est ce qui consomme dans un ordinateur ?}
 	%TODO écrire la section Qu'est ce qui consomme dans un ordinateur ?
 	\section{Outils de mesure de la consommation des ressources par un logiciel}
-	%TODO relire la section Outils de mesure de la consommation des ressources par un logiciel
+Voici l'ensemble des logiciels que j'ai pu expérimenter pour mesurer la consommation énergétique d'un programme. Pour chacun je note mes observations sur son fonctionnement, son installation ou toute autre remarque pouvant servir.
 		\subsection{Ptop}
 pTop est un programme de collecte d’information sur l'exécution de processus sous linux. Il est censé récupérer les données sur l'utilisation du CPU, de la RAM et des échange réseaux. Il doit ensuite être capable, une fois le modèle paramétré, sortir des informations sur la consommation énergétique.
 
@@ -310,18 +328,18 @@ Selon la présentation qui en a été faite, il fonctionne actuellement pour la 
 
 Je n'ai malheureusement pas essayé PowerAPI par manque de temps. Je n'ai eu accès au programme que tardivement durant mon stage et à ce moment je travaillais sur d'autres aspects.
 
-\chapter{Mise en valeur de l'impact du code sur la consommation}
+%\chapter{Mise en valeur de l'impact du code sur la consommation}
 %TODO écrire le chapitre Mise en valeur de l'impact du code sur la consommation
-Tout au long de mon stage j'ai développé un ensemble de petits programmes qui mettent en valeur une bonne pratique à adopter, la faiblesse d'un mécanisme ou encore l'importances des choix effectué durant le développement d'un logiciel. Dans ce chapitre je vais présenter les exemples les plus éloquants. 
-	\section{Impact du choix du langage}
-	\section{Impact des choix de programmation}
-		\subsection{Description des tests}
-		\subsection{Resultats obtenus}
+%Tout au long de mon stage j'ai développé un ensemble de petits programmes qui mettent en valeur une bonne pratique à adopter, la faiblesse d'un mécanisme ou encore l'importances des choix effectué durant le développement d'un logiciel. Dans ce chapitre je vais présenter les exemples les plus éloquants. 
+%	\section{Impact du choix du langage}
+%	\section{Impact des choix de programmation}
+%		\subsection{Description des tests}
+%		\subsection{Resultats obtenus}
 
 \chapter{La programmation modulaire au service de l'économie d'énergie}
-Afin de mettre en valeur l'importance de l'architecture logiciel dans la consommation, j'ai proposé de développer une application basé sur la technologie java OSGi\footnote{\href{http://www.osgi.org}{www.osgi.org}}. L'objectif de ce projet est de pouvoir réaliser facilement des démonstrations d'application modulaire qui s'adapte en fonction de contrainte énergétique. J'ai donc choisi d'élaborer un quadriciel qui permettrai d'échanger une partie de l'application (dans notre context un \og bundle \fg OSGi) contre une autre afin d'optimiser la consommation. Afin d'expliquer plus clairement le but du projet, je vais détailler un cas d'utilisation du cadriciel.
+Afin de mettre en valeur l'importance de l'architecture logiciel dans la consommation, j'ai proposé de développer une application basée sur la technologie java OSGi\footnote{\href{http://www.osgi.org}{www.osgi.org}}. L'objectif de ce projet est de pouvoir réaliser facilement des démonstrations d'application modulaire qui s'adapte en fonction de contrainte énergétique. J'ai donc choisi d'élaborer un cadriciel qui permettrait d'échanger une partie de l'application (dans notre context un \og bundle \fg OSGi) contre une autre afin d'optimiser la consommation. Afin d'expliquer plus clairement le but du projet, je vais détailler un cas d'utilisation du cadriciel.
 
-Un programme doit réaliser une tache. Le développeur connait deux algorithmes pour coder cette tache. Ils ont chacun leurs forces et leurs faiblesses. La version A du code consomme peu d'énergie en temps normale (figure~\ref{AbsBdlA}). Mais, dans certaines condition, ici quand un évenement A se produit, l'algorithme se met à surconsommer. La version B du code, elle, consomme plus d'énergie (figure~\ref{AbsBdlB}) que la version A. Par contre il est moins sensible à l'arriver de l'évenement A. Donc pour réaliser cette tache en économisant le plus d'énergie il faudrait exécuter le code A en temps normal, et le code B quand l'évenement A se produit. La solution de mettre les deux algorithmes dans le même programme n'est pas une bonne solution. En faisant de la sorte, on alourdit le programme, ce qui rend plus exigent en ressource le programme et donc avance l'obsolescence des machine. De plus, cela rend la maintenance du code plus difficile.
+Un programme doit réaliser une tache. Le développeur connait deux algorithmes pour coder cette tache. Ils ont chacun leurs forces et leurs faiblesses. La version A du code consomme peu d'énergie en temps normal (figure~\ref{AbsBdlA}). Mais, dans certaines conditions, ici quand un évènement A se produit, l'algorithme se met à surconsommer. La version B du code, elle, consomme plus d'énergie (figure~\ref{AbsBdlB}) que la version A. Par contre il est moins sensible à l'arriver de l'évenement A. Donc pour réaliser cette tache en économisant le plus d'énergie il faudrait exécuter le code A en temps normal, et le code B quand l'évenement A se produit. La solution de mettre les deux algorithmes dans le même programme n'est pas une bonne solution. En faisant de la sorte, on alourdit le programme, ce le qui rend plus exigent en ressource et donc avance l'obsolescence des machine. De plus, cela rend la maintenance du code plus difficile.
 
 
 \begin{figure}
@@ -342,10 +360,10 @@ Un programme doit réaliser une tache. Le développeur connait deux algorithmes 
         \label{AbsBdl}
 \end{figure}
 
-Le cadriciel que j'ai dévellopé a pour but de remplacer à chaud le code de le code A contenu dans un \textit{bundle OSGi} par le code B contenu dans un autre \textit{bundle} lorsqu'il est interressant de le faire. Il y a d'autre cas d'utilisation que l'on pourrait imaginer tel que la mise en place d'une politique énergétique sur une machine (par exemple réduire la consommation d'une machine utilisant l'énergie solaire pendant la nuit).
+Le cadriciel que j'ai dévellopé a pour but de remplacer à chaud le code de le code A contenu dans un \textit{bundle OSGi} par le code B contenu dans un autre \textit{bundle} lorsqu'il est interressant de le faire. Il y a d'autres cas d'utilisation que l'on pourrait imaginer tel que la mise en place d'une politique énergétique sur une machine (par exemple réduire la consommation d'une machine utilisant l'énergie solaire pendant la nuit).
 
 	\section{Présentation de l'infrastructure développé}
-Cette infrastructure est entièrement basé sur OSGi. Elle a donc été conçu sous la forme de modules indépendants les uns des autres. On peut voir sur la figure~\ref{BdlDiag} les modules ainsi que les liaisons entre ces modules. Une flèche d'un module A vers un module B signifie que le module A à besoin de B pour pouvoir fonctionner. Dans cet section je vais détailler l'utilité, voir le fonctionnement de chacun des modules.
+Cette infrastructure est entièrement basé sur OSGi. Elle a donc été conçue sous la forme de modules indépendants les uns des autres. On peut voir sur la figure~\ref{BdlDiag} les modules ainsi que les liaisons entre ces modules. Une flèche d'un module A vers un module B signifie que le module A à besoin de B pour pouvoir fonctionner. Dans cette section je vais détailler l'utilité, voir le fonctionnement de chacun des modules.
 	
 \begin{figure}
 	\centering
@@ -354,9 +372,9 @@ Cette infrastructure est entièrement basé sur OSGi. Elle a donc été conçu s
 	\label{BdlDiag}
 \end{figure}
 \subsection{Le coeur du système}
-La partie central du cadriciel se trouve dans le package \textit{org.oep.core}. Il se découpe en deux classes qui gèrent l'application que l'on souhaite faire fonctionner. La première est la classe \textit{BundleManager}. C'est elle qui s'occupe de gérer les modules qui forment l'application. Elle permet d'installer deux types de modules. Ceux définnissant un service et ceux rendant un service. C'est ensuite par cette classe que l'on démarre ou arrête un module offrant un service. Le \textit{BundleManager} garantit qu'il n'y ai qu'un et un seul module démaré par service.
+La partie centrale du cadriciel se trouve dans le package \textit{org.oep.core}. Il se découpe en deux classes qui gèrent l'application que l'on souhaite faire fonctionner. La première est la classe \textit{BundleManager}. C'est elle qui s'occupe de gérer les modules qui forment l'application. Elle permet d'installer deux types de modules. Ceux définnissant un service et ceux rendant un service. C'est ensuite par cette classe que l'on démarre ou arrête un module offrant un service. Le \textit{BundleManager} garantit qu'il n'y ait qu'un et un seul module démaré par service.
 
-La deuxième classe, \textit{ServiceManager}, s'occupe de référencer les services démarrés. Pour cela elle implémente l'interface \textit{ServiceListener}. Elle permet ensuite de consulter leur consomation au travers de l'inter1face \textit{EcoService}.
+La deuxième classe, \textit{ServiceManager}, s'occupe de référencer les services démarrés. Pour cela elle implémente l'interface \textit{ServiceListener}. Elle permet ensuite de consulter leur consomation au travers de l'interface \textit{EcoService}.
 		\subsection{Les interfaces}
 J'ai développé deux types d'interfaces pour ce framework. Une première graphique, basé sur la technologie \textit{Swing}, l'autre en ligne de commande. L'interface graphique est découpé en deux vues. Une pour installer des services (figure~\ref{BdlList}) et l'autre pour démarrer ou arrêter les services ainsi qu'afficher la consommation (figure~\ref{RngList}).
 
@@ -414,7 +432,7 @@ Développer une application pour ce framawork est avnat tout développer une app
   \item ceux appartenant à une famille de module
 \end{itemize}
 
-L'application Exemple développé dans la section précédente permet d'illustrer simplement l'utilité de ces deux type de module. On peut voir sur la figure~\cite{BdlExp} les modules qui composent cette application. Comme son nom l'indique, le module \textit{Famille\_Exemple} défininit la famille de modules auquel appartiennent les deux autres modules.
+L'application Exemple développé dans la section précédente permet d'illustrer simplement l'utilité de ces deux type de module. On peut voir sur la figure~\ref{BdlExp} les modules qui composent cette application. Comme son nom l'indique, le module \textit{Famille\_Exemple} défininit la famille de modules auquel appartiennent les deux autres modules.
 
 \begin{figure}
 	\centering
@@ -440,7 +458,9 @@ L'architecture de cette application (figure~\ref{lecMult}) est divisé en deux f
 Au final, nous avons donc un module qui rend une qualité de service supérieur mais qui consomme plus (11,5 watts mesuré avec un wattmètre) et l'autre qui dégrade la qualité de service, en supprimant le traitement de la vidéo, pour consommer moins (4,2 watts mesuré avec un wattmètre).
 
 \chapter{Conclusion}
-%TODO écrire la conclusion.
+Voici donc l'ensemble du travail que j'ai pu effectuer durant mon stage de fin d'étude. Il reste encore beaucoup de travail pour pouvoir obtenir des résultats concret et enfin pouvoir dire que l'on sait éco-concevoir un logiciel. Cinq mois furent trop court pour pouvoir développer l'ensemble des idées que je souhaiter aborder. J'ai du faire des choix et cibler mon étude.
+
+Pour moi, ce fut un travail passionnant. Je suis heureux d'avoir eu l'opportunité de travailler dans de tel condition. J'ai pu apprendre beaucoup de nouvell technologie à commencer par OSGi ou Wildcat. J'ai aussi beaucoup appris sur des mécanismes de systèmes et sur le fonctionnement de certain langage. J'ai débuté mon stage en étant convaicu de l'utilité de ce type de démarche, j'en ressors en en pensant que c'est une nécéssité.
 
 \bibliographystyle{plain}
 \bibliography{biblio}
@@ -449,10 +469,12 @@ Au final, nous avons donc un module qui rend une qualité de service supérieur 
 \appendix
 
 \chapter{Sujet de stage}
-\includepdf[lastpage=3;pages={1,3}]{imports/Sujet_Master_EcoConceptionGL.pdf}
+\includepdf[lastpage=3,pages=1]{imports/Sujet_Master_EcoConceptionGL.pdf}
+\includepdf[lastpage=3,pages=2]{imports/Sujet_Master_EcoConceptionGL.pdf}
+\includepdf[lastpage=3,pages=3]{imports/Sujet_Master_EcoConceptionGL.pdf}
 
 \chapter{Plannification}
-\includepdf[lastpage=2;pages=1;turn=false]{imports/Planning_realise_finale.pdf}
+\includepdf[lastpage=2,pages=1,angle=90]{imports/Planning_realise_finale.pdf}
 
 \chapter{Diagrammes de Classes d'EcoFramework}
 \section{Package org.oep.core}
