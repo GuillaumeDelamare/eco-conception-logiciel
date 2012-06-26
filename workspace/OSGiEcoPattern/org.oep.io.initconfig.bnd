@@ -1,0 +1,3 @@
+Private-Package: org.oep.io.initconfig
+Bundle-Activator: org.oep.io.initconfig.Activator
+Bundle-Version: 1.0.0

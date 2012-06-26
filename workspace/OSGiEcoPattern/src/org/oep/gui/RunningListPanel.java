@@ -2,6 +2,7 @@ package org.oep.gui;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import java.util.HashMap;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -16,6 +17,7 @@ import org.oep.gui.controller.TotalConsumptionController;
 import org.oep.gui.controller.StartController;
 import org.oep.gui.controller.StopController;
 import org.oep.gui.controller.TableModelController;
+import org.osgi.framework.Bundle;
 public class RunningListPanel extends JPanel {
 	private static final long serialVersionUID = -2396252588618798929L;
 	
@@ -32,20 +34,35 @@ public class RunningListPanel extends JPanel {
 		this.bundleManager = bundleManager;
 		this.serviceManager = serviceManager;
 		
+		createTableModel();
+		
 		createComponent();
 		placeComponent();
 		createController();
 	}
 	
-	private void createComponent(){
-		consumptionUnitLabel = new JLabel("W");
-		consumptionValueLabel = new JLabel("0");
-		consuptionLabel = new JLabel("Total consumption : ");
-		
+	private void createTableModel() {
 		tableModel = new DefaultTableModel();
 		tableModel.addColumn("Family name");
 		tableModel.addColumn("Running Bundle");
 		tableModel.addColumn("Consumption");
+		
+		HashMap<String, Bundle> started = this.bundleManager.getStartedBundles();
+		
+		for(String s : started.keySet()){
+			Object[] obj = {	s,
+					(started.get(s) == null) ? "none" : started.get(s).getSymbolicName(),
+					0
+			};
+			
+			tableModel.addRow(obj);
+		}
+	}
+
+	private void createComponent(){
+		consumptionUnitLabel = new JLabel("W");
+		consumptionValueLabel = new JLabel("0");
+		consuptionLabel = new JLabel("Total consumption : ");
 		
 		table = new JTable(tableModel);
 		table.getColumnModel().getColumn(0).setPreferredWidth(300);
