@@ -40,7 +40,7 @@ Je remercie aussi mon encadrant, Benoit Parrein, pour l'aide et le suivi tout au
 \section*{Résumé}
 Dans un futur où il y aura toujours plus d'appareils électroniques, où leurs capacités seront toujours plus grande et où les interconexions seront systématiques, la maîtrise de la consommation d'énergie sera l'un des grands défis. On le sait, il nous faut rationnaliser l'utilisation de l'énergie si l'on ne veut pas aggraver la situation écologique actuel.
 
-Dans ce rapport de stage, je démontre qu'il est possible d'agir sur la conception des logiciels afin de les rendre plus \textit{vert}, c'est-à-dire moins gourmand en ressources énergétiques. Mon objectif était de montrer la variété des champs d'action sur lesquels on peut agir. J'ai aussi mis en valeur une des grandes difficultés de ce travail : Mesurer la consommation énergétique d'un logiciel.
+Dans ce rapport de stage, je démontre qu'il est possible d'agir sur la conception des logiciels afin de les rendre plus \textit{vert}, c'est-à-dire moins gourmand en ressources énergétiques. Mon objectif était de montrer la variété des champs d'action sur lesquels on peut agir. J'ai aussi mis en valeur une des grandes difficultés de ce travail ~: Mesurer la consommation énergétique d'un logiciel.
 
 Mon travail durant ce stage n'a pas apporté une solution finie au problème initialement posé. J'ai plutôt oeuvré à poser des bases pour d'autres projets.
 \newpage
@@ -52,9 +52,9 @@ Ce document est le rapport de mon stage de cinquième année à Polytech Nantes.
 
 Ce rapport est découpé en 4 chapitres. Dans le premier chapitre, je présente le contexte de mon stage. Plus précisément, je présente le lieu dans lequel se déroule mon stage, puis je présente le sujet sur lequel j'ai été amené à travailler pendant cinq mois.
 
-Dans la deuxième partie je fait un état de l'art de mon sujet de stage dans lequel je tente de définir les notions essentielles à la résolution du problème qui m'est posé.
+Dans la deuxième partie je fais un état de l'art de mon sujet de stage dans lequel je tente de définir les notions essentielles à la résolution du problème qui m'est posé.
 
-Ensuite, dans les deux derniers chapitres, je détaille le contenu de mon travail. Le premier est dédié à mes expérimentations sur la mesure de cosommation d'énergie. puis, je présente dans le dernier chapitre un cadriciel Java dédié à la gestion d'énergie.
+Ensuite, dans les deux derniers chapitres, je détaille le contenu de mon travail. Le premier est dédié à mes expérimentations sur la mesure de cosommation d'énergie. Puis, je présente dans le dernier chapitre un cadriciel Java dédié à la gestion d'énergie.
 
 \chapter{Présentation du stage}
 	\section{Présentation du lieu de stage}
@@ -64,7 +64,7 @@ L’école des Mines de Nantes (EMN) est une école d’ingénieur française so
 
 Elle a été créée en 1990 sur le site de la Chantrerie à Nantes et accueille 850 élèves ingénieurs en formation initiale. Le recrutement est effectué par concours après deux années de classe préparatoire. En 2011, l’EMN a décerné 250 diplômes d’ingénieur.
 
-L’école est séparée en 5 départements axés sur les thématiques des équipes de recherche de l'école. On dénombre les départements :
+L’école est séparée en 5 départements axés sur les thématiques des équipes de recherche de l'école. On dénombre les départements~:
 \begin{itemize}
 	\item Informatique
 	\item Automatique et productique (DAP)
@@ -76,7 +76,7 @@ L’école est séparée en 5 départements axés sur les thématiques des équi
 		\subsection{L'équipe de Recherche}
 Mon stage se déroule dans l'équipe ASCOLA. Cette équipe est installée au sein du département informatique de l’EMN au côté des l'équipes TASC et AtlanMod. L'équipe ASCOLA fait partie du LINA (Laboratoire d'Informatique de Nantes Atlantique) ainsi que de l'INRIA (Institut National de Recherche en Informatique et en Automatique).
 
-Cette équipe regroupe une trentaine de personnes qui travaillent sur les langages d'aspects et de composition. Les axes de recherche, tel qu'ils le sont présentés sur la page dédiée à l'équipe ASCOLA sur le site de l'INRIA\footnote{\href{http://www.inria.fr/equipes/ascola}{www.inria.fr/equipes/ascola}}, sont :
+Cette équipe regroupe une trentaine de personnes qui travaillent sur les langages d'aspects et de composition. Les axes de recherche, tel qu'ils le sont présentés sur la page dédiée à l'équipe ASCOLA sur le site de l'INRIA\footnote{\href{http://www.inria.fr/equipes/ascola}{www.inria.fr/equipes/ascola}}, sont~:
 \begin{itemize}
 	\item le développement de nouveaux concepts, de support linguistique, et d'outils pour les applications distribuées permettant de gérer notamment les préoccupations transverses comme la distribution elle-même, les comportements transactionnels et la sécurité ;
 	\item la définition d'un modèle qui intègre de manière transparente composants et aspects, en particulier au travers d'une notion d'interface rendant possible le découplage des composants et des aspects concrets, tout en permettant l'analyse et l'application de propriétés de composition dans un contexte hybride composant/aspect ;
@@ -115,11 +115,11 @@ D'un premier abord, la réponse à cette question parait assez évidente. Cela p
 
 Cet aspect ne sera pas abordé dans mes travaux car il fait partie d'autres sujets comme l'optimisation d'algorithmes ou l'amélioration de compilateur et  ces sujets font l'objet de travaux depuis plusieurs années. De plus, ce que l'on souhaite dans ce projet, c'est placer le critère de consommation d'énergie au premier plan et pourquoi pas, si cela est nécessaire, dégrader la qualité de service de l'application. Au final, à la question \og Pourquoi économiser de l'énergie ?\fg la réponse que je souhaite donner est \og Pour économiser de l'énergie\fg.
 		
-		\subsection{L'éco-conception logiciel : définition}
+		\subsection{L'éco-conception logiciel ~: définition}
 L'éco-conception n'est pas une notion propre à l'informatique. C'est un terme qui désigne une volonté de concevoir un produit respectueux de l'environement. Actuellement, on parle facilement de l'éco-conception d'un batiment ou bien de celle d'une baie de serveur. Mais parler de l'éco-conception d'un logiciel est assez rare. Certaines entreprises commencent à y réfléchir, à l'image de Facebook qui, devant sa facture d'électricité, a décidé d'abandonner le langage PHP pour le C++, en créant au passage le compilateur HipHop. Cette initiative a permis à la société de diviser sa consommation d'électricité par deux.
 %TODO ref nécéssaire
 
-Ce genre d'exemple reste pour l'instant assez rare. Il doit ammener les géants de l'informatique à mieux réfléchir au choix de conception de leurs produits. Cependant, il ne faut pas limiter l'éco-conception de logiciel à la maitrise de la consommation à l'exécution. La réduction de l’empreinte énergétique peut être vue de plusieurs façons, qui sont autant de sujet de reflexion pour notre projet :
+Ce genre d'exemple reste pour l'instant assez rare. Il doit ammener les géants de l'informatique à mieux réfléchir au choix de conception de leurs produits. Cependant, il ne faut pas limiter l'éco-conception de logiciel à la maitrise de la consommation à l'exécution. La réduction de l’empreinte énergétique peut être vue de plusieurs façons, qui sont autant de sujet de reflexion pour notre projet ~:
 \begin{itemize}
 	\item La baisse de la consommation d’énergie à l'exécution/Augmentation de l’autonomie des appareils mobiles;
 	\item La baisse des coûts énergétiques de développement et de maintenance;
@@ -133,7 +133,7 @@ L'analyse du cycle de vie (ACV) est l'un des outils principal utilisé par l'ind
 \begin{figure}
 	\centering
 	\includegraphics[width=0.6\textwidth]{figures/Cycle-de-vie}
-	\caption{Cycle de vie (source : wikipedia, auteur : DamarisBasileJudith)}
+	\caption{Cycle de vie (source ~: wikipedia, auteur ~: DamarisBasileJudith)}
 	\label{CdV}
 \end{figure}
 
@@ -159,7 +159,7 @@ Par exemple, les \textit{plugwizes} sont des modules qui se placent sur la prise
 Cette technique de mesure n'offre qu'une vue globale de notre système. Il est impossible par cette méthode d'identifier de manière certaine la consommation d'un logiciel. On peut par contre corréler un changement de consommation avec un événement survenu\cite{GreenMining} (le démarrage d'une application, le lancement d'une tâche gourmande en traitement\ldots). 
 
 			\subsubsection{La mesure par un logiciel interne}
-La deuxième méthode consiste à analyser les ressources utilisées par un programme et, à partir d'un modèle de consommation, d'en déduire la consommation énergétique de l'application. Différentes ressources peuvent être ciblées. On peut les classer en deux catégories : les unités de calcul (CPU, GPU\ldots) et les dispositifs d'entrées/sorties (disque dur, interface réseau\ldots).
+La deuxième méthode consiste à analyser les ressources utilisées par un programme et, à partir d'un modèle de consommation, d'en déduire la consommation énergétique de l'application. Différentes ressources peuvent être ciblées. On peut les classer en deux catégories ~: les unités de calcul (CPU, GPU\ldots) et les dispositifs d'entrées/sorties (disque dur, interface réseau\ldots).
 
 Dans cet article\cite{noureddine:hal-00681560}, les auteurs détaillent le modèle de consommation qu'ils ont mis au point pour leur application de mesure PowerAPI. On peut y voir qu'ils obtiennent des résultats intéressants par rapport à la mesure faite en parallèle sur un wattmètre. L'inconvénient de ce type de méthode est qu'il faut calibrer le modèle. Cela est nécessaire car chaque processeur  fonctionne différemment et donc ne consomme pas la même chose. De plus ce type de méthodes est intrusive et peut perturber le fonctionnement du logiciel.
 
@@ -167,7 +167,7 @@ En revanche cette technique permet facilement d'isoler un logiciel en particulie
 
 			\subsubsection{Vers une mesure par un appareil interne}
 Enfin une troisième technique est à envisagé dans un futur plus ou moins proche. Comme l'explique l'article \textit{Looking back on the language and hardware revolutions
-: measured power, performance, and scaling}\cite{Esmaeilzadeh:2011:LBL:1950365.1950402}, les fabricants de matériel intègrent, de plus en plus, dans leurs composants, des mécanismes de mesure afin d'adapter leurs fonctionnements à leurs consommations. À la fin de l'article, les auteur recommande l'ouverture de ces mécanismes au travers d'API pour que les développeur puissent y accéder.
+~: measured power, performance, and scaling}\cite{Esmaeilzadeh:2011:LBL:1950365.1950402}, les fabricants de matériel intègrent, de plus en plus, dans leurs composants, des mécanismes de mesure afin d'adapter leurs fonctionnements à leurs consommations. À la fin de l'article, les auteur recommande l'ouverture de ces mécanismes au travers d'API pour que les développeur puissent y accéder.
 
 Si les constructeurs acceptent de faire cet effort, on pourra facilement savoir ce que consomme réellement une application en temps réel. Ce type de mécanisme serait idéal dans mon projet car il permettrait d'avoir une consommation réelle de l'application mesurée. On pourrait même concevoir, très facilement, des applications qui s'adaptent en fonction de leur consommation.
 
@@ -202,7 +202,7 @@ La programmation modulaire présente beaucoup d'avantage pour l'éco-conception 
 
 D'autres aspects intéressants pour l'éco-conception sont à prendre en compte. Si dans une application modulaire l'utilisateur ne se sert pas de toutes les fonctionnalités, on doit pouvoir retirer les modules qui ne servent à rien. Cela peut potentiellement économiser de l'énergie à l'exécution mais surtout alléger considérablement le logiciel et donc allonge la durée de vie de l'ordinateur.
 
-			\subsubsection{OSGi : du java modulaire}
+			\subsubsection{OSGi ~: du java modulaire}
 OSGi\footnote{Open Services Gateway initiative} est une cadriciel java élaboré par l'OSGi Alliance. C'est un consortum formé en 1999 composé entre autre d'IBM, Motorola,Oracle ou encore Samsung. Le but de ce cadriciel est de faciliter la création d'application modulaire en Java. 
 
 Différentes implémentations de ce framework ont été développés à partir de la spécification produite par l'OSGi Alliance. Les plus connu sont Equinox développé par l’équipe du projet Eclipse, Felix issu du projet universitaire Oscar et maintenu par Apache ou encore Knopflerfish élaboré par MakeWave.
@@ -216,7 +216,7 @@ Leur site internet (\href{http://www.greencodelab.fr}{www.greencodelab.fr}) sert
 
 Durant mon stage, j'ai eu l'occasion de me rendre à l'un de leurs évenements sur le thème de la mesure de la consommation électrique d'un logiciel. Là-bas, Olivier Philippot, un membre actif du green code lab, nous a présenté une méthodologie basée sur des \textit{plugwizes} en affichant les mesures au moyen du logiciel KST\footnote{http://kst-plot.kde.org/}{kst-plot.kde.org/}.
 		\subsection{Le projet code vert}
-Code Vert est un projet labélisé par le pôle de compétitivité Images et Réseaux qui a débuté en Février 2012 (en même temps que mon stage) est durera 2 ans. Il regroupe 4 acteurs : l'école d'ingénieur ICAM, les sociétés KaliTerre et TOCEA, ainsi que la ssii SIGMA Informatique.
+Code Vert est un projet labélisé par le pôle de compétitivité Images et Réseaux qui a débuté en Février 2012 (en même temps que mon stage) est durera 2 ans. Il regroupe 4 acteurs ~: l'école d'ingénieur ICAM, les sociétés KaliTerre et TOCEA, ainsi que la ssii SIGMA Informatique.
 
 L'objectif de ce projet est de mettre en place un référentiel pour juger de l'éco-conception du code d'un logiciel. Cela passera par une analyse statique du code qui sera noté. On pourra ressortir de cette analyse des recommandations qui permettront de l'améliorer.
 		
@@ -237,19 +237,19 @@ Malheureusement, il s'est avéré que pTop ne fonctionne pas entièrement. Aprè
 			\subsubsection{Procédure d'installation}
 \begin{itemize}
     \item récupérer les sources sur http://mist.cs.wayne.edu/ptop.html
-    \item installation du nécessaire pour compiler les sources (paquets debian) :
+    \item installation du nécessaire pour compiler les sources (paquets debian) ~:
     \begin{itemize}
 	\item build-essential
 	\item libmysqlclient-dev
 	\item libncurses-dev
     \end{itemize}
-    \item Installation de la base de données Mysql :
+    \item Installation de la base de données Mysql ~:
     \begin{itemize}
 	\item création d’une base de donées ptop
 	\item exécution du script db\_schema.sql
 	\item remplacement du login et password pour accéder à la base de données dans le fichier database.c
     \end{itemize}
-    \item Compilation :
+    \item Compilation ~:
 \end{itemize}
 
 \begin{verbatim}
@@ -258,7 +258,7 @@ Malheureusement, il s'est avéré que pTop ne fonctionne pas entièrement. Aprè
 \end{verbatim}
 
 \subsubsection{Exécution}
-Lancer le programme au moyen de la commande :
+Lancer le programme au moyen de la commande ~:
 
 \begin{verbatim}
 # ./ptop
@@ -267,7 +267,7 @@ Lancer le programme au moyen de la commande :
 Le programme va s'initialiser et enregistrer les mesures dans les bases de données. Il faut ensuite interrompre les mesures au moyen du signal SIGINT.
 
 \subsubsection{Données de sortie}
-Il n’existe pas, à ma connaissance, de documentation précise sur les données de sortie du programme pTop.  Le programme stocke les données dans une base de données Mysql nommé ptop. Elle est composée de quatre tables :
+Il n’existe pas, à ma connaissance, de documentation précise sur les données de sortie du programme pTop.  Le programme stocke les données dans une base de données Mysql nommé ptop. Elle est composée de quatre tables ~:
 \begin{itemize}
 	\item device\_energy
 	\item process\_energy
@@ -281,13 +281,13 @@ Seules les deux dernières tables sont remplies par le programme (à cause soit 
 Le projet Energy Checker développé par Intel, est un ensemble d’outils destiné à faciliter la remontée et l’affichage des mesures faites sur la consommation d’un programme. Il se compose principalement de l’API Energy checker qui permet d’utiliser les mécanismes de remonter d’information (PL - Productivity Link)
 
 \subsection{ClassMexer}
-ClassMexer est un API java permettant d’estimer la taille en mémoire d’un objet java. On peut télécharger cet API sous la forme d’un fichier JAR à cette adresse : http://www.javamex.com/classmexer/. ClassMexer est un Instrumentation agent comme spécifié dans le pattern Instrument. Cela implique de travailler avec, au minimum, la version 5 de java.
+ClassMexer est un API java permettant d’estimer la taille en mémoire d’un objet java. On peut télécharger cet API sous la forme d’un fichier JAR à cette adresse ~: http://www.javamex.com/classmexer/. ClassMexer est un Instrumentation agent comme spécifié dans le pattern Instrument. Cela implique de travailler avec, au minimum, la version 5 de java.
 
 \subsubsection{procédure d'installation}
 \begin{itemize}
 	\item Télécharger l’API
 	\item Importer le fichier JAR dans le projet.
-	\item Insérer des appels sur l’objet que l’on souhaite mesurer. Par exemple :
+	\item Insérer des appels sur l’objet que l’on souhaite mesurer. Par exemple ~:
 \begin{verbatim}
 public class Main {
 	public static void main(String[] args) {
@@ -307,7 +307,7 @@ Joulemeter est un outil développé par Microsoft et qui sert à mesurer la cons
 
 \subsubsection{Procédure d'installation}
 \begin{itemize}
-	\item Télécharger le logiciel sur ce site : Joulemeter
+	\item Télécharger le logiciel sur ce site ~: Joulemeter
 	\item Exécuter le programme.
 \end{itemize}
 
@@ -317,6 +317,21 @@ Joulemeter est un logiciel de mesure qui se base sur un modèle de consommation.
 La première n’est utilisable que sur un ordinateur portable muni d’une batterie. Il suffit de débrancher l’alimentation et de lancer la calibration (15 minuntes sans utiliser le PC). Avant de lancer la calibration, il faut faire attention à arrêter toutes les applications afin que le logiciel puisse déterminer une consommation minimum en mode "Idle".
 
 Le deuxième mode nécessite un Wattmètre WattsUp pour générer le modèle. Il suffit de le brancher en USB, de couper toutes les applications possibles et de lancer la calibration (3 minutes sans utiliser le PC).
+
+\subsubsection{Expérience}
+Afin de tester la fiabilité du modele créé, j'ai effectué différentes expériences en comparant les résultats obtenu par Joulemeter avec ceux lu sur un wattmètre. J'ai pu mettre en évidence de grosses faiblesses qui rendent peu fiable les résultats obtenu. La figure~\ref{joulemeter} met en évidence ces faiblesses. J'ai obtenu ces mesures en laissant fonctionner Joulemeter sur un ordinateur, démaré mais inutilisé, durant toute une nuit. En parallèle, j'ai récupéré les mesures que prenait un wattmètre \textit{WattsUp pro}.
+
+\begin{figure}
+	\includegraphics[width=0.99\textwidth]{figures/joulemeter.pdf}
+	\caption{Mesures faites par Joulemeter comparé à celles d'un wattmètre}
+	\label{joulemeter}
+\end{figure}
+
+Les deux coubes affichent un échantillon  de 5000 mesures (durant approximativement 5000 secondes). Le modèle de consommation sur lequel se basait Joulemeter a été généré juste avant le début de l'expérience. D'un point de vue général, on peut déjà remarquer que la courbe de Joulemeter est très irrégulière et majoritairement en dessous de celle du watttmètre. Cela est principalement du, au fait que l'impact du processeur est largement sous-estimé dans le modèle.
+
+Ensuite on peut noter un seuil en dessous du quel joulemeter ne descend pas (ici, 31,6 watts). On constate même que les mesures du wattmètre passe en dessous de celle de joulemeter dans la partie \textit{D} du graphique. Cet effet de seuil est engendré par le modèle qui considère que le système consomme toujours une constante quand il est allumé. Donc, quelle que soit la charge du système, Joulemeter considère qu'il consomme au minimum 31,6 watts (valeur qu'il a mesuré lors de l'établissement du modèle).
+
+Enfin, et tout n'est pas négatif, on peut remarquer que dans la zone B Joulemeter réussi à mesurer une hausse de la consommation qui peut être noté sur la courbe du wattmètre (avec un certain décalage cependant).
 
 \subsection{PowerAPI}
 PowerAPI est un outil sur lequel travail l'équipe ADAM de l'université de Lille. Les premiers résultats de cet outil ont été présentés dans un papier\cite{noureddine:hal-00681560} publié à l'ICSE\footnote{International Conference on Software Engineering} 2012 à Zurich. Cet outil parait prometteur et s'il continue à être développé, pourrait bien apporter une solution intéressante au problème de la mesure de consommation énergétique de logiciel.
@@ -365,7 +380,7 @@ Cette infrastructure est entièrement basée sur OSGi. Elle a donc été conçue
 \begin{figure}
 	\centering
 	\includegraphics[width=0.95\textwidth]{figures/EcoPattern_Bundle_Diagramme}
-	\caption{OSGiEcoFramework : diagramme de liaison des modules}
+	\caption{OSGiEcoFramework ~: diagramme de liaison des modules}
 	\label{BdlDiag}
 \end{figure}
 \subsection{Le coeur du système}
@@ -389,7 +404,7 @@ J'ai développé deux types d'interfaces pour ce framework. Une première graphi
 	\label{RngList}
 \end{figure}
 
-L'interface en ligne de commande est basé sur le shell felix\footnote{http://felix.apache.org/site/apache-felix-shell.html}. J'ai défini seulement trois commandes :
+L'interface en ligne de commande est basé sur le shell felix\footnote{http://felix.apache.org/site/apache-felix-shell.html}. J'ai défini seulement trois commandes ~:
 \begin{itemize}
   \item une pour installer une famille de module
   \item une pour installer un module
@@ -405,7 +420,7 @@ Le controleur est la partie sur laquelle j'ai pu le moins travailler. Il est cha
 J'ai abandonné cette solution après avoir passé plusieurs jours à tenter d'intégrer Wildcat dans un module OSGi sans y arriver (ceci  à cause de problème de dépendance à d'autres bibliothèques). J'ai donc finalement opté (un peu dans l'urgence) pour une solution plus basique qui vient tester tour à tour chaque module pour vérifier qu'il ne dépasse pas une limite de consommation. Cette version du controleur ne permet pas de mettre en place une politique de consommation élaborée, mais cela m'a permis de faire fonctionner le cadriciel dans le temps imparti pour mon stage. Étant donné qu'il est totalement indépendant du reste du cadriciel, on peut facilement le remplacer par un autre plus complexe.
    
 		\subsection{L'application}
-L'application que l'on souhaite faire fonctionner au sein de ce cadriciel doit être basé sur la notion services. Afin d'être pris en compte, les modules de cette application doivent implémenter l'interface \textit{EcoService} présent dans le module \textit{org.oep.services.api}. Cette interface ne définit qu'une seule méthode :
+L'application que l'on souhaite faire fonctionner au sein de ce cadriciel doit être basé sur la notion services. Afin d'être pris en compte, les modules de cette application doivent implémenter l'interface \textit{EcoService} présent dans le module \textit{org.oep.services.api}. Cette interface ne définit qu'une seule méthode ~:
 \begin{verbatim}
         public double getConsumption();
 \end{verbatim}
@@ -424,7 +439,7 @@ Afin d'illustrer les résultats obtenu par ce framework, j'ai développé une ap
 Ce prototype d'application provoque donc l'échange régulier des deux modules entrainant par la même une baisse de la consommation. On peut voir le résultat sur cette courbe de consommation (figure~\ref{CourbeExp}) ou l'on constate bien que régulièrement la courbe chute brutalement. Ces chutes correspondent à l'échange de module.
 
 	\section{Développer une application pour ce framework}
-Développer une application pour ce cadridiel est avant tout développer une application sous OSGi. Je ne détaille pas ici les principes de cette technologie (je l'ai déjà abordé dans mon état de l'art). On doit donc développer des modules ou \textit{bundle}. Deux types de modules doivent être fait pour que le cadriciel fonctionne :
+Développer une application pour ce cadridiel est avant tout développer une application sous OSGi. Je ne détaille pas ici les principes de cette technologie (je l'ai déjà abordé dans mon état de l'art). On doit donc développer des modules ou \textit{bundle}. Deux types de modules doivent être fait pour que le cadriciel fonctionne ~:
 \begin{itemize}
   \item ceux définissant une famille de modules
   \item ceux appartenant à une famille de modules
@@ -441,7 +456,7 @@ L'application Exemple développé dans la section précédente permet d'illustre
 
 Pour voir plus en détail comment faire, le module \textit{Famille\_Exemple} contient une interface héritant de \textit{EcoService}. Les deux autres modules contiennent sensiblement la même chose, à savoir une classe implémentant l'interface définit dans le module \textit{Famille\_Exemple}.
 
-	\section{Un exemple d'application : lecteur audio}
+	\section{Un exemple d'application ~: lecteur audio}
 Afin d'illustrer les possibilités de ce framework, j'ai développé un exemple concret d'application. Cette application est un simple lecteur multimedia. Sa particularité est que quand on a besoin d'économiser l'énergie il n'affiche plus l'image et ne diffuse que le son du fichier numérique que l'on souhaite lire. Ce lecteur est basé sur la bibliothèque Java Xuggle\footnote{\href{http://www.xuggle.com/}{www.xuggle.com}}.
 
 L'architecture de cette application (figure~\ref{lecMult}) est divisé en deux familles de modules. La première, définit par le module \textit{Famille\_Lecteur}, fournit l'interface graphique du lecteur multimedia. Pour cet exemple, je n'ai développé qu'une version contenu dans le module \textit{Lecteur}. La deuxième famille est celle définit dans le module \textit{Famille\_ServeurMultimedia}. Elle sert à charger, décoder et lire le fichier multimédia. Pour cette famille j'ai développé deux modules. Le module \textit{LecteurMultimedia\_AudioVideo} qui décode et affiche les flux audio et vidéo du fichier. L'autre, le module \textit{LecteurMultimedia\_Audio}, ne s'occupe que de la partie Audio du fichier.
@@ -449,7 +464,7 @@ L'architecture de cette application (figure~\ref{lecMult}) est divisé en deux f
 \begin{figure}
 	\centering
 	\includegraphics[width=0.95\textwidth]{figures/EcoPattern_LecteurMultimedia}
-	\caption{Lecteur multimedia : Diagrammame de liaison des modules}
+	\caption{Lecteur multimedia ~: Diagrammame de liaison des modules}
 	\label{lecMult}
 \end{figure}
 
