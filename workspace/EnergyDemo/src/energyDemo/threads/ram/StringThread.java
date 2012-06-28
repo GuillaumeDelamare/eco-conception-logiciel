@@ -22,6 +22,7 @@ public class StringThread extends Thread {
 		for (int i = 0; i<time; i++) {
 			buf.append("");
 		}
+		s = buf.toString();
 		
 		System.out.println(System.currentTimeMillis()+ " - StringThred : Good method done");
 
