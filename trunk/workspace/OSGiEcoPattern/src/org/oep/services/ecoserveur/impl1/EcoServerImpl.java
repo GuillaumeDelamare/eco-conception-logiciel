@@ -17,8 +17,8 @@ public class EcoServerImpl implements EcoServeur {
 		try {
 			br = new BufferedReader(new FileReader("conso_mesuree.csv"));
 			
-			baseConsumption = getLastValue();
 			lastConsumption = getLastValue();
+			baseConsumption = lastConsumption;
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
