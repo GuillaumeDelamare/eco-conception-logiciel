@@ -1,4 +1,4 @@
-package xuggle.test.server;
+package xuggle.test. server;
 
 import com.xuggle.xuggler.ICodec;
 import com.xuggle.xuggler.IContainer;
