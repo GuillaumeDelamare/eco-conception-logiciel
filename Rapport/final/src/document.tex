@@ -115,10 +115,12 @@ Dans ce troisième chapitre, je vais tenter de faire un état de l'art, le plus 
 		\subsection{Pourquoi économiser de l'énergie ?}
 D'un premier abord, la réponse à cette question parait assez évidente. Cela peut être pour une raison économique, pour une question d'éthique ou encore pour répondre à une contrainte de consommation. Cela dit, si je souhaite commencer cet état de l'art par cette question, c'est que je pense qu'il faut bien réfléchir au besoin d'économie d'énergie. Ici, ce que l'on souhaite faire c'est réduire l'empreinte énergétique d'un logiciel et non pas optimiser un programme. Bien sur, si on améliore un algorithme en terme de complexité ou bien même en rapidité, on réduit le coût énergétique de son éxécution. Mais ceci n'est qu'un aspect de ce que l'on souhaite effectuer dans ce projet. 
 
-Cet aspect ne sera pas abordé dans mes travaux car il fait partie d'autres sujets comme l'optimisation d'algorithmes ou l'amélioration de compilateur et  ces sujets font l'objet de travaux depuis plusieurs années. De plus, ce que l'on souhaite dans ce projet, c'est placer le critère de consommation d'énergie au premier plan et pourquoi pas, si cela est nécessaire, dégrader la qualité de service de l'application.
+Cet aspect ne sera pas abordé dans mes travaux car il fait partie d'autres sujets comme l'optimisation d'algorithmes ou l'amélioration de compilateur et  ces sujets font l'objet de travaux depuis plusieurs années. De plus, ce que l'on souhaite dans ce projet, c'est placer le critère de consommation d'énergie au premier plan et pourquoi pas, si cela est nécessaire, dégrader la qualité de service de l'application\cite{MelloFerreira:2009:EDS:1696051.1696061}.
+
+On doit donc étudier l'éco-conception de logiciel sous la forme d'un compromis entre la qualité de service et l'économie d'énergie\cite{Baek:2010:GFS:1809028.1806620}.
 		
 		\subsection{L'éco-conception logiciel ~: définition}
-L'éco-conception n'est pas une notion propre à l'informatique. C'est un terme qui désigne une volonté de concevoir un produit respectueux de l'environement. Actuellement, on parle facilement de l'éco-conception d'un batiment ou bien de celle d'une baie de serveur. Mais parler de l'éco-conception d'un logiciel est assez rare. Certaines entreprises commencent à y réfléchir, à l'image de Facebook qui, devant sa facture d'électricité, a décidé d'abandonner le langage PHP pour le C++, en créant au passage le compilateur HipHop. Cette initiative a permis à la société de diviser sa consommation d'électricité par deux.
+L'éco-conception n'est pas une notion propre à l'informatique. C'est un terme qui désigne une volonté de concevoir un produit respectueux de l'environement. Actuellement, on parle facilement de l'éco-conception d'un batiment ou bien de celle d'une baie de serveur. Mais parler de l'éco-conception d'un logiciel est assez rare. Certaines entreprises commencent à y réfléchir, à l'image de Facebook qui, devant sa facture d'électricité, a décidé d'abandonner le langage PHP pour le C++, en créant au passage le compilateur HipHop\cite{EcoLogiciels}. Cette initiative a permis à la société de diviser sa consommation d'électricité par deux.
 %TODO ref nécéssaire
 
 Ce genre d'exemple reste pour l'instant assez rare. Il doit ammener les géants de l'informatique à mieux réfléchir au choix de conception de leurs produits. Cependant, il ne faut pas limiter l'éco-conception de logiciel à la maitrise de la consommation à l'exécution. La réduction de l’empreinte énergétique peut être vue de plusieurs façons, qui sont autant de sujet de reflexion pour notre projet ~:
@@ -158,15 +160,15 @@ Par exemple, les \textit{plugwizes} sont des modules qui se placent sur la prise
 Cette technique de mesure n'offre qu'une vue globale de notre système. Il est impossible par cette méthode d'identifier de manière certaine la consommation d'un logiciel. On peut par contre corréler un changement de consommation avec un événement survenu\cite{GreenMining} (le démarrage d'une application, le lancement d'une tâche gourmande en traitement\ldots). 
 
 			\subsection{La mesure par un logiciel interne}
-La deuxième méthode consiste à analyser les ressources utilisées par un programme et, à partir d'un modèle de consommation, d'en déduire la consommation énergétique de l'application. Différentes ressources peuvent être ciblées. On peut les classer en deux catégories ~: les unités de calcul (CPU, GPU\ldots) et les dispositifs d'entrées/sorties (disque dur, interface réseau\ldots).
+La deuxième méthode consiste à analyser les ressources utilisées par un programme et, à partir d'un modèle de consommation, d'en déduire la consommation énergétique de l'application\cite{da2010methodology}. Différentes ressources peuvent être ciblées. On peut les classer en deux catégories ~: les unités de calcul (CPU, GPU\ldots) et les dispositifs d'entrées/sorties (disque dur, interface réseau\ldots).
 
-Dans cet article\cite{noureddine:hal-00681560}, les auteurs détaillent le modèle de consommation qu'ils ont mis au point pour leur application de mesure PowerAPI. On peut y voir qu'ils obtiennent des résultats intéressants par rapport à la mesure faite en parallèle sur un wattmètre. L'inconvénient de ce type de méthode est qu'il faut calibrer le modèle. Cela est nécessaire car chaque processeur  fonctionne différemment et donc ne consomme pas la même chose. De plus ce type de méthodes est intrusive et peut perturber le fonctionnement du logiciel.
+Dans cet article\cite{noureddine:hal-00681560}, les auteurs détaillent le modèle de consommation qu'ils ont mis au point pour leur application de mesure \textit{PowerAPI}. On peut y voir qu'ils obtiennent des résultats intéressants par rapport à la mesure faite en parallèle sur un wattmètre. L'inconvénient de ce type de méthode est qu'il faut calibrer le modèle. Cela est nécessaire car chaque processeur  fonctionne différemment et donc ne consomme pas la même chose. De plus ce type de méthodes est intrusive et peut perturber le fonctionnement du logiciel.
 
 En revanche cette technique permet facilement d'isoler un logiciel en particulier (ou plutôt un processus). C'est donc une technique intéressante pour mon projet.
 
 			\subsection{Vers une mesure par un appareil interne}
-Enfin une troisième technique est à envisagé dans un futur plus ou moins proche. Comme l'explique l'article \textit{Looking back on the language and hardware revolutions
-~: measured power, performance, and scaling}\cite{Esmaeilzadeh:2011:LBL:1950365.1950402}, les fabricants de matériel intègrent, de plus en plus, dans leurs composants, des mécanismes de mesure afin d'adapter leurs fonctionnements à leurs consommations. À la fin de l'article, les auteur recommande l'ouverture de ces mécanismes au travers d'API pour que les développeur puissent y accéder.
+Enfin une troisième technique est à envisager dans un futur plus ou moins proche. Comme l'explique l'article \textit{Looking back on the language and hardware revolutions
+~: measured power, performance, and scaling}\cite{Esmaeilzadeh:2011:LBL:1950365.1950402}, les fabricants de matériel intègrent, de plus en plus, dans leurs composants, des mécanismes de mesure afin d'adapter leurs fonctionnements à leurs consommations. À la fin de l'article, les auteurs recommandent l'ouverture de ces mécanismes au travers d'API pour que les développeurs puissent y accéder.
 
 Si les constructeurs acceptent de faire cet effort, on pourra facilement savoir ce que consomme réellement une application en temps réel. Ce type de mécanisme serait idéal dans mon projet car il permettrait d'avoir une consommation réelle de l'application mesurée. On pourrait même concevoir, très facilement, des applications qui s'adaptent en fonction de leur consommation.
 
@@ -187,9 +189,9 @@ Cette partie ne va pas expliquer comment fabriquer à coup sûr un éco-logiciel
 		\subsection{De la Conception\ldots}
 La conception d'un éco-logiciel doit être particulièrement bien pensée. C'est lors la conception que l'on prend la majorité des décisions qui entraineront une sur-consomation par la suite. Il m'est difficile de lister l'ensemble des questions à se poser lors de cette phase. Je ne citerais que quelques points importants.
 
-La première question à se poser est celle de l'architecture et de la localisation des traitements\cite{EcoLogiciels}. Des traitements effectués dans un Centre de données auront un coup plus faible car un centre de données dispose souvent de mécanisme d'optimisation énergétique. On peut citer en exemple le \textit{Green Challenge 2010}\footnote{https://sites.google.com/a/octo.com/green-challenge/} ou les équipes devaient travailler sur une application de décodage de QRcode et de géolocalisation pour la rendre le moins consommatrice possible. Les gagnants ont choisi de déplacer au maximum les traitements du coté serveur. 
+La première question à se poser est celle de l'architecture et de la localisation des traitements\cite{EcoLogiciels}. Des traitements effectués dans un Centre de données auront un coup plus faible car un centre de données dispose souvent de mécanisme d'optimisation énergétique. On peut citer en exemple le \textit{Green Challenge 2010}\footnote{https://sites.google.com/a/octo.com/green-challenge/} ou les équipes devaient travailler sur une application de décodage de QRcode et de géolocalisation pour la rendre la moins consommatrice possible. Les gagnants ont choisi de déplacer au maximum les traitements du coté serveur. 
 
-Une autre question importante à se poser, est celle de la configuration par défaut\cite{GreenPattern}. En effet, une majorité d'utilisateurs laisseront l'application avec son mode de fonctionnement par défaut. Il peut donc être intéressant que l'application conçu effectu des traitement de basse qualité par défaut.
+Une autre question importante à se poser, est celle de la configuration par défaut\cite{GreenPattern}. En effet, une majorité d'utilisateurs laisseront l'application avec son mode de fonctionnement par défaut. Il peut donc être intéressant que l'application conçue effectu des traitements de basse qualité par défaut.
 
 On pourait dresser une liste importante de ce qu'il faut ou ce qu'il ne faut pas faire. En résumé, il faut réfléchir en terme d'écologie chaque choix  fait durant la conception.
 
@@ -218,7 +220,7 @@ struct good_struct{
 \end{lstlisting}
 \end{multicols}
 
-La structure de gauche aucupe en mémoire 24 octets, celle de droite en occupe seulement 16. Cette différence est du a l'alignement que tente de faire le compilateur. Il rajoute donc des bit de bourrage entre certaine variable. Dans notre exemple la structure \textit{bad\_struct} est composé de : 1 octet (char) + 7 octets de bourrage + 8 octets (double) + 2 octets (short) + 2 octets de bourrage + 4 octets (int) = 24 octets. La structure \textit{good\_struct} est, elle, composé de : 8 octets (double) + 4 octets (int) + 2 octets (short) + 1 octet (char) + 1 octet de bourrage = 16 octets.
+La structure de gauche occupe en mémoire 24 octets, celle de droite en occupe seulement 16. Cette différence est du a l'alignement que tente de faire le compilateur. Il rajoute donc des bit de bourrage entre certaine variable. Dans notre exemple la structure \textit{bad\_struct} est composé de : 1 octet (char) + 7 octets de bourrage + 8 octets (double) + 2 octets (short) + 2 octets de bourrage + 4 octets (int) = 24 octets. La structure \textit{good\_struct} est, elle, composé de : 8 octets (double) + 4 octets (int) + 2 octets (short) + 1 octet (char) + 1 octet de bourrage = 16 octets.
 
 Voici un autre exemple, cette fois en java :
 
@@ -242,7 +244,7 @@ s = buf.toString();
 
 Ici encore, le fonctionnement du langage est en cause. La version de gauche fonctionne sans problème mais la version de droite est approximativement 10 fois plus rapide\footnote{Comparaison faites sur plusieurs essais chronométré et avec time = 99999999}. La différence est simple. Dans la première version, la concaténation sur la chaine est remplacé par la création d'un objet \textit{StringBuffer}, l'appel à la méthode \textit{append()} et la re-transformation en \textit{String}.
 
-D'autres exemples existe comme les dépliage de boucle\cite{EcoLogiciels} qui permet au mécanisme d'anticipation des processeurs de mieux fonctionner.
+D'autres exemples existe comme le dépliage de boucle\cite{EcoLogiciels} qui permet au mécanisme d'anticipation des processeurs de mieux fonctionner.
 
 		\subsection{La programmation Modulaire}
 			\subsubsection{Intéret de la programmation modulaire dans l'économie d'énergie}
@@ -258,27 +260,30 @@ Différentes implémentations de ce framework ont été développés à partir d
 	\section{Travaux connexes}
 Dans cette section je vais présenter les projets en rapport avec mon sujet de stage et dont j'ai soit entendu parlé soit pu rencontrer les acteurs.
 		\subsection{Le Green code Lab}
-Le green code lab est un groupement de personne souhaitant promouvoir le développement durable dans le logiciel. C'est une communauté virtuelle qui se charge de publier des articles d'informations, d'organiser des évenements et des formation autour de l'éco-conception de logiciel.
+Le green code lab est un groupement de personne souhaitant promouvoir le développement durable dans le logiciel. C'est une communauté virtuelle qui se charge de publier des articles d'informations, d'organiser des évenements et des formations autour de l'éco-conception de logiciel.
 
 Leur site internet (\href{http://www.greencodelab.fr}{www.greencodelab.fr}) sert de plateforme de publication de leurs articles. Ils ont aussi mis en place un GitHub qui sert de laboratoire pour effectuer des expérimentations. Enfin le green code lab a publié un livre intitulé \textit{Green Pattern - Manuel d'éco-conception des logiciels} et disponible à la vente au format papier ou numérique.
 
 Durant mon stage, j'ai eu l'occasion de me rendre à l'un de leurs évenements sur le thème de la mesure de la consommation électrique d'un logiciel. Là-bas, Olivier Philippot, un membre actif du green code lab, nous a présenté une méthodologie basée sur des \textit{plugwizes} en affichant les mesures au moyen du logiciel KST\footnote{http://kst-plot.kde.org/}{kst-plot.kde.org/}.
 		\subsection{Le projet code vert}
-Code Vert est un projet labélisé par le pôle de compétitivité Images et Réseaux qui a débuté en Février 2012 (en même temps que mon stage) est durera 2 ans. Il regroupe 4 acteurs ~: l'école d'ingénieur ICAM, les sociétés KaliTerre et TOCEA, ainsi que la ssii SIGMA Informatique.
+Code Vert est un projet labélisé par le pôle de compétitivité Images et Réseaux qui a débuté en Février 2012 (en même temps que mon stage) et durera 2 ans. Il regroupe 4 acteurs ~: l'école d'ingénieur ICAM, les sociétés KaliTerre et TOCEA, ainsi que la ssii SIGMA Informatique.
 
 L'objectif de ce projet est de mettre en place un référentiel pour juger de l'éco-conception du code d'un logiciel. Cela passera par une analyse statique du code qui sera noté. On pourra ressortir de cette analyse des recommandations qui permettront de l'améliorer.
 		
 	\section{Conclusion}
-Voici que se termine mon état de l'art. Avec les connaissance présenté dans ce chapitre j'ai pu réaliser un certain nombre de choses que je vais maintenant présenter.
+Voici que se termine mon état de l'art. Avec les connaissances présentées dans ce chapitre j'ai pu réaliser un certain nombre de choses que je vais maintenant présenter.
 
 \chapter{Comment peut-on mesurer la consommation d'un logiciel ?}
-Dans ce chapitre je ne vais m'intéresser qu'à la consommation du logiciel lors de l'exécution. Je ne prendrai pas en compte les différentes étapes du cycle de vie.
-	%\section{Qu'est ce qui consomme dans un ordinateur ?}
-	%TODO écrire la section Qu'est ce qui consomme dans un ordinateur ?
-	\section{Outils de mesure de la consommation des ressources par un logiciel}
-Voici l'ensemble des logiciels que j'ai pu expérimenter pour mesurer la consommation énergétique d'un programme. Pour chacun je note mes observations sur son fonctionnement, son installation ou toute autre remarque pouvant servir.
-		\subsection{Ptop}
-pTop est un programme de collecte d’information sur l'exécution de processus sous linux. Il est censé récupérer les données sur l'utilisation du CPU, de la RAM et des échange réseaux. Il doit ensuite être capable, une fois le modèle paramétré, sortir des informations sur la consommation énergétique.
+Dans ce chapitre je ne vais m'intéresser qu'à la consommation du logiciel lors de l'exécution. Je ne prendrai pas en compte les différentes étapes du cycle de vie. Voici l'ensemble des logiciels que j'ai pu expérimenter pour mesurer la consommation énergétique d'un programme. Pour chacun, je note mes observations sur son fonctionnement, son installation ou toute autre remarque pouvant servir. Afin de mieux organiser mes notes, je sépare c'est programme en deux parties. D'abord ceux inapropriés à mon projet mais que j'ai quand même essayé. Puis ceux pouvant apporter une solution à la problématique d'identifier la consomation d'un logiciel.
+
+	\section{Logiciels inapropriés}
+		\subsection{Energy Checker}
+Le premier que sur lequel je me suis renseigné est \textit{Energy Checker}\footnote{\href{http://software.intel.com/en-us/articles/intel-energy-checker-sdk/}{software.intel.com/en-us/articles/intel-energy-checker-sdk/}}. Le projet \textit{Energy Checker} développé par Intel, est un ensemble d’outils destiné à faciliter la remontée et l’affichage des mesures faites sur la consommation d’un programme. Il se compose principalement de l’API \textit{Energy checker} qui permet d’utiliser les mécanismes de remonter d’information (PL - Productivity Link).
+ 
+Je n'ai pas approfondi mes recherches sur ce logiciel car il est difficile à mettre en place et n'apporte pas de solution sur la mesure de consommation d'énergie. Ne voulant pas perdre trop de temps (la mesure de consommation d'énergie n'était pas le coeur de mon sujet), je suis passé à d'autre solution. 
+
+		\subsection{PTop}
+PTop\footnote{\href{http://mist.cs.wayne.edu/ptop.html}{mist.cs.wayne.edu/ptop.html}} est un programme de collecte d’information sur l'exécution de processus sous linux. Il est censé récupérer les données sur l'utilisation du CPU, de la RAM et des échange réseaux. Il doit ensuite être capable, une fois le modèle paramétré, sortir des informations sur la consommation énergétique.
 
 Malheureusement, il s'est avéré que pTop ne fonctionne pas entièrement. Après plusieurs essais infructueux, j'ai supposé que le logiciel avait été abandonné sans être fini.
 
@@ -300,21 +305,21 @@ Malheureusement, il s'est avéré que pTop ne fonctionne pas entièrement. Aprè
     \item Compilation ~:
 \end{itemize}
 
-\begin{verbatim}
-	# make
-	# chmod +x ptop
-\end{verbatim}
+\begin{lstlisting}[language=bash]
+	make
+	chmod +x ptop
+\end{lstlisting}
 
-\subsubsection{Exécution}
+			\subsubsection{Exécution}
 Lancer le programme au moyen de la commande ~:
 
-\begin{verbatim}
-# ./ptop
-\end{verbatim}
+\begin{lstlisting}[language=bash]
+	./ptop
+\end{lstlisting}
 
 Le programme va s'initialiser et enregistrer les mesures dans les bases de données. Il faut ensuite interrompre les mesures au moyen du signal SIGINT.
 
-\subsubsection{Données de sortie}
+			\subsubsection{Données de sortie}
 Il n’existe pas, à ma connaissance, de documentation précise sur les données de sortie du programme pTop.  Le programme stocke les données dans une base de données Mysql nommé ptop. Elle est composée de quatre tables ~:
 \begin{itemize}
 	\item device\_energy
@@ -324,50 +329,48 @@ Il n’existe pas, à ma connaissance, de documentation précise sur les donnée
 \end{itemize}
 
 Seules les deux dernières tables sont remplies par le programme (à cause soit d’un bug, soit d’une version non fini du programme).
+	
+	\section{Logiciels appropriés}
+		\subsection{ClassMexer}
+ClassMexer\footnote{\href{http://www.javamex.com/classmexer/}{www.javamex.com/classmexer/}} est un API java permettant d’estimer la taille en mémoire d’un objet java. On peut télécharger cet API sous la forme d’un fichier JAR sur son site internet. ClassMexer est un \textit{Instrumentation agent} comme spécifié dans le pattern Instrument\footnote{\href{http://docs.oracle.com/javase/6/docs/api/java/lang/instrument/package-summary.html}{docs.oracle.com/javase/6/docs/api/java/lang/instrument/package-summary.html}}. Cela implique de travailler avec, au minimum, la version 5 de java.
 
-\subsection{Energy Checker}
-Le projet Energy Checker développé par Intel, est un ensemble d’outils destiné à faciliter la remontée et l’affichage des mesures faites sur la consommation d’un programme. Il se compose principalement de l’API Energy checker qui permet d’utiliser les mécanismes de remonter d’information (PL - Productivity Link)
-
-\subsection{ClassMexer}
-ClassMexer est un API java permettant d’estimer la taille en mémoire d’un objet java. On peut télécharger cet API sous la forme d’un fichier JAR à cette adresse ~: http://www.javamex.com/classmexer/. ClassMexer est un Instrumentation agent comme spécifié dans le pattern Instrument. Cela implique de travailler avec, au minimum, la version 5 de java.
-
-\subsubsection{procédure d'installation}
+			\subsubsection{procédure d'installation}
 \begin{itemize}
 	\item Télécharger l’API
 	\item Importer le fichier JAR dans le projet.
 	\item Insérer des appels sur l’objet que l’on souhaite mesurer. Par exemple ~:
-\begin{verbatim}
+\begin{lstlisting}[language=Java]
 public class Main {
-	public static void main(String[] args) {
-		String str = "Hello world !";
-		
-		long noBytes = MemoryUtil.deepMemoryUsageOf(str);
-		
-		System.out.println(noBytes);
-	}
+   public static void main(String[] args) {
+      String str="Hello world !";
+
+      long noBytes=MemoryUtil.deepMemoryUsageOf(str);
+
+      System.out.println(noBytes);
+   }
 }
-\end{verbatim}
+\end{lstlisting}
 	\item Exécuter le programme avec l’option -javaagent:<fichier JAR>
 \end{itemize}
 
-\subsection{JouleMeter}
-Joulemeter est un outil développé par Microsoft et qui sert à mesurer la consommation d’énergie sur un ordinateur. Il ne fonctionne que sous Windows 7.
+		\subsection{JouleMeter}
+\textit{JouleMeter}\footnote{\href{http://research.microsoft.com/en-us/downloads/fe9e10c5-5c5b-450c-a674-daf55565f794/}{research.microsoft.com/en-us/downloads/fe9e10c5-5c5b-450c-a674-daf55565f794/}} est un outil développé par Microsoft et qui sert à mesurer la consommation d’énergie sur un ordinateur. Il ne fonctionne que sous Windows 7.
 
-\subsubsection{Procédure d'installation}
+			\subsubsection{Procédure d'installation}
 \begin{itemize}
-	\item Télécharger le logiciel sur ce site ~: Joulemeter
+	\item Télécharger le logiciel sur son site.
 	\item Exécuter le programme.
 \end{itemize}
 
-\subsubsection{Fonctionnement}
-Joulemeter est un logiciel de mesure qui se base sur un modèle de consommation. La première étape est donc de générer ce modèle. Deux méthodes existent.
+			\subsubsection{Fonctionnement}
+\textit{JouleMeter} est un logiciel de mesure qui se base sur un modèle de consommation. La première étape est donc de générer ce modèle. Deux méthodes existent.
 
 La première n’est utilisable que sur un ordinateur portable muni d’une batterie. Il suffit de débrancher l’alimentation et de lancer la calibration (15 minuntes sans utiliser le PC). Avant de lancer la calibration, il faut faire attention à arrêter toutes les applications afin que le logiciel puisse déterminer une consommation minimum en mode "Idle".
 
 Le deuxième mode nécessite un Wattmètre WattsUp pour générer le modèle. Il suffit de le brancher en USB, de couper toutes les applications possibles et de lancer la calibration (3 minutes sans utiliser le PC).
 
-\subsubsection{Expérience}
-Afin de tester la fiabilité du modele créé, j'ai effectué différentes expériences en comparant les résultats obtenu par Joulemeter avec ceux lu sur un wattmètre. J'ai pu mettre en évidence de grosses faiblesses qui rendent peu fiable les résultats obtenu. La figure~\ref{joulemeter} met en évidence ces faiblesses. J'ai obtenu ces mesures en laissant fonctionner Joulemeter sur un ordinateur, démaré mais inutilisé, durant toute une nuit. En parallèle, j'ai récupéré les mesures que prenait un wattmètre \textit{WattsUp pro}.
+			\subsubsection{Expérience}
+Afin de tester la fiabilité du modele créé, j'ai effectué différentes expériences en comparant les résultats obtenu par \textit{JouleMeter} avec ceux lu sur un wattmètre. J'ai pu mettre en évidence de grosses faiblesses qui rendent peu fiable les résultats obtenu. La figure~\ref{joulemeter} met en évidence ces faiblesses. J'ai obtenu ces mesures en laissant fonctionner \textit{JouleMeter} sur un ordinateur, démaré mais inutilisé, durant toute une nuit. En parallèle, j'ai récupéré les mesures que prenait un wattmètre \textit{WattsUp pro}.
 
 \begin{figure}
 	\includegraphics[width=0.99\textwidth]{figures/joulemeter.pdf}
@@ -375,26 +378,24 @@ Afin de tester la fiabilité du modele créé, j'ai effectué différentes expé
 	\label{joulemeter}
 \end{figure}
 
-Les deux coubes affichent un échantillon  de 5000 mesures (durant approximativement 5000 secondes). Le modèle de consommation sur lequel se basait Joulemeter a été généré juste avant le début de l'expérience. D'un point de vue général, on peut déjà remarquer que la courbe de Joulemeter est très irrégulière et majoritairement en dessous de celle du watttmètre. Cela est principalement du, au fait que l'impact du processeur est largement sous-estimé dans le modèle.
+Les deux coubes affichent un échantillon  de 5000 mesures (durant approximativement 5000 secondes). Le modèle de consommation sur lequel se basait \textit{JouleMeter} a été généré juste avant le début de l'expérience. D'un point de vue général, on peut déjà remarquer que la courbe de \textit{JouleMeter} est très irrégulière et majoritairement en dessous de celle du watttmètre. Cela est principalement du, au fait que l'impact du processeur est largement sous-estimé dans le modèle.
 
-Ensuite on peut noter un seuil en dessous du quel joulemeter ne descend pas (ici, 31,6 watts). On constate même que les mesures du wattmètre passe en dessous de celle de joulemeter dans la partie \textit{D} du graphique. Cet effet de seuil est engendré par le modèle qui considère que le système consomme toujours une constante quand il est allumé. Donc, quelle que soit la charge du système, Joulemeter considère qu'il consomme au minimum 31,6 watts (valeur qu'il a mesuré lors de l'établissement du modèle).
+Ensuite on peut noter un seuil en dessous du quel \textit{JouleMeter} ne descend pas (ici, 31,6 watts). On constate même que les mesures du wattmètre passe en dessous de celle de \textit{JouleMeter} dans la partie \textit{D} du graphique. Cet effet de seuil est engendré par le modèle qui considère que le système consomme toujours une constante quand il est allumé. Donc, quelle que soit la charge du système, \textit{JouleMeter} considère qu'il consomme au minimum 31,6 watts (valeur qu'il a mesuré lors de l'établissement du modèle).
 
-Enfin, et tout n'est pas négatif, on peut remarquer que dans la zone B Joulemeter réussi à mesurer une hausse de la consommation qui peut être noté sur la courbe du wattmètre (avec un certain décalage cependant).
+Enfin, et tout n'est pas négatif, on peut remarquer que dans la zone B \textit{JouleMeter} réussi à mesurer une hausse de la consommation qui peut être noté sur la courbe du wattmètre (avec un certain décalage cependant).
 
-\subsection{PowerAPI}
-PowerAPI est un outil sur lequel travail l'équipe ADAM de l'université de Lille. Les premiers résultats de cet outil ont été présentés dans un papier\cite{noureddine:hal-00681560} publié à l'ICSE\footnote{International Conference on Software Engineering} 2012 à Zurich. Cet outil parait prometteur et s'il continue à être développé, pourrait bien apporter une solution intéressante au problème de la mesure de consommation énergétique de logiciel.
+		\subsection{PowerAPI}
+\textit{PowerAPI} est un outil sur lequel travail l'équipe ADAM de l'université de Lille. Les premiers résultats de cet outil ont été présentés dans un papier\cite{noureddine:hal-00681560} publié à l'ICSE\footnote{International Conference on Software Engineering} 2012 à Zurich. Cet outil parait prometteur et s'il continue à être développé, pourrait bien apporter une solution intéressante au problème de la mesure de consommation énergétique de logiciel.
 
 Selon la présentation qui en a été faite, il fonctionne actuellement pour la consommation CPU. Cet outil collecte le temps CPU d'un processus et la fréquence de celui-ci en temps réel. Puis il détermine l'énergie consommée grâce à des tables de consommations par rapport à la fréquence fournis par les fabriquant de processeur.
 
-Je n'ai malheureusement pas essayé PowerAPI par manque de temps. Je n'ai eu accès au programme que tardivement durant mon stage et à ce moment je travaillais sur d'autres aspects.
+Je n'ai malheureusement pas essayé \textit{PowerAPI} par manque de temps. Je n'ai eu accès au programme que tardivement durant mon stage et à ce moment je travaillais sur d'autres aspects.
+	
+	\section{Conclusion}
+Pour conclure ce chapitre, je dirais qu'il est difficile pour l'instant de mesurer éfficacement la consommation d'un logiciel. Le seul outil que j'ai pu réélement tester sur un logiciel est \textit{JouleMeter}. J'ai montré dans mes expériences que, même si on peut identifier certains évenement sur la consommation, il est impossible de ce fier aux relevés obtenu.
 
-%\chapter{Mise en valeur de l'impact du code sur la consommation}
-%TODO écrire le chapitre Mise en valeur de l'impact du code sur la consommation
-%Tout au long de mon stage j'ai développé un ensemble de petits programmes qui mettent en valeur une bonne pratique à adopter, la faiblesse d'un mécanisme ou encore l'importances des choix effectué durant le développement d'un logiciel. Dans ce chapitre je vais présenter les exemples les plus éloquants. 
-%	\section{Impact du choix du langage}
-%	\section{Impact des choix de programmation}
-%		\subsection{Description des tests}
-%		\subsection{Resultats obtenus}
+Je pense que \textit{PowerAPI} apportera une solution intéressante. Il faudra suivre son développement avec intérêt.
+
 
 \chapter{La programmation modulaire au service de l'économie d'énergie}
 Afin de mettre en valeur l'importance de l'architecture logicielle dans la consommation, j'ai proposé de développer une application basée sur la technologie java OSGi\footnote{\href{http://www.osgi.org}{www.osgi.org}}. L'objectif de ce projet est de pouvoir réaliser facilement des démonstrations d'application modulaire qui s'adapte en fonction de contrainte énergétique. J'ai donc choisi d'élaborer un cadriciel qui permettrait d'échanger une partie de l'application (dans notre context un \og bundle \fg OSGi) contre une autre afin d'optimiser la consommation. Afin d'expliquer plus clairement le but du projet, je vais détailler un cas d'utilisation du cadriciel.
@@ -517,6 +518,11 @@ L'architecture de cette application (figure~\ref{lecMult}) est divisé en deux f
 \end{figure}
 
 Au final, nous avons donc un module qui rend une qualité de service supérieur mais qui consomme plus (11,5 watts mesuré avec un wattmètre) et l'autre qui dégrade la qualité de service, en supprimant le traitement de la vidéo, pour consommer moins (4,2 watts mesuré avec un wattmètre).
+	
+	\section{Conclusion}
+Pour conclure ce chapitre, le cadriciel que je souhaitais développer fonctionne. Il reste cependant basique est peut être amélioré sur beaucoup de points. En premier plan, le controleur développé reste très primitif. Il est possible de l'améliorer de bien des façons et pourquoi pas d'en créer plusieurs applicant différentes stratégies. L'utilisation de \textit{Wildcat}, comme il était initialement prévu, donnerait de larges possibilités au cadriciel.
+
+Un autre axe d'amélioration serai de travailler sur la mesure d'énergie d'un bundle. Ma solution reste très statique et n'apporte pas la finnesse souhaité dans un tel type de projet.
 
 \chapter{Conclusion}
 Voici donc l'ensemble du travail que j'ai pu effectuer durant mon stage de fin d'étude. Il reste encore beaucoup de travail pour pouvoir obtenir des résultats concrets et enfin pouvoir dire que l'on sait éco-concevoir un logiciel. Cinq mois furent trop courts pour pouvoir développer l'ensemble des idées que je souhaitais aborder. J'ai du faire des choix et cibler mon étude.
@@ -526,7 +532,6 @@ Pour moi, ce fut un travail passionnant. Je suis heureux d'avoir eu l'opportunit
 \bibliographystyle{plain}
 \bibliography{biblio}
 \listoffigures{}
-\listoftables{}
 \appendix
 
 \chapter{Sujet de stage}
