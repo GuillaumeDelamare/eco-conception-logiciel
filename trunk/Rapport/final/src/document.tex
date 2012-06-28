@@ -11,6 +11,8 @@
 \usepackage{subcaption}
 \usepackage{wrapfig}
 \usepackage{epstopdf}
+\usepackage{listings}
+\usepackage{multicol}
 
 %\setlength{\parindent}{0.7cm}
 \DeclareGraphicsRule{.eps}{pdf}{.pdf}{`epstopdf #1}
@@ -111,9 +113,9 @@ Je dois tout d'abord rechercher les travaux existants dans ce domaine, qu'ils so
 Dans ce troisième chapitre, je vais tenter de faire un état de l'art, le plus complet possible, des sujets abordés durant mon stage. J'ai découpé cet état de l'art en quatre parties. Une introduction dans laquelle je détaillerai des généralités sur le développement durable en informatique. J'entrerai ensuite dans le coeur de mon sujet, en commençant par les méthodes de mesure de la consommation d'énergie d'un logiciel. Puis j'aborderai les notions et concepts que j'ai utilisé durant mon stage pour faire des expérimentations sur l'éco-conception de logiciel. Enfin je terminerai cet état de l'art en présentant une liste non exhaustive de projets en rapport avec le développement durable du coté logiciel.
 
 		\subsection{Pourquoi économiser de l'énergie ?}
-D'un premier abord, la réponse à cette question parait assez évidente. Cela peut être pour une raison économique, pour une question d'éthique ou encore pour répondre à une contrainte de consommation. Cela dit, si je souhaite commencer cet état de l'art par cette question, c'est que je pense qu'il faut bien réfléchir au besoin de l'économie d'énergie. Ici, ce que l'on souhaite faire c'est réduire l'empreinte énergétique d'un logiciel et non pas optimiser un programme. Bien sur, si on améliore un algorithme en terme de complexité ou bien même en rapidité, on réduit le coût énergétique de son éxécution. Mais ceci n'est qu'un aspect de ce que l'on souhaite effectuer dans ce projet. 
+D'un premier abord, la réponse à cette question parait assez évidente. Cela peut être pour une raison économique, pour une question d'éthique ou encore pour répondre à une contrainte de consommation. Cela dit, si je souhaite commencer cet état de l'art par cette question, c'est que je pense qu'il faut bien réfléchir au besoin d'économie d'énergie. Ici, ce que l'on souhaite faire c'est réduire l'empreinte énergétique d'un logiciel et non pas optimiser un programme. Bien sur, si on améliore un algorithme en terme de complexité ou bien même en rapidité, on réduit le coût énergétique de son éxécution. Mais ceci n'est qu'un aspect de ce que l'on souhaite effectuer dans ce projet. 
 
-Cet aspect ne sera pas abordé dans mes travaux car il fait partie d'autres sujets comme l'optimisation d'algorithmes ou l'amélioration de compilateur et  ces sujets font l'objet de travaux depuis plusieurs années. De plus, ce que l'on souhaite dans ce projet, c'est placer le critère de consommation d'énergie au premier plan et pourquoi pas, si cela est nécessaire, dégrader la qualité de service de l'application. Au final, à la question \og Pourquoi économiser de l'énergie ?\fg la réponse que je souhaite donner est \og Pour économiser de l'énergie\fg.
+Cet aspect ne sera pas abordé dans mes travaux car il fait partie d'autres sujets comme l'optimisation d'algorithmes ou l'amélioration de compilateur et  ces sujets font l'objet de travaux depuis plusieurs années. De plus, ce que l'on souhaite dans ce projet, c'est placer le critère de consommation d'énergie au premier plan et pourquoi pas, si cela est nécessaire, dégrader la qualité de service de l'application.
 		
 		\subsection{L'éco-conception logiciel ~: définition}
 L'éco-conception n'est pas une notion propre à l'informatique. C'est un terme qui désigne une volonté de concevoir un produit respectueux de l'environement. Actuellement, on parle facilement de l'éco-conception d'un batiment ou bien de celle d'une baie de serveur. Mais parler de l'éco-conception d'un logiciel est assez rare. Certaines entreprises commencent à y réfléchir, à l'image de Facebook qui, devant sa facture d'électricité, a décidé d'abandonner le langage PHP pour le C++, en créant au passage le compilateur HipHop. Cette initiative a permis à la société de diviser sa consommation d'électricité par deux.
@@ -137,15 +139,12 @@ L'analyse du cycle de vie (ACV) est l'un des outils principal utilisé par l'ind
 	\label{CdV}
 \end{figure}
 
-La particularité du produit qu'est le logiciel par rapport aux produits standards de l'industrie (la dématérialisation en particulier) fait qu'il est difficile d'appliquer un modèle existant pour effectuer une ACV d'un logiciel. Il serait donc nécessaire de travailler à l'élaboration d'un modèle propre au logiciel.
-			\subsubsection{}
+La particularité du produit qu'est le logiciel par rapport aux produits standards de l'industrie (la dématérialisation en particulier) fait qu'il est difficile d'appliquer un modèle existant pour effectuer une ACV d'un logiciel. Ce n'était pas l'objet de mon stage, je n'ai donc pas travaillé à l'élaboration d'un modèle. En revanche, j'ai tenté de toujours raisonner en terme de cycle de vie et non en consommation à l'exécution.
 			
 		
 	\section{La mesure de consommation d'énergie}
-Dans cette partie de l'état de l'art je vais parler des différentes techniques pour extraire et utiliser une information sur la consommation d'un logiciel.
-		\subsection{Différentes approches pour mesurer la consommation des ressources}
-J'ai pu identifier trois méthodes différentes pour mesurer l'énergie consommée. Elles ont chacunes leurs avantages et leurs défauts.
-			\subsubsection{La mesure par un appareil externe}
+Dans cette partie de l'état de l'art je vais parler des différentes techniques pour extraire et utiliser une information sur la consommation d'un logiciel. J'ai pu identifier trois méthodes différentes pour mesurer l'énergie consommée. Elles ont chacunes leurs avantages et leurs défauts.
+			\subsection{La mesure par un appareil externe}
 La première méthode, la plus commune pour mesurer les resources consommées par un appareil électrique, est de placer un wattmètre en série sur l'alimentation de cet appareil. Avec un wattmètre récent on peut mesurer un ensemble de paramètre tels que les watts, les watts/heure, les volts et les ampères. De plus, la plupart des outils récents proposent un système d'enregistrement et/ou de transfert des données vers un ordinateur.
 
 \begin{wrapfigure}{dR}{0.3\textwidth}
@@ -158,14 +157,14 @@ Par exemple, les \textit{plugwizes} sont des modules qui se placent sur la prise
 
 Cette technique de mesure n'offre qu'une vue globale de notre système. Il est impossible par cette méthode d'identifier de manière certaine la consommation d'un logiciel. On peut par contre corréler un changement de consommation avec un événement survenu\cite{GreenMining} (le démarrage d'une application, le lancement d'une tâche gourmande en traitement\ldots). 
 
-			\subsubsection{La mesure par un logiciel interne}
+			\subsection{La mesure par un logiciel interne}
 La deuxième méthode consiste à analyser les ressources utilisées par un programme et, à partir d'un modèle de consommation, d'en déduire la consommation énergétique de l'application. Différentes ressources peuvent être ciblées. On peut les classer en deux catégories ~: les unités de calcul (CPU, GPU\ldots) et les dispositifs d'entrées/sorties (disque dur, interface réseau\ldots).
 
 Dans cet article\cite{noureddine:hal-00681560}, les auteurs détaillent le modèle de consommation qu'ils ont mis au point pour leur application de mesure PowerAPI. On peut y voir qu'ils obtiennent des résultats intéressants par rapport à la mesure faite en parallèle sur un wattmètre. L'inconvénient de ce type de méthode est qu'il faut calibrer le modèle. Cela est nécessaire car chaque processeur  fonctionne différemment et donc ne consomme pas la même chose. De plus ce type de méthodes est intrusive et peut perturber le fonctionnement du logiciel.
 
 En revanche cette technique permet facilement d'isoler un logiciel en particulier (ou plutôt un processus). C'est donc une technique intéressante pour mon projet.
 
-			\subsubsection{Vers une mesure par un appareil interne}
+			\subsection{Vers une mesure par un appareil interne}
 Enfin une troisième technique est à envisagé dans un futur plus ou moins proche. Comme l'explique l'article \textit{Looking back on the language and hardware revolutions
 ~: measured power, performance, and scaling}\cite{Esmaeilzadeh:2011:LBL:1950365.1950402}, les fabricants de matériel intègrent, de plus en plus, dans leurs composants, des mécanismes de mesure afin d'adapter leurs fonctionnements à leurs consommations. À la fin de l'article, les auteur recommande l'ouverture de ces mécanismes au travers d'API pour que les développeur puissent y accéder.
 
@@ -188,14 +187,63 @@ Cette partie ne va pas expliquer comment fabriquer à coup sûr un éco-logiciel
 		\subsection{De la Conception\ldots}
 La conception d'un éco-logiciel doit être particulièrement bien pensée. C'est lors la conception que l'on prend la majorité des décisions qui entraineront une sur-consomation par la suite. Il m'est difficile de lister l'ensemble des questions à se poser lors de cette phase. Je ne citerais que quelques points importants.
 
-La première question à se poser est celle de l'architecture et de la localisation des traitements\cite{EcoLogiciels}. Des traitements effectués dans un Centre de données auront un coup plus faible car un centre de données dispose souvent de mécanisme d'optimisation énergétique. Une autre question importante à se poser, est celle de la configuration par défaut\cite{GreenPattern}. En effet, une majorité d'utilisateurs laisseront l'application avec son mode de fonctionnement par défault.
+La première question à se poser est celle de l'architecture et de la localisation des traitements\cite{EcoLogiciels}. Des traitements effectués dans un Centre de données auront un coup plus faible car un centre de données dispose souvent de mécanisme d'optimisation énergétique. On peut citer en exemple le \textit{Green Challenge 2010}\footnote{https://sites.google.com/a/octo.com/green-challenge/} ou les équipes devaient travailler sur une application de décodage de QRcode et de géolocalisation pour la rendre le moins consommatrice possible. Les gagnants ont choisi de déplacer au maximum les traitements du coté serveur. 
+
+Une autre question importante à se poser, est celle de la configuration par défaut\cite{GreenPattern}. En effet, une majorité d'utilisateurs laisseront l'application avec son mode de fonctionnement par défaut. Il peut donc être intéressant que l'application conçu effectu des traitement de basse qualité par défaut.
 
 On pourait dresser une liste importante de ce qu'il faut ou ce qu'il ne faut pas faire. En résumé, il faut réfléchir en terme d'écologie chaque choix  fait durant la conception.
 
 		\subsection{\ldots~À la programmation}
 La programmation d'application \og verte \fg est encore plus dur à définir que la conception. Il n'y a pas de méthode miracle. Il faut avoir une bonne connaissance du langage, bien choisir les mécanismes utilisés (boucle, saut conditionnel\ldots). Le plus simple ici est de s'assister d'outils d'aide à la programmation. Il n'en existe pas encore de suffisament évolué dans l'éco-conception, mais beaucoup d'optimisation proposée par des outils comme Sonar\footnote{http://www.sonarsource.org/} réduisent l'empreinte énergétique d'un code.
 
-Ensuite, je dirais que l'expérimentation peut permettre de trouver des amélioration dans un code (dépliage de boucle, organisation des données\ldots).
+Durant mon stage j'ai pu réaliser plusieurs petits programmes pour mettre en évidence ce que peut être l'impact d'un mauvais choix fait à la programmation. Par exemple en C, le choix fait sur l'ordre de déclaration des élements d'un structure à un impact sur la place en mémoire de cette structure. Voici un exemple :
+
+\begin{multicols}{2}
+\begin{lstlisting}[language=C]
+struct bad_struct{
+    char c;
+    double d;
+    short s;
+    int i;
+};
+\end{lstlisting}
+\columnbreak
+\begin{lstlisting}[language=C]
+struct good_struct{
+    double d;
+    int i;
+    short s;
+    char c;
+};
+\end{lstlisting}
+\end{multicols}
+
+La structure de gauche aucupe en mémoire 24 octets, celle de droite en occupe seulement 16. Cette différence est du a l'alignement que tente de faire le compilateur. Il rajoute donc des bit de bourrage entre certaine variable. Dans notre exemple la structure \textit{bad\_struct} est composé de : 1 octet (char) + 7 octets de bourrage + 8 octets (double) + 2 octets (short) + 2 octets de bourrage + 4 octets (int) = 24 octets. La structure \textit{good\_struct} est, elle, composé de : 8 octets (double) + 4 octets (int) + 2 octets (short) + 1 octet (char) + 1 octet de bourrage = 16 octets.
+
+Voici un autre exemple, cette fois en java :
+
+\begin{multicols}{2}
+\begin{lstlisting}[language=Java]
+String s = "";
+for(i=0; i<time; i++) {
+    s+="";
+}
+\end{lstlisting}
+\columnbreak
+\begin{lstlisting}[language=Java]
+String s = "";
+StringBuffer buf = s;
+for (i=0; i<time; i++) {
+    buf.append("");
+}
+s = buf.toString();
+\end{lstlisting}
+\end{multicols}
+
+Ici encore, le fonctionnement du langage est en cause. La version de gauche fonctionne sans problème mais la version de droite est approximativement 10 fois plus rapide\footnote{Comparaison faites sur plusieurs essais chronométré et avec time = 99999999}. La différence est simple. Dans la première version, la concaténation sur la chaine est remplacé par la création d'un objet \textit{StringBuffer}, l'appel à la méthode \textit{append()} et la re-transformation en \textit{String}.
+
+D'autres exemples existe comme les dépliage de boucle\cite{EcoLogiciels} qui permet au mécanisme d'anticipation des processeurs de mieux fonctionner.
+
 		\subsection{La programmation Modulaire}
 			\subsubsection{Intéret de la programmation modulaire dans l'économie d'énergie}
 La programmation modulaire présente beaucoup d'avantage pour l'éco-conception de logiciel. Dans l'absolu, un programme modulaire est plus facile à maintenir et a une durée vie potentiellement plus longue qu'un programme standard. Comme ses modules sont indépendant les uns des autres, il suffit de remplacer la brique deffectueuse pour réparer un problème. De même, l'évolution du programme se fait par l'ajout de nouvelles briques.
