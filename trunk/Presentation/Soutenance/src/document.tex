@@ -16,7 +16,7 @@
 \usepackage[french]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
-
+\usepackage{listings}
 
 % font definitions, try \usepackage{ae} instead of the following
 % three lines if you don't like this look
@@ -149,7 +149,14 @@ Laboratoire d'informatique de Nantes Atlantiques\\
 		\subsection{Bonnes pratiques}
 			\begin{frame}
 				\frametitle{Conception}
-					
+					\begin{block}{L'exemple du Green Challenge}
+						Les gagnants on choisi :
+						\begin{itemize}
+							\item De déplacer les traitrements coté serveur
+							\item D'évaluer le coup des Bibliothèques utilisées
+							\item D'éviter certain langage
+						\end{itemize}
+					\end{block}
 			\end{frame}
 			\begin{frame}
 				\frametitle{Programmation}
@@ -159,14 +166,24 @@ Laboratoire d'informatique de Nantes Atlantiques\\
 		\subsection{Travaux connexes}
 			\begin{frame}
 				\frametitle{Travaux connexes}
-					
+				\begin{block}{Quelques projets connexes}
+					\begin{itemize}
+						\item Le Projet code vert
+						\item Le Green code Lab
+					\end{itemize}
+				\end{block}
 			\end{frame}
 		
 	\section{Contributions}
 		\subsection{Test des outils de mesure}
 			\begin{frame}
 				\frametitle{Les échecs}
-				
+					\begin{block}{Deux projets inapropriés}
+						\begin{itemize}
+							\item Energy checker
+							\item PTop
+						\end{itemize}
+					\end{block}
 			\end{frame}
 			\begin{frame}
 				\frametitle{ClassMexer}
@@ -174,21 +191,40 @@ Laboratoire d'informatique de Nantes Atlantiques\\
 			\end{frame}
 			\begin{frame}
 				\frametitle{JouleMeter}
-				
+				\begin{center}
+					\includegraphics[width=0.8\textwidth]{figures/joulemeter}
+				\end{center}
 			\end{frame}
 			\begin{frame}
 				\frametitle{PowerAPI}
-				
+					\begin{itemize}
+					  \item Développé par l'équipe ADAM de Lilles
+					  \item Semble donner des résultats assez proche de la réalité
+					\end{itemize}
 			\end{frame}
 			
 		\subsection{OSGi pour économiser l'énergie}
 			\begin{frame}
 				\frametitle{Présentation d'EcoFramework}
-				
+					\begin{block}{Objectifs}
+						\begin{itemize}
+						  \item Une architecture modulaire
+						  \item Un système permettant la dégradation de service
+						  \item Remplacer du code gourmand par un plus économe
+						\end{itemize}
+					\end{block}
+			\end{frame}
+			\begin{frame}
+				\frametitle{Présentation d'EcoFramework}
+				\begin{center}
+					\includegraphics[width=0.8\textwidth]{figures/EcoPattern_Bundle_Diagramme.pdf}
+				\end{center}
 			\end{frame}
 			\begin{frame}
 				\frametitle{Exemple d'application : Lecteur multimedia}
-				
+				\begin{center}
+					\includegraphics[width=0.8\textwidth]{figures/EcoPattern_LecteurMultimedia.pdf}
+				\end{center}
 			\end{frame}
 			\begin{frame}
 				\frametitle{Démonstration}
@@ -198,7 +234,11 @@ Laboratoire d'informatique de Nantes Atlantiques\\
 	\section{Conclusion}
 		\begin{frame}
 			\frametitle{Conclusion}
-				
+			\begin{itemize}
+			  \item Un stage passionnant, riche en découverte et apprentissage
+			  \item Des conditions de travail idéal
+			  \item Un sujet à peine ouvert 
+			\end{itemize}
 		\end{frame}
 		\begin{frame}
 			\frametitle{Questions}
